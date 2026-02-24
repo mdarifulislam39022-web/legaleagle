@@ -49,7 +49,7 @@
 <body>
 
     <div class="wisdom-box">
-        <div id="wisdom-text">পড়ুন আপনার রবের নামে যিনি সৃষ্টি করেছেন।</div>
+        <div id="wisdom-text">পড়ুন আপনার রবের নামে যিনি সৃষ্টি করেছেন।</div>
         <div id="wisdom-source">— সূরা আল-আলাক: ১</div>
     </div>
 
@@ -63,8 +63,7 @@
         </div>
     </div>
 
-    <h1>Legal Eagle</h1>
-        <h1>Dashboard (3-2 Semester)</h1>
+    <h1 style="color: var(--gold); margin-bottom: 20px;">Md. Ariful Islam Dashboard (3-2 Semester)</h1>
     
     <div class="master-grid" id="main-grid"></div>
 
@@ -72,7 +71,7 @@
         // ১. উক্তি ম্যানেজমেন্ট
         let quotes = JSON.parse(localStorage.getItem('arif_quotes_v2')) || [
             { t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪" },
-            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
+            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
             { t: "Justice must not only be done, but seen to be done.", s: "Legal Maxim" }
         ];
 
@@ -88,7 +87,7 @@
                 textEl.style.opacity = 1;
             }, 500);
         }
-        setInterval(rotateWisdom, 15000); // ১৫ সেকেন্ড পর পর পরিবর্তন
+        setInterval(rotateWisdom, 15000);
 
         // ২. কোর্স ডেটা
         const courses = [
@@ -106,7 +105,7 @@
                     <div class="title">${c.code}: ${c.name}
                         <span class="exam-date-label">📅 তারিখ: ${c.dStr}</span>
                     </div>
-                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
+                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
                     <div class="prog-area">
                         <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
                         <input type="range" id="pr-${c.id}" value="0" oninput="updateUI(${c.id}, this.value)">
@@ -121,7 +120,7 @@
         grid.innerHTML += `
             <div class="card">
                 <div class="title">✨ উক্তি ম্যানেজমেন্ট (Add/Remove)</div>
-                <input type="text" id="new-q-text" placeholder="নতুন উক্তি/আয়াত লেখো...">
+                <input type="text" id="new-q-text" placeholder="নতুন উক্তি/আয়াত লেখো...">
                 <input type="text" id="new-q-source" placeholder="উৎস...">
                 <button class="save-btn" onclick="addQuote()">উক্তি যুক্ত করো</button>
                 <div class="quote-list" id="q-list-display"></div>
@@ -136,8 +135,8 @@
             </div>
             <div class="card">
                 <div class="title">📖 My Legal Thoughts</div>
-                <textarea id="diary" style="height:150px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
-                <button class="save-btn" onclick="saveDiary()">ডায়েরি সেভ করো</button>
+                <textarea id="diary" style="height:150px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
+                <button class="save-btn" onclick="saveDiary()">ডায়েরি সেভ করো</button>
                 <div id="dm" class="status"></div>
             </div>`;
 
@@ -165,23 +164,58 @@
 
         function renderQuoteList() {
             const list = document.getElementById('q-list-display');
-            list.innerHTML = quotes.map((q, i) => `
-                <div class="quote-item">
-                    <span>${q.t.substring(0,25)}...</span>
-                    <button class="del-btn" onclick="removeQuote(${i})">✖</button>
-                </div>
-            `).join('');
+            if(list) {
+                list.innerHTML = quotes.map((q, i) => `
+                    <div class="quote-item">
+                        <span>${q.t.substring(0,25)}...</span>
+                        <button class="del-btn" onclick="removeQuote(${i})">✖</button>
+                    </div>
+                `).join('');
+            }
         }
 
-        function updateUI(id, v) { document.getElementById(`pv-${id}`).innerText = v; document.getElementById(`pb-${id}`).style.width = v + '%'; }
+        function updateUI(id, v) { 
+            document.getElementById(`pv-${id}`).innerText = v; 
+            document.getElementById(`pb-${id}`).style.width = v + '%'; 
+        }
+
         function saveSubject(id) {
             localStorage.setItem(`s_sugg_${id}`, document.getElementById(`ts-${id}`).value);
-            localStorage.setItem(`s_prog_${id}`, document.getElementById(`range-${id}`).value || document.getElementById(`pr-${id}`).value);
+            localStorage.setItem(`s_prog_${id}`, document.getElementById(`pr-${id}`).value);
             showS(`sm-${id}`);
         }
+
         function saveDiary() { localStorage.setItem('s_diary', document.getElementById('diary').value); showS('dm'); }
         function saveCheck() { for(let i=0; i<5; i++) localStorage.setItem(`s_check_${i}`, document.getElementById(`chk-${i}`).checked); }
         function showS(id) { document.getElementById(id).innerText = 'সেভ হয়েছে! ✅'; setTimeout(() => document.getElementById(id).innerText = '', 2000); }
+
+        function showFinalBrief() {
+            const now = new Date();
+            const today = now.toISOString().split('T')[0]; 
+            const examBriefs = {
+                "2026-03-03": { subject: "LAW 311: Criminal Procedure", tips: "আজ Sec 54, 154 (FIR), 161 এবং Bail (497) ধারাগুলো শেষবার দেখে নাও। শান্ত থাকো, তুমি সব পারবে!", checklist: "Admit Card + Black Pen + ID Card" },
+                "2026-03-04": { subject: "LAW 313: Civil Procedure", tips: "Res Sub-Judice (Sec 10) এবং Res Judicata (Sec 11) ভুলো না। Injunction এর নিয়মগুলো দেখে নাও।", checklist: "Scale + ID Card + Confidence" },
+                "2026-03-05": { subject: "LAW 315: Limitation Act", tips: "Section 5 (Condonation) এবং Section 12 খুব গুরুত্বপূর্ণ। সময়ের হিসাবটা ভালো করে খেয়াল রেখো।", checklist: "Watch + Registration Card" },
+                "2026-03-08": { subject: "LAW 317: Intellectual Property", tips: "Patent, Trademark এবং Copyright এর পার্থক্যগুলো মাথায় রাখো। কেস রেফারেন্স দেওয়ার চেষ্টা করো।", checklist: "Essential Stationery" },
+                "2026-03-09": { subject: "LAW 319: Ethics & Court Craft", tips: "আজ শেষ পরীক্ষা! Court Etiquette এবং উকিলের পেশাদারিত্ব নিয়ে গুছিয়ে লেখো। তুমি সফল হবেই!", checklist: "Identity Card + Smile" }
+            };
+
+            if (examBriefs[today]) {
+                const brief = examBriefs[today];
+                const briefDiv = document.createElement('div');
+                briefDiv.style = "position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:80%; max-width:500px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); padding:25px; border-radius:15px; z-index:9999; backdrop-filter:blur(10px); text-align:center; box-shadow:0 0 50px rgba(0,0,0,0.8);";
+                briefDiv.innerHTML = `
+                    <h2 style="color:var(--gold); margin-bottom:10px;">☀️ আজকের ফাইনাল ব্রিফ</h2>
+                    <h3 style="color:#fff;">${brief.subject}</h3>
+                    <p style="color:#ddd; margin:15px 0; line-height:1.6;">${brief.tips}</p>
+                    <div style="background:rgba(212,175,55,0.1); padding:10px; border-radius:5px; border-left:4px solid var(--gold);">
+                        <small style="color:var(--gold);">চেকলিস্ট: ${brief.checklist}</small>
+                    </div>
+                    <button onclick="this.parentElement.remove()" style="margin-top:20px; background:var(--gold); border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">বিসমিল্লাহ বলে শুরু করি</button>
+                `;
+                document.body.appendChild(briefDiv);
+            }
+        }
 
         window.onload = function() {
             renderQuoteList();
@@ -193,6 +227,7 @@
             });
             const d = localStorage.getItem('s_diary'); if(d) document.getElementById('diary').value = d;
             for(let i=0; i<5; i++) if(localStorage.getItem(`s_check_${i}`) === 'true') document.getElementById(`chk-${i}`).checked = true;
+            showFinalBrief();
         };
 
         setInterval(() => {
@@ -213,10 +248,12 @@
             courses.forEach(c => {
                 const diff = new Date(c.date).getTime() - now;
                 const el = document.getElementById(`st-${c.id}`);
-                if(diff > 0) {
-                    const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000);
-                    el.innerText = `বাকি: ${d} দিন ${h} ঘণ্টা ${m} মিনিট`;
-                } else { el.innerText = "পরীক্ষা চলছে/শেষ"; el.style.color = "#4caf50"; }
+                if(el) {
+                    if(diff > 0) {
+                        const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000);
+                        el.innerText = `বাকি: ${d} দিন ${h} ঘণ্টা ${m} মিনিট`;
+                    } else { el.innerText = "পরীক্ষা চলছে/শেষ"; el.style.color = "#4caf50"; }
+                }
             });
         }, 1000);
     </script>
