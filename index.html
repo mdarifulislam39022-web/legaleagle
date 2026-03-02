@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Ultimate Master Dashboard | Mohammad Arif</title>
+    <title>Master Exam Dashboard | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
@@ -12,49 +12,30 @@
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
-        
-        .wisdom-box {
-            background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold);
-            padding: 25px; border-radius: 15px; text-align: center;
-            width: 95%; max-width: 850px; margin-bottom: 25px; min-height: 120px;
-            display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px);
-        }
-        #wisdom-text { font-size: 1.5rem; color: #fff; font-weight: 600; transition: 0.5s; }
-        #wisdom-source { font-size: 0.9rem; color: var(--gold); margin-top: 10px; font-style: italic; }
-
+        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 25px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); }
         .main-timer-box { text-align: center; background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 40px; width: 95%; max-width: 850px; }
         .timer-grid { display: flex; justify-content: center; gap: 15px; font-size: 2.5rem; font-weight: bold; }
         .unit-box { background: rgba(0,0,0,0.5); padding: 10px; border-radius: 10px; min-width: 90px; border: 1px solid var(--gold); }
         .unit-box small { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
-
         .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; width: 100%; max-width: 1300px; }
         .card { background: var(--glass); padding: 25px; border-radius: 15px; border-top: 4px solid var(--gold); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 15px; }
-        .title { font-size: 1.2rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
-        .exam-date-label { font-size: 0.85rem; color: #4caf50; display: block; margin-top: 5px; }
-
-        textarea, input[type="text"] { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 10px; font-family: inherit; margin-bottom: 5px; box-sizing: border-box; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
-        .save-btn:hover { background: #fff; transform: translateY(-2px); }
-        
+        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
+        textarea, input[type="text"] { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 10px; font-family: inherit; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
         .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; }
-        .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: width 0.4s; }
+        .progress-fill { background: var(--gold); height: 100%; transition: width 0.4s; }
         input[type="range"] { width: 100%; accent-color: var(--gold); }
-        .status { font-size: 0.8rem; color: #4caf50; text-align: center; height: 15px; }
-
-        .quote-list { max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; margin-top: 10px; }
-        .quote-item { font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 5px 0; }
-        .del-btn { color: #ff4d4d; cursor: pointer; font-weight: bold; border: none; background: none; }
     </style>
 </head>
 <body>
 
     <div class="wisdom-box">
-        <div id="wisdom-text">পড়ুন আপনার রবের নামে যিনি সৃষ্টি করেছেন।</div>
+        <div id="wisdom-text">পড়ুন আপনার রবের নামে যিনি সৃষ্টি করেছেন।</div>
         <div id="wisdom-source">— সূরা আল-আলাক: ১</div>
     </div>
 
     <div class="main-timer-box">
-        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 15px;">Next Exam</h2>
+        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 15px;">Next Target</h2>
         <div class="timer-grid">
             <div class="unit-box"><span id="m-d">00</span><small>দিন</small></div>
             <div class="unit-box"><span id="m-h">00</span><small>ঘণ্টা</small></div>
@@ -63,49 +44,39 @@
         </div>
     </div>
 
-    <h1 style="color: var(--gold); margin-bottom: 20px;">Legal Eagle Dashboard (3-2 Semester)</h1>
+    <h1>Md. Ariful Islam Dashboard (LLB 3/2 Mid)</h1>
     
     <div class="master-grid" id="main-grid"></div>
 
     <script>
-        // ১. উক্তি ম্যানেজমেন্ট
-        let quotes = JSON.parse(localStorage.getItem('arif_quotes_v2')) || [
+        let quotes = JSON.parse(localStorage.getItem('arif_quotes')) || [
             { t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪" },
-            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
+            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
             { t: "Justice must not only be done, but seen to be done.", s: "Legal Maxim" }
         ];
 
         function rotateWisdom() {
-            if(quotes.length === 0) return;
             const r = quotes[Math.floor(Math.random() * quotes.length)];
-            const textEl = document.getElementById('wisdom-text');
-            const sourceEl = document.getElementById('wisdom-source');
-            textEl.style.opacity = 0;
-            setTimeout(() => {
-                textEl.innerText = r.t;
-                sourceEl.innerText = "— " + r.s;
-                textEl.style.opacity = 1;
-            }, 500);
+            document.getElementById('wisdom-text').innerText = r.t;
+            document.getElementById('wisdom-source').innerText = "— " + r.s;
         }
-        setInterval(rotateWisdom, 15000);
+        setInterval(rotateWisdom, 60000);
 
-        // ২. কোর্স ডেটা
+        // Updated Course Data from Routine
         const courses = [
-            { id: 0, code: "LAW 311", name: "Criminal Procedure", date: "2026-03-03T10:00:00", dStr: "০৩ মার্চ, ২০২৬" },
-            { id: 1, code: "LAW 313", name: "Civil Procedure", date: "2026-03-04T10:00:00", dStr: "০৪ মার্চ, ২০২৬" },
-            { id: 2, code: "LAW 315", name: "Limitation & Registration", date: "2026-03-05T10:00:00", dStr: "০৫ মার্চ, ২০২৬" },
-            { id: 3, code: "LAW 317", name: "Intellectual Property", date: "2026-03-08T10:00:00", dStr: "০৮ মার্চ, ২০২৬" },
-            { id: 4, code: "LAW 319", name: "Ethics & Court Craft", date: "2026-03-09T10:00:00", dStr: "০৯ মার্চ, ২০২৬" }
+            { id: 0, code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05T10:00:00" },
+            { id: 1, code: "LAW 313", name: "Civil Procedure", date: "2026-03-08T10:00:00" },
+            { id: 2, code: "LAW 317", name: "Intellectual Property", date: "2026-03-10T10:00:00" },
+            { id: 3, code: "LAW 315", name: "Registration, PDR & Limitation", date: "2026-03-12T10:00:00" },
+            { id: 4, code: "LAW 319", name: "Professional Ethics & Court Craft", date: "2026-03-14T10:00:00" }
         ];
 
         const grid = document.getElementById('main-grid');
         courses.forEach(c => {
             grid.innerHTML += `
                 <div class="card">
-                    <div class="title">${c.code}: ${c.name}
-                        <span class="exam-date-label">📅 তারিখ: ${c.dStr}</span>
-                    </div>
-                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
+                    <div class="title">${c.code}: ${c.name}</div>
+                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
                     <div class="prog-area">
                         <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
                         <input type="range" id="pr-${c.id}" value="0" oninput="updateUI(${c.id}, this.value)">
@@ -113,112 +84,29 @@
                     </div>
                     <textarea id="ts-${c.id}" placeholder="সাজেশন এখানে লেখো..."></textarea>
                     <button class="save-btn" onclick="saveSubject(${c.id})">সেভ করো</button>
-                    <div id="sm-${c.id}" class="status"></div>
                 </div>`;
         });
 
         grid.innerHTML += `
-            <div class="card">
-                <div class="title">✨ উক্তি ম্যানেজমেন্ট (Add/Remove)</div>
-                <input type="text" id="new-q-text" placeholder="নতুন উক্তি/আয়াত লেখো...">
-                <input type="text" id="new-q-source" placeholder="উৎস...">
-                <button class="save-btn" onclick="addQuote()">উক্তি যুক্ত করো</button>
-                <div class="quote-list" id="q-list-display"></div>
+            <div class="card"><div class="title">✨ নতুন উক্তি যোগ করো</div>
+                <input type="text" id="new-q-text" placeholder="উক্তি বা আয়াত লেখো...">
+                <input type="text" id="new-q-source" placeholder="উৎস..."><button class="save-btn" onclick="addQuote()">উক্তি সেভ করো</button>
             </div>
-            <div class="card">
-                <div class="title">🛡️ Exam Checklist</div>
-                ${["Admit Card", "ID Card (SIU)", "Reg Card", "Pens (Black/Blue)", "Watch"].map((it, i) => `
-                    <div style="display:flex; gap:10px; margin-bottom:5px;">
-                        <input type="checkbox" id="chk-${i}" onchange="saveCheck()"> <label>${it}</label>
-                    </div>
-                `).join('')}
+            <div class="card"><div class="title">🛡️ Exam Checklist</div>
+                ${["Admit Card", "ID Card (SIU)", "Reg Card", "Pen/Scale", "Watch"].map((it, i) => `<div style="display:flex; gap:10px;"><input type="checkbox" id="chk-${i}" onchange="saveCheck()"> <label>${it}</label></div>`).join('')}
             </div>
-            <div class="card">
-                <div class="title">📖 My Legal Thoughts</div>
-                <textarea id="diary" style="height:150px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
-                <button class="save-btn" onclick="saveDiary()">ডায়েরি সেভ করো</button>
-                <div id="dm" class="status"></div>
+            <div class="card"><div class="title">📖 My Legal Thoughts</div>
+                <textarea id="diary" style="height:150px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
+                <button class="save-btn" onclick="saveDiary()">ডায়েরি সেভ করো</button>
             </div>`;
 
-        // ৩. ফাংশনস
-        function addQuote() {
-            const t = document.getElementById('new-q-text').value;
-            const s = document.getElementById('new-q-source').value;
-            if(t && s) {
-                quotes.push({t, s});
-                updateQuoteStorage();
-                document.getElementById('new-q-text').value = '';
-                document.getElementById('new-q-source').value = '';
-            }
-        }
-
-        function removeQuote(index) {
-            quotes.splice(index, 1);
-            updateQuoteStorage();
-        }
-
-        function updateQuoteStorage() {
-            localStorage.setItem('arif_quotes_v2', JSON.stringify(quotes));
-            renderQuoteList();
-        }
-
-        function renderQuoteList() {
-            const list = document.getElementById('q-list-display');
-            if(list) {
-                list.innerHTML = quotes.map((q, i) => `
-                    <div class="quote-item">
-                        <span>${q.t.substring(0,25)}...</span>
-                        <button class="del-btn" onclick="removeQuote(${i})">✖</button>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function updateUI(id, v) { 
-            document.getElementById(`pv-${id}`).innerText = v; 
-            document.getElementById(`pb-${id}`).style.width = v + '%'; 
-        }
-
-        function saveSubject(id) {
-            localStorage.setItem(`s_sugg_${id}`, document.getElementById(`ts-${id}`).value);
-            localStorage.setItem(`s_prog_${id}`, document.getElementById(`pr-${id}`).value);
-            showS(`sm-${id}`);
-        }
-
-        function saveDiary() { localStorage.setItem('s_diary', document.getElementById('diary').value); showS('dm'); }
+        function updateUI(id, v) { document.getElementById(`pv-${id}`).innerText = v; document.getElementById(`pb-${id}`).style.width = v + '%'; }
+        function saveSubject(id) { localStorage.setItem(`s_sugg_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_prog_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved!'); }
+        function saveDiary() { localStorage.setItem('s_diary', document.getElementById('diary').value); alert('Saved!'); }
+        function addQuote() { const t = document.getElementById('new-q-text').value, s = document.getElementById('new-q-source').value; if(t && s) { quotes.push({t, s}); localStorage.setItem('arif_quotes', JSON.stringify(quotes)); alert('Quote Added!'); } }
         function saveCheck() { for(let i=0; i<5; i++) localStorage.setItem(`s_check_${i}`, document.getElementById(`chk-${i}`).checked); }
-        function showS(id) { document.getElementById(id).innerText = 'সেভ হয়েছে! ✅'; setTimeout(() => document.getElementById(id).innerText = '', 2000); }
-
-        function showFinalBrief() {
-            const now = new Date();
-            const today = now.toISOString().split('T')[0]; 
-            const examBriefs = {
-                "2026-03-03": { subject: "LAW 311: Criminal Procedure", tips: "আজ Sec 54, 154 (FIR), 161 এবং Bail (497) ধারাগুলো শেষবার দেখে নাও। শান্ত থাকো, তুমি সব পারবে!", checklist: "Admit Card + Black Pen + ID Card" },
-                "2026-03-04": { subject: "LAW 313: Civil Procedure", tips: "Res Sub-Judice (Sec 10) এবং Res Judicata (Sec 11) ভুলো না। Injunction এর নিয়মগুলো দেখে নাও।", checklist: "Scale + ID Card + Confidence" },
-                "2026-03-05": { subject: "LAW 315: Limitation Act", tips: "Section 5 (Condonation) এবং Section 12 খুব গুরুত্বপূর্ণ। সময়ের হিসাবটা ভালো করে খেয়াল রেখো।", checklist: "Watch + Registration Card" },
-                "2026-03-08": { subject: "LAW 317: Intellectual Property", tips: "Patent, Trademark এবং Copyright এর পার্থক্যগুলো মাথায় রাখো। কেস রেফারেন্স দেওয়ার চেষ্টা করো।", checklist: "Essential Stationery" },
-                "2026-03-09": { subject: "LAW 319: Ethics & Court Craft", tips: "আজ শেষ পরীক্ষা! Court Etiquette এবং উকিলের পেশাদারিত্ব নিয়ে গুছিয়ে লেখো। তুমি সফল হবেই!", checklist: "Identity Card + Smile" }
-            };
-
-            if (examBriefs[today]) {
-                const brief = examBriefs[today];
-                const briefDiv = document.createElement('div');
-                briefDiv.style = "position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:80%; max-width:500px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); padding:25px; border-radius:15px; z-index:9999; backdrop-filter:blur(10px); text-align:center; box-shadow:0 0 50px rgba(0,0,0,0.8);";
-                briefDiv.innerHTML = `
-                    <h2 style="color:var(--gold); margin-bottom:10px;">☀️ আজকের ফাইনাল ব্রিফ</h2>
-                    <h3 style="color:#fff;">${brief.subject}</h3>
-                    <p style="color:#ddd; margin:15px 0; line-height:1.6;">${brief.tips}</p>
-                    <div style="background:rgba(212,175,55,0.1); padding:10px; border-radius:5px; border-left:4px solid var(--gold);">
-                        <small style="color:var(--gold);">চেকলিস্ট: ${brief.checklist}</small>
-                    </div>
-                    <button onclick="this.parentElement.remove()" style="margin-top:20px; background:var(--gold); border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">বিসমিল্লাহ বলে শুরু করি</button>
-                `;
-                document.body.appendChild(briefDiv);
-            }
-        }
 
         window.onload = function() {
-            renderQuoteList();
             rotateWisdom();
             courses.forEach(c => {
                 const s = localStorage.getItem(`s_sugg_${c.id}`), p = localStorage.getItem(`s_prog_${c.id}`);
@@ -227,36 +115,26 @@
             });
             const d = localStorage.getItem('s_diary'); if(d) document.getElementById('diary').value = d;
             for(let i=0; i<5; i++) if(localStorage.getItem(`s_check_${i}`) === 'true') document.getElementById(`chk-${i}`).checked = true;
-            showFinalBrief();
         };
 
         setInterval(() => {
             const now = new Date().getTime();
             let nextExam = courses.find(c => new Date(c.date).getTime() > now);
-
             if(nextExam) {
                 const diff = new Date(nextExam.date).getTime() - now;
-                document.getElementById('main-target-title').innerText = "Next: " + nextExam.code + " (" + nextExam.dStr + ")";
+                document.getElementById('main-target-title').innerText = "Next Exam: " + nextExam.code;
                 document.getElementById('m-d').innerText = Math.floor(diff / 86400000);
                 document.getElementById('m-h').innerText = Math.floor((diff % 86400000) / 3600000);
                 document.getElementById('m-m').innerText = Math.floor((diff % 3600000) / 60000);
                 document.getElementById('m-s').innerText = Math.floor((diff % 60000) / 1000);
-            } else {
-                document.getElementById('main-target-title').innerText = "All Exams Completed! 🎓";
             }
-
             courses.forEach(c => {
                 const diff = new Date(c.date).getTime() - now;
                 const el = document.getElementById(`st-${c.id}`);
-                if(el) {
-                    if(diff > 0) {
-                        const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000);
-                        el.innerText = `বাকি: ${d} দিন ${h} ঘণ্টা ${m} মিনিট`;
-                    } else { el.innerText = "পরীক্ষা চলছে/শেষ"; el.style.color = "#4caf50"; }
-                }
+                if(diff > 0) { el.innerText = `বাকি: ${Math.floor(diff/86400000)} দিন ${Math.floor((diff%86400000)/3600000)} ঘণ্টা`; }
+                else { el.innerText = "সম্পন্ন/চলমান"; el.style.color = "#4caf50"; }
             });
         }, 1000);
     </script>
 </body>
 </html>
-
