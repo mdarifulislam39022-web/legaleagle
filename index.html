@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Ultimate Master Dashboard | Md. Ariful Islam</title>
+    <title>Master Exam Dashboard | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
@@ -12,70 +12,68 @@
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
+        
+        /* Wisdom Box */
+        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 25px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); }
+        #wisdom-text { font-size: 1.5rem; color: #fff; font-weight: 600; }
 
-        /* মোটিভেশনাল এরিয়া */
-        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 20px; min-height: 100px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); }
-        #wisdom-text { font-size: 1.4rem; color: #fff; font-weight: 600; }
-        #wisdom-source { font-size: 0.9rem; color: var(--gold); margin-top: 5px; font-style: italic; }
+        /* Main Dynamic Timer */
+        .main-timer-box { text-align: center; background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 40px; width: 95%; max-width: 850px; }
+        .timer-grid { display: flex; justify-content: center; gap: 15px; font-size: 2.5rem; font-weight: bold; }
+        .unit-box { background: rgba(0,0,0,0.5); padding: 10px; border-radius: 10px; min-width: 90px; border: 1px solid var(--gold); }
+        .unit-box small { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
 
-        /* মেইন কাউন্টডাউন */
-        .main-timer-box { text-align: center; background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 30px; width: 95%; max-width: 850px; }
-        .timer-grid { display: flex; justify-content: center; gap: 12px; font-size: 2.3rem; font-weight: bold; }
-        .unit-box { background: rgba(0,0,0,0.5); padding: 8px; border-radius: 10px; min-width: 85px; border: 1px solid var(--gold); }
-        .unit-box small { display: block; font-size: 0.75rem; color: #aaa; text-transform: uppercase; }
+        /* Grid System */
+        .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; width: 100%; max-width: 1300px; }
+        .card { background: var(--glass); padding: 25px; border-radius: 15px; border-top: 4px solid var(--gold); backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 15px; }
+        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
 
-        /* কার্ড গ্রিড */
-        .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; width: 100%; max-width: 1300px; }
-        .card { background: var(--glass); padding: 22px; border-radius: 15px; border-top: 4px solid var(--gold); backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 12px; }
-        .title { font-size: 1.25rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px; }
-
-        /* প্রগ্রেস ও ইনপুট */
         textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 10px; font-family: inherit; }
-        .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; margin: 5px 0; }
-        .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: width 0.4s; }
-        input[type="range"] { width: 100%; accent-color: var(--gold); cursor: pointer; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
         .save-btn:hover { background: #fff; }
 
-        /* সেটিংস প্যানেল */
-        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-        .settings-panel { position: fixed; bottom: 75px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 100; max-height: 70vh; overflow-y: auto; }
+        .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; }
+        .progress-fill { background: var(--gold); height: 100%; transition: width 0.4s; }
+        input[type="range"] { width: 100%; accent-color: var(--gold); }
+
+        /* Settings Icon */
+        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; z-index: 1000; }
+        .settings-panel { position: fixed; bottom: 80px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 1000; max-height: 60vh; overflow-y: auto; }
         .settings-panel.open { display: block; }
-        .edit-row { background: #222; padding: 8px; border-radius: 5px; margin-bottom: 8px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div class="wisdom-box">
-        <div id="w-t">পড়ুন আপনার রবের নামে...</div>
-        <div id="w-s">— আল কুরআন</div>
+        <div id="wisdom-text">পড়ুন আপনার রবের নামে...</div>
+        <div id="wisdom-source">— আল কুরআন</div>
     </div>
 
     <div class="main-timer-box">
-        <h2 id="m-target" style="color: var(--gold); margin-bottom: 10px; font-size: 1.4rem;">Next Target</h2>
+        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 15px;">Target: LAW 311</h2>
         <div class="timer-grid">
-            <div class="unit-box"><span id="d-val">00</span><small>দিন</small></div>
-            <div class="unit-box"><span id="h-val">00</span><small>ঘণ্টা</small></div>
-            <div class="unit-box"><span id="m-val">00</span><small>মিনিট</small></div>
-            <div class="unit-box"><span id="s-val">00</span><small>সেকেন্ড</small></div>
+            <div class="unit-box"><span id="m-d">00</span><small>দিন</small></div>
+            <div class="unit-box"><span id="m-h">00</span><small>ঘণ্টা</small></div>
+            <div class="unit-box"><span id="m-m">00</span><small>মিনিট</small></div>
+            <div class="unit-box"><span id="m-s">00</span><small>সেকেন্ড</small></div>
         </div>
     </div>
 
-    <h1 id="head-title">Md. Ariful Islam Dashboard</h1>
+    <h1 id="headline">Md. Ariful Islam Dashboard</h1>
     
     <div class="master-grid" id="main-grid"></div>
 
     <div class="settings-btn" onclick="document.getElementById('settings-panel').classList.toggle('open')">⚙️</div>
     <div class="settings-panel" id="settings-panel">
-        <h3 style="color:var(--gold); margin:0 0 10px 0;">Settings</h3>
-        <input type="text" id="edit-title" placeholder="পেইজ টাইটেল" oninput="saveHead()">
+        <h3 style="color:var(--gold); margin:0 0 10px 0;">Dashboard Settings</h3>
+        <input type="text" id="edit-headline" placeholder="Headline" oninput="saveH()">
         <div id="edit-list" style="margin-top:10px;"></div>
-        <button class="save-btn" style="margin-top:10px;" onclick="location.reload()">Save & Refresh</button>
+        <button class="save-btn" style="margin-top:10px;" onclick="location.reload()">Reload & Save</button>
     </div>
 
     <script>
-        // ১. ডাটা লোডিং (Local Storage)
-        const defCourses = [
+        // রুটিন অনুযায়ী নতুন ডাটা
+        const defaultCourses = [
             { id: 0, code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05T10:00:00" },
             { id: 1, code: "LAW 313", name: "Civil Procedure", date: "2026-03-08T10:00:00" },
             { id: 2, code: "LAW 317", name: "Intellectual Property", date: "2026-03-10T10:00:00" },
@@ -83,21 +81,16 @@
             { id: 4, code: "LAW 319", name: "Ethics & Court Craft", date: "2026-03-14T10:00:00" }
         ];
 
-        let courses = JSON.parse(localStorage.getItem('arif_c_config')) || defCourses;
-        let headTxt = localStorage.getItem('arif_h_text') || "Md. Ariful Islam Dashboard";
-        let quotes = JSON.parse(localStorage.getItem('arif_q_data')) || [
-            { t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪" },
-            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
-            { t: "Justice must not only be done, but seen to be done.", s: "Legal Maxim" }
-        ];
+        let courses = JSON.parse(localStorage.getItem('arif_config')) || defaultCourses;
+        let headline = localStorage.getItem('arif_head') || "Md. Ariful Islam Dashboard";
+        let quotes = JSON.parse(localStorage.getItem('arif_quotes')) || [{t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪"}];
 
-        // ২. রেন্ডারিং
         const grid = document.getElementById('main-grid');
         courses.forEach(c => {
             grid.innerHTML += `
                 <div class="card">
                     <div class="title">${c.code}: ${c.name}</div>
-                    <div id="st-${c.id}" style="text-align:center; font-size:0.85rem; color:#ccc;">বাকি সময়...</div>
+                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
                     <div class="prog-area">
                         <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
                         <input type="range" id="pr-${c.id}" value="0" oninput="updUI(${c.id}, this.value)">
@@ -108,14 +101,9 @@
                 </div>`;
         });
 
-        // ৩. এক্সট্রা কার্ড (ডায়েরি, চেকলিস্ট, উক্তি যোগ)
         grid.innerHTML += `
-            <div class="card"><div class="title">✨ নতুন উক্তি যোগ করো</div>
-                <input type="text" id="nq-t" placeholder="উক্তি/আয়াত..."><input type="text" id="nq-s" placeholder="উৎস...">
-                <button class="save-btn" onclick="addQ()">উক্তি সেভ করো</button>
-            </div>
             <div class="card"><div class="title">🛡️ Exam Checklist</div>
-                ${["Admit Card", "ID Card (SIU)", "Reg Card", "Pens", "Watch"].map((it, i) => `
+                ${["Admit Card", "ID Card (SIU)", "Registration", "Pens", "Watch"].map((it, i) => `
                 <div style="display:flex;gap:10px;"><input type="checkbox" id="ck-${i}" onchange="saveCk()"> <label>${it}</label></div>`).join('')}
             </div>
             <div class="card"><div class="title">📖 My Legal Thoughts</div>
@@ -123,59 +111,49 @@
                 <button class="save-btn" onclick="saveD()">ডায়েরি সেভ করো</button>
             </div>`;
 
-        // ৪. ফাংশনস
         function updUI(id, v) { document.getElementById(`pv-${id}`).innerText = v; document.getElementById(`pb-${id}`).style.width = v + '%'; }
-        function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_p_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved! ✅'); }
-        function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('Diary Saved! ✅'); }
+        function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_p_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved!'); }
+        function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('Saved!'); }
         function saveCk() { for(let i=0; i<5; i++) localStorage.setItem(`s_c_${i}`, document.getElementById(`ck-${i}`).checked); }
-        function saveHead() { headTxt = document.getElementById('edit-title').value; localStorage.setItem('arif_h_text', headTxt); document.getElementById('head-title').innerText = headTxt; }
-        function addQ() { const t=document.getElementById('nq-t').value, s=document.getElementById('nq-s').value; if(t&&s){quotes.push({t,s}); localStorage.setItem('arif_q_data', JSON.stringify(quotes)); alert('Quote Added! ✨');}}
+        function saveH() { headline = document.getElementById('edit-headline').value; localStorage.setItem('arif_head', headline); document.getElementById('headline').innerText = headline; }
+        function updateC(i, k, v) { courses[i][k] = v; localStorage.setItem('arif_config', JSON.stringify(courses)); }
 
-        function updateC(i, key, v) { courses[i][key] = v; localStorage.setItem('arif_c_config', JSON.stringify(courses)); }
-
-        // ৫. ইনিশিয়ালাইজেশন
         window.onload = function() {
-            document.getElementById('head-title').innerText = headTxt;
-            document.getElementById('edit-title').value = headTxt;
+            document.getElementById('headline').innerText = headline;
+            document.getElementById('edit-headline').value = headline;
             const elist = document.getElementById('edit-list');
             courses.forEach((c, i) => {
-                elist.innerHTML += `<div class="edit-row">
+                elist.innerHTML += `
+                <div style="background:#222; padding:5px; border-radius:5px; margin-bottom:5px;">
                     <input type="text" value="${c.code}" onchange="updateC(${i},'code',this.value)">
-                    <input type="text" value="${c.name}" onchange="updateC(${i},'name',this.value)">
                     <input type="datetime-local" value="${c.date.slice(0,16)}" onchange="updateC(${i},'date',this.value)">
                 </div>`;
-                const s=localStorage.getItem(`s_s_${c.id}`), p=localStorage.getItem(`s_p_${c.id}`);
+                const s = localStorage.getItem(`s_s_${c.id}`), p = localStorage.getItem(`s_p_${c.id}`);
                 if(s) document.getElementById(`ts-${c.id}`).value = s;
                 if(p) { document.getElementById(`pr-${c.id}`).value = p; updUI(c.id, p); }
             });
             const dy = localStorage.getItem('s_d'); if(dy) document.getElementById('diary').value = dy;
             for(let i=0; i<5; i++) if(localStorage.getItem(`s_c_${i}`) === 'true') document.getElementById(`ck-${i}`).checked = true;
-            
-            // উক্তি রোটেশন
-            setInterval(() => {
-                const r = quotes[Math.floor(Math.random() * quotes.length)];
-                document.getElementById('w-t').innerText = r.t; document.getElementById('w-s').innerText = "— " + r.s;
-            }, 60000);
         };
 
-        // ৬. টাইমার (অটো-টার্গেট)
         setInterval(() => {
             const now = new Date().getTime();
             let next = courses.find(c => new Date(c.date).getTime() > now);
             if(next) {
                 const diff = new Date(next.date).getTime() - now;
-                document.getElementById('m-target').innerText = "Upcoming: " + next.code;
-                document.getElementById('d-val').innerText = Math.floor(diff / 86400000);
-                document.getElementById('h-val').innerText = Math.floor((diff % 86400000) / 3600000);
-                document.getElementById('m-val').innerText = Math.floor((diff % 3600000) / 60000);
-                document.getElementById('s-val').innerText = Math.floor((diff % 60000) / 1000);
+                document.getElementById('main-target-title').innerText = "Next Exam: " + next.code;
+                document.getElementById('m-d').innerText = Math.floor(diff / 86400000);
+                document.getElementById('m-h').innerText = Math.floor((diff % 86400000) / 3600000);
+                document.getElementById('m-m').innerText = Math.floor((diff % 3600000) / 60000);
+                document.getElementById('m-s').innerText = Math.floor((diff % 60000) / 1000);
             }
             courses.forEach(c => {
                 const diff = new Date(c.date).getTime() - now;
                 const el = document.getElementById(`st-${c.id}`);
                 if(diff > 0) el.innerText = `বাকি: ${Math.floor(diff/86400000)} দিন ${Math.floor((diff%86400000)/3600000)} ঘণ্টা`;
-                else el.innerText = "সম্পন্ন ✅";
+                else el.innerText = "সম্পন্ন";
             });
         }, 1000);
     </script>
 </body>
+</html>
