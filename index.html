@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Universal Exam Tracker | Md. Ariful Islam</title>
+    <title>Ultimate Master Dashboard | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
@@ -12,66 +12,70 @@
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
-        
-        /* সেটিংস প্যানেল (কোণায় লুকানো) */
-        .settings-trigger { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; font-size: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .settings-panel { position: fixed; bottom: 80px; right: 20px; width: 320px; background: #1a1a1a; border: 1px solid var(--gold); border-radius: 15px; padding: 20px; display: none; z-index: 1000; max-height: 70vh; overflow-y: auto; backdrop-filter: blur(10px); }
-        .settings-panel.active { display: block; }
 
-        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; min-height: 100px; display: flex; flex-direction: column; justify-content: center; }
+        /* মোটিভেশনাল এরিয়া */
+        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 20px; min-height: 100px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); }
+        #wisdom-text { font-size: 1.4rem; color: #fff; font-weight: 600; }
+        #wisdom-source { font-size: 0.9rem; color: var(--gold); margin-top: 5px; font-style: italic; }
+
+        /* মেইন কাউন্টডাউন */
         .main-timer-box { text-align: center; background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 30px; width: 95%; max-width: 850px; }
-        .timer-grid { display: flex; justify-content: center; gap: 10px; font-size: 2.2rem; font-weight: bold; }
-        .unit-box { background: rgba(0,0,0,0.5); padding: 8px; border-radius: 10px; min-width: 80px; border: 1px solid var(--gold); }
-        .unit-box small { display: block; font-size: 0.75rem; color: #aaa; }
+        .timer-grid { display: flex; justify-content: center; gap: 12px; font-size: 2.3rem; font-weight: bold; }
+        .unit-box { background: rgba(0,0,0,0.5); padding: 8px; border-radius: 10px; min-width: 85px; border: 1px solid var(--gold); }
+        .unit-box small { display: block; font-size: 0.75rem; color: #aaa; text-transform: uppercase; }
 
-        .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; width: 100%; max-width: 1300px; }
-        .card { background: var(--glass); padding: 20px; border-radius: 15px; border-top: 3px solid var(--gold); backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 12px; }
-        .title { font-size: 1.2rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px; }
+        /* কার্ড গ্রিড */
+        .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; width: 100%; max-width: 1300px; }
+        .card { background: var(--glass); padding: 22px; border-radius: 15px; border-top: 4px solid var(--gold); backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 12px; }
+        .title { font-size: 1.25rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px; }
 
-        textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 6px; color: #eee; padding: 10px; font-family: inherit; margin-bottom: 5px; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
-        .progress-bar { background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; margin: 5px 0; }
-        .progress-fill { background: var(--gold); height: 100%; transition: width 0.4s; }
-        
-        .edit-row { background: #222; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; }
+        /* প্রগ্রেস ও ইনপুট */
+        textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 10px; font-family: inherit; }
+        .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; margin: 5px 0; }
+        .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: width 0.4s; }
+        input[type="range"] { width: 100%; accent-color: var(--gold); cursor: pointer; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .save-btn:hover { background: #fff; }
+
+        /* সেটিংস প্যানেল */
+        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .settings-panel { position: fixed; bottom: 75px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 100; max-height: 70vh; overflow-y: auto; }
+        .settings-panel.open { display: block; }
+        .edit-row { background: #222; padding: 8px; border-radius: 5px; margin-bottom: 8px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div class="wisdom-box">
-        <div id="wisdom-text">পড়ুন আপনার রবের নামে...</div>
-        <div id="wisdom-source">— আল কুরআন</div>
+        <div id="w-t">পড়ুন আপনার রবের নামে...</div>
+        <div id="w-s">— আল কুরআন</div>
     </div>
 
     <div class="main-timer-box">
-        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 10px; font-size: 1.4rem;">Next Target</h2>
+        <h2 id="m-target" style="color: var(--gold); margin-bottom: 10px; font-size: 1.4rem;">Next Target</h2>
         <div class="timer-grid">
-            <div class="unit-box"><span id="m-d">00</span><small>দিন</small></div>
-            <div class="unit-box"><span id="m-h">00</span><small>ঘণ্টা</small></div>
-            <div class="unit-box"><span id="m-m">00</span><small>মিনিট</small></div>
-            <div class="unit-box"><span id="m-s">00</span><small>সেকেন্ড</small></div>
+            <div class="unit-box"><span id="d-val">00</span><small>দিন</small></div>
+            <div class="unit-box"><span id="h-val">00</span><small>ঘণ্টা</small></div>
+            <div class="unit-box"><span id="m-val">00</span><small>মিনিট</small></div>
+            <div class="unit-box"><span id="s-val">00</span><small>সেকেন্ড</small></div>
         </div>
     </div>
 
-    <h1 id="page-headline">Exam Dashboard</h1>
+    <h1 id="head-title">Md. Ariful Islam Dashboard</h1>
     
     <div class="master-grid" id="main-grid"></div>
 
-    <div class="settings-trigger" onclick="toggleSettings()">⚙️</div>
+    <div class="settings-btn" onclick="document.getElementById('settings-panel').classList.toggle('open')">⚙️</div>
     <div class="settings-panel" id="settings-panel">
-        <h3 style="color:var(--gold); margin-top:0;">Edit Dashboard</h3>
-        <label>পেইজ হেডলাইন:</label>
-        <input type="text" id="edit-headline" oninput="saveHeadline()">
-        
-        <hr style="border:0.5px solid #444;">
-        <label>কোর্স ও তারিখ এডিট করুন:</label>
-        <div id="edit-courses-list"></div>
-        <button class="save-btn" onclick="location.reload()">Reload & Apply</button>
+        <h3 style="color:var(--gold); margin:0 0 10px 0;">Settings</h3>
+        <input type="text" id="edit-title" placeholder="পেইজ টাইটেল" oninput="saveHead()">
+        <div id="edit-list" style="margin-top:10px;"></div>
+        <button class="save-btn" style="margin-top:10px;" onclick="location.reload()">Save & Refresh</button>
     </div>
 
     <script>
-        // ডিফল্ট ডাটা (যদি লোড না হয়)
-        const defaultCourses = [
+        // ১. ডাটা লোডিং (Local Storage)
+        const defCourses = [
             { id: 0, code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05T10:00:00" },
             { id: 1, code: "LAW 313", name: "Civil Procedure", date: "2026-03-08T10:00:00" },
             { id: 2, code: "LAW 317", name: "Intellectual Property", date: "2026-03-10T10:00:00" },
@@ -79,37 +83,15 @@
             { id: 4, code: "LAW 319", name: "Ethics & Court Craft", date: "2026-03-14T10:00:00" }
         ];
 
-        let courses = JSON.parse(localStorage.getItem('arif_courses_config')) || defaultCourses;
-        let headline = localStorage.getItem('arif_headline') || "Md. Ariful Islam Dashboard";
-        let quotes = JSON.parse(localStorage.getItem('arif_quotes')) || [
+        let courses = JSON.parse(localStorage.getItem('arif_c_config')) || defCourses;
+        let headTxt = localStorage.getItem('arif_h_text') || "Md. Ariful Islam Dashboard";
+        let quotes = JSON.parse(localStorage.getItem('arif_q_data')) || [
             { t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪" },
-            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" }
+            { t: "নিশ্চয়ই কষ্টের সাথেই স্বস্তি রয়েছে।", s: "সূরা আল-ইনশিরাহ: ৫" },
+            { t: "Justice must not only be done, but seen to be done.", s: "Legal Maxim" }
         ];
 
-        function toggleSettings() { document.getElementById('settings-panel').classList.toggle('active'); }
-        function saveHeadline() { headline = document.getElementById('edit-headline').value; localStorage.setItem('arif_headline', headline); document.getElementById('page-headline').innerText = headline; }
-
-        function renderSettings() {
-            document.getElementById('edit-headline').value = headline;
-            const list = document.getElementById('edit-courses-list');
-            list.innerHTML = "";
-            courses.forEach((c, i) => {
-                list.innerHTML += `
-                <div class="edit-row">
-                    <input type="text" value="${c.code}" onchange="updateCourseConfig(${i}, 'code', this.value)" placeholder="Code">
-                    <input type="text" value="${c.name}" onchange="updateCourseConfig(${i}, 'name', this.value)" placeholder="Name">
-                    <input type="datetime-local" value="${c.date.slice(0,16)}" onchange="updateCourseConfig(${i}, 'date', this.value)">
-                </div>`;
-            });
-        }
-
-        function updateCourseConfig(index, key, val) {
-            if(key === 'date' && val) val = val + ":00"; // Format for JS Date
-            courses[index][key] = val;
-            localStorage.setItem('arif_courses_config', JSON.stringify(courses));
-        }
-
-        // মেইন গ্রিড রেন্ডার
+        // ২. রেন্ডারিং
         const grid = document.getElementById('main-grid');
         courses.forEach(c => {
             grid.innerHTML += `
@@ -118,71 +100,82 @@
                     <div id="st-${c.id}" style="text-align:center; font-size:0.85rem; color:#ccc;">বাকি সময়...</div>
                     <div class="prog-area">
                         <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
-                        <input type="range" id="pr-${c.id}" value="0" oninput="updateUI(${c.id}, this.value)">
+                        <input type="range" id="pr-${c.id}" value="0" oninput="updUI(${c.id}, this.value)">
                         <div class="progress-bar"><div class="progress-fill" id="pb-${c.id}"></div></div>
                     </div>
-                    <textarea id="ts-${c.id}" placeholder="সাজেশন বা ধারা এখানে লেখো..."></textarea>
-                    <button class="save-btn" onclick="saveSubject(${c.id})">সেভ করো</button>
+                    <textarea id="ts-${c.id}" placeholder="সাজেশন এখানে লেখো..."></textarea>
+                    <button class="save-btn" onclick="saveSub(${c.id})">সেভ করো</button>
                 </div>`;
         });
 
-        // ফিক্সড কার্ডস
+        // ৩. এক্সট্রা কার্ড (ডায়েরি, চেকলিস্ট, উক্তি যোগ)
         grid.innerHTML += `
+            <div class="card"><div class="title">✨ নতুন উক্তি যোগ করো</div>
+                <input type="text" id="nq-t" placeholder="উক্তি/আয়াত..."><input type="text" id="nq-s" placeholder="উৎস...">
+                <button class="save-btn" onclick="addQ()">উক্তি সেভ করো</button>
+            </div>
             <div class="card"><div class="title">🛡️ Exam Checklist</div>
-                ${["Admit Card", "ID Card (SIU)", "Registration", "Pens", "Watch"].map((it, i) => `
-                    <div style="display:flex; gap:8px;"><input type="checkbox" id="chk-${i}" onchange="saveCheck()"> <label>${it}</label></div>
-                `).join('')}
+                ${["Admit Card", "ID Card (SIU)", "Reg Card", "Pens", "Watch"].map((it, i) => `
+                <div style="display:flex;gap:10px;"><input type="checkbox" id="ck-${i}" onchange="saveCk()"> <label>${it}</label></div>`).join('')}
             </div>
             <div class="card"><div class="title">📖 My Legal Thoughts</div>
                 <textarea id="diary" style="height:140px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
-                <button class="save-btn" onclick="saveDiary()">ডায়েরি সেভ করো</button>
+                <button class="save-btn" onclick="saveD()">ডায়েরি সেভ করো</button>
             </div>`;
 
-        function updateUI(id, v) { document.getElementById(`pv-${id}`).innerText = v; document.getElementById(`pb-${id}`).style.width = v + '%'; }
-        function saveSubject(id) { localStorage.setItem(`s_sugg_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_prog_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved! ✅'); }
-        function saveDiary() { localStorage.setItem('s_diary', document.getElementById('diary').value); alert('Saved! ✅'); }
-        function saveCheck() { for(let i=0; i<5; i++) localStorage.setItem(`s_check_${i}`, document.getElementById(`chk-${i}`).checked); }
+        // ৪. ফাংশনস
+        function updUI(id, v) { document.getElementById(`pv-${id}`).innerText = v; document.getElementById(`pb-${id}`).style.width = v + '%'; }
+        function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_p_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved! ✅'); }
+        function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('Diary Saved! ✅'); }
+        function saveCk() { for(let i=0; i<5; i++) localStorage.setItem(`s_c_${i}`, document.getElementById(`ck-${i}`).checked); }
+        function saveHead() { headTxt = document.getElementById('edit-title').value; localStorage.setItem('arif_h_text', headTxt); document.getElementById('head-title').innerText = headTxt; }
+        function addQ() { const t=document.getElementById('nq-t').value, s=document.getElementById('nq-s').value; if(t&&s){quotes.push({t,s}); localStorage.setItem('arif_q_data', JSON.stringify(quotes)); alert('Quote Added! ✨');}}
 
+        function updateC(i, key, v) { courses[i][key] = v; localStorage.setItem('arif_c_config', JSON.stringify(courses)); }
+
+        // ৫. ইনিশিয়ালাইজেশন
         window.onload = function() {
-            document.getElementById('page-headline').innerText = headline;
-            renderSettings();
-            // Load saved data
-            courses.forEach(c => {
-                const s = localStorage.getItem(`s_sugg_${c.id}`), p = localStorage.getItem(`s_prog_${c.id}`);
+            document.getElementById('head-title').innerText = headTxt;
+            document.getElementById('edit-title').value = headTxt;
+            const elist = document.getElementById('edit-list');
+            courses.forEach((c, i) => {
+                elist.innerHTML += `<div class="edit-row">
+                    <input type="text" value="${c.code}" onchange="updateC(${i},'code',this.value)">
+                    <input type="text" value="${c.name}" onchange="updateC(${i},'name',this.value)">
+                    <input type="datetime-local" value="${c.date.slice(0,16)}" onchange="updateC(${i},'date',this.value)">
+                </div>`;
+                const s=localStorage.getItem(`s_s_${c.id}`), p=localStorage.getItem(`s_p_${c.id}`);
                 if(s) document.getElementById(`ts-${c.id}`).value = s;
-                if(p) { document.getElementById(`pr-${c.id}`).value = p; updateUI(c.id, p); }
+                if(p) { document.getElementById(`pr-${c.id}`).value = p; updUI(c.id, p); }
             });
-            const d = localStorage.getItem('s_diary'); if(d) document.getElementById('diary').value = d;
-            for(let i=0; i<5; i++) if(localStorage.getItem(`s_check_${i}`) === 'true') document.getElementById(`chk-${i}`).checked = true;
+            const dy = localStorage.getItem('s_d'); if(dy) document.getElementById('diary').value = dy;
+            for(let i=0; i<5; i++) if(localStorage.getItem(`s_c_${i}`) === 'true') document.getElementById(`ck-${i}`).checked = true;
             
-            // Rotate Wisdom
+            // উক্তি রোটেশন
             setInterval(() => {
                 const r = quotes[Math.floor(Math.random() * quotes.length)];
-                document.getElementById('wisdom-text').innerText = r.t;
-                document.getElementById('wisdom-source').innerText = "— " + r.s;
+                document.getElementById('w-t').innerText = r.t; document.getElementById('w-s').innerText = "— " + r.s;
             }, 60000);
         };
 
-        // টাইমার লজিক
+        // ৬. টাইমার (অটো-টার্গেট)
         setInterval(() => {
             const now = new Date().getTime();
-            let nextExam = courses.find(c => new Date(c.date).getTime() > now);
-            if(nextExam) {
-                const diff = new Date(nextExam.date).getTime() - now;
-                document.getElementById('main-target-title').innerText = "Upcoming: " + nextExam.code;
-                document.getElementById('m-d').innerText = Math.floor(diff / 86400000);
-                document.getElementById('m-h').innerText = Math.floor((diff % 86400000) / 3600000);
-                document.getElementById('m-m').innerText = Math.floor((diff % 3600000) / 60000);
-                document.getElementById('m-s').innerText = Math.floor((diff % 60000) / 1000);
+            let next = courses.find(c => new Date(c.date).getTime() > now);
+            if(next) {
+                const diff = new Date(next.date).getTime() - now;
+                document.getElementById('m-target').innerText = "Upcoming: " + next.code;
+                document.getElementById('d-val').innerText = Math.floor(diff / 86400000);
+                document.getElementById('h-val').innerText = Math.floor((diff % 86400000) / 3600000);
+                document.getElementById('m-val').innerText = Math.floor((diff % 3600000) / 60000);
+                document.getElementById('s-val').innerText = Math.floor((diff % 60000) / 1000);
             }
             courses.forEach(c => {
                 const diff = new Date(c.date).getTime() - now;
                 const el = document.getElementById(`st-${c.id}`);
-                if(diff > 0) {
-                    el.innerText = `বাকি: ${Math.floor(diff/86400000)} দিন ${Math.floor((diff%86400000)/3600000)} ঘণ্টা`;
-                } else { el.innerText = "সম্পন্ন"; el.style.color = "#4caf50"; }
+                if(diff > 0) el.innerText = `বাকি: ${Math.floor(diff/86400000)} দিন ${Math.floor((diff%86400000)/3600000)} ঘণ্টা`;
+                else el.innerText = "সম্পন্ন ✅";
             });
         }, 1000);
     </script>
 </body>
-</html>
