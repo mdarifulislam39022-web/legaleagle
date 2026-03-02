@@ -12,33 +12,44 @@
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
-        
-        /* Wisdom Box */
-        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 25px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); }
-        #wisdom-text { font-size: 1.5rem; color: #fff; font-weight: 600; }
 
-        /* Main Dynamic Timer */
+        /* গ্রিড সিস্টেম - কার্ডগুলোর উচ্চতা সমান রাখার জন্য */
+        .master-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 25px; 
+            width: 100%; 
+            max-width: 1300px; 
+            align-items: stretch; /* এটি সব কার্ডের উচ্চতা সমান রাখবে */
+        }
+
+        .card { 
+            background: var(--glass); 
+            padding: 25px; 
+            border-radius: 15px; 
+            border-top: 4px solid var(--gold); 
+            backdrop-filter: blur(10px); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content:空间-between; /* কন্টেন্টগুলোকে কার্ডের ভেতরে সুন্দরভাবে সাজাবে */
+            height: 100%; 
+        }
+
+        .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; }
         .main-timer-box { text-align: center; background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 40px; width: 95%; max-width: 850px; }
         .timer-grid { display: flex; justify-content: center; gap: 15px; font-size: 2.5rem; font-weight: bold; }
         .unit-box { background: rgba(0,0,0,0.5); padding: 10px; border-radius: 10px; min-width: 90px; border: 1px solid var(--gold); }
-        .unit-box small { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
-
-        /* Grid System */
-        .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; width: 100%; max-width: 1300px; }
-        .card { background: var(--glass); padding: 25px; border-radius: 15px; border-top: 4px solid var(--gold); backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 15px; }
-        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
-
-        textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 10px; font-family: inherit; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
-        .save-btn:hover { background: #fff; }
-
-        .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; }
-        .progress-fill { background: var(--gold); height: 100%; transition: width 0.4s; }
-        input[type="range"] { width: 100%; accent-color: var(--gold); }
-
+        
+        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; margin-bottom: 15px; }
+        textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 12px; font-family: inherit; margin-bottom: 10px; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: auto; }
+        
+        .progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; margin: 10px 0; }
+        .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: width 0.4s; }
+        
         /* Settings Icon */
-        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; z-index: 1000; }
-        .settings-panel { position: fixed; bottom: 80px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 1000; max-height: 60vh; overflow-y: auto; }
+        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
+        .settings-panel { position: fixed; bottom: 80px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 1000; max-height: 50vh; overflow-y: auto; }
         .settings-panel.open { display: block; }
     </style>
 </head>
@@ -50,7 +61,7 @@
     </div>
 
     <div class="main-timer-box">
-        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 15px;">Target: LAW 311</h2>
+        <h2 id="main-target-title" style="color: var(--gold); margin-bottom: 15px;">Next Target</h2>
         <div class="timer-grid">
             <div class="unit-box"><span id="m-d">00</span><small>দিন</small></div>
             <div class="unit-box"><span id="m-h">00</span><small>ঘণ্টা</small></div>
@@ -65,14 +76,14 @@
 
     <div class="settings-btn" onclick="document.getElementById('settings-panel').classList.toggle('open')">⚙️</div>
     <div class="settings-panel" id="settings-panel">
-        <h3 style="color:var(--gold); margin:0 0 10px 0;">Dashboard Settings</h3>
+        <h3 style="color:var(--gold); margin-bottom:10px;">Dashboard Settings</h3>
         <input type="text" id="edit-headline" placeholder="Headline" oninput="saveH()">
-        <div id="edit-list" style="margin-top:10px;"></div>
-        <button class="save-btn" style="margin-top:10px;" onclick="location.reload()">Reload & Save</button>
+        <div id="edit-list"></div>
+        <button class="save-btn" onclick="location.reload()">Save & Refresh</button>
     </div>
 
     <script>
-        // রুটিন অনুযায়ী নতুন ডাটা
+        // রুটিন অনুযায়ী আপডেট করা ডাটা
         const defaultCourses = [
             { id: 0, code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05T10:00:00" },
             { id: 1, code: "LAW 313", name: "Civil Procedure", date: "2026-03-08T10:00:00" },
@@ -81,33 +92,39 @@
             { id: 4, code: "LAW 319", name: "Ethics & Court Craft", date: "2026-03-14T10:00:00" }
         ];
 
-        let courses = JSON.parse(localStorage.getItem('arif_config')) || defaultCourses;
-        let headline = localStorage.getItem('arif_head') || "Md. Ariful Islam Dashboard";
-        let quotes = JSON.parse(localStorage.getItem('arif_quotes')) || [{t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪"}];
+        let courses = JSON.parse(localStorage.getItem('arif_config_v2')) || defaultCourses;
+        let headline = localStorage.getItem('arif_head_v2') || "Md. Ariful Islam Dashboard";
 
         const grid = document.getElementById('main-grid');
         courses.forEach(c => {
             grid.innerHTML += `
                 <div class="card">
-                    <div class="title">${c.code}: ${c.name}</div>
-                    <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc;">সময় গণনা...</div>
-                    <div class="prog-area">
-                        <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
-                        <input type="range" id="pr-${c.id}" value="0" oninput="updUI(${c.id}, this.value)">
-                        <div class="progress-bar"><div class="progress-fill" id="pb-${c.id}"></div></div>
+                    <div>
+                        <div class="title">${c.code}: ${c.name}</div>
+                        <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc; margin-bottom:10px;">সময় গণনা...</div>
+                        <div class="prog-area">
+                            <label>প্রস্তুতি: <span id="pv-${c.id}">0</span>%</label>
+                            <input type="range" id="pr-${c.id}" value="0" oninput="updUI(${c.id}, this.value)">
+                            <div class="progress-bar"><div class="progress-fill" id="pb-${c.id}"></div></div>
+                        </div>
+                        <textarea id="ts-${c.id}" placeholder="সাজেশন এখানে লেখো..." style="height: 80px;"></textarea>
                     </div>
-                    <textarea id="ts-${c.id}" placeholder="সাজেশন এখানে লেখো..."></textarea>
                     <button class="save-btn" onclick="saveSub(${c.id})">সেভ করো</button>
                 </div>`;
         });
 
+        // এক্সট্রা কার্ডস
         grid.innerHTML += `
-            <div class="card"><div class="title">🛡️ Exam Checklist</div>
-                ${["Admit Card", "ID Card (SIU)", "Registration", "Pens", "Watch"].map((it, i) => `
-                <div style="display:flex;gap:10px;"><input type="checkbox" id="ck-${i}" onchange="saveCk()"> <label>${it}</label></div>`).join('')}
+            <div class="card">
+                <div class="title">🛡️ Exam Checklist</div>
+                <div style="flex-grow: 1;">
+                    ${["Admit Card", "ID Card (SIU)", "Registration", "Pens", "Watch"].map((it, i) => `
+                    <div style="display:flex;gap:10px; margin-bottom:8px;"><input type="checkbox" id="ck-${i}" onchange="saveCk()"> <label>${it}</label></div>`).join('')}
+                </div>
             </div>
-            <div class="card"><div class="title">📖 My Legal Thoughts</div>
-                <textarea id="diary" style="height:140px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
+            <div class="card">
+                <div class="title">📖 My Legal Thoughts</div>
+                <textarea id="diary" style="flex-grow: 1; min-height: 150px;" placeholder="তোমার ডায়েরি নোট..."></textarea>
                 <button class="save-btn" onclick="saveD()">ডায়েরি সেভ করো</button>
             </div>`;
 
@@ -115,16 +132,15 @@
         function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); localStorage.setItem(`s_p_${id}`, document.getElementById(`pr-${id}`).value); alert('Saved!'); }
         function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('Saved!'); }
         function saveCk() { for(let i=0; i<5; i++) localStorage.setItem(`s_c_${i}`, document.getElementById(`ck-${i}`).checked); }
-        function saveH() { headline = document.getElementById('edit-headline').value; localStorage.setItem('arif_head', headline); document.getElementById('headline').innerText = headline; }
-        function updateC(i, k, v) { courses[i][k] = v; localStorage.setItem('arif_config', JSON.stringify(courses)); }
+        function saveH() { headline = document.getElementById('edit-headline').value; localStorage.setItem('arif_head_v2', headline); document.getElementById('headline').innerText = headline; }
+        function updateC(i, k, v) { courses[i][k] = v; localStorage.setItem('arif_config_v2', JSON.stringify(courses)); }
 
         window.onload = function() {
             document.getElementById('headline').innerText = headline;
             document.getElementById('edit-headline').value = headline;
             const elist = document.getElementById('edit-list');
             courses.forEach((c, i) => {
-                elist.innerHTML += `
-                <div style="background:#222; padding:5px; border-radius:5px; margin-bottom:5px;">
+                elist.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">
                     <input type="text" value="${c.code}" onchange="updateC(${i},'code',this.value)">
                     <input type="datetime-local" value="${c.date.slice(0,16)}" onchange="updateC(${i},'date',this.value)">
                 </div>`;
@@ -151,9 +167,10 @@
                 const diff = new Date(c.date).getTime() - now;
                 const el = document.getElementById(`st-${c.id}`);
                 if(diff > 0) el.innerText = `বাকি: ${Math.floor(diff/86400000)} দিন ${Math.floor((diff%86400000)/3600000)} ঘণ্টা`;
-                else el.innerText = "সম্পন্ন";
+                else el.innerText = "সম্পন্ন ✅";
             });
         }, 1000);
     </script>
 </body>
 </html>
+
