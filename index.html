@@ -2,138 +2,140 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Perfect Master Dashboard | Md. Ariful Islam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <title>Exam Victory Dashboard | Md. Ariful Islam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.1); --success: #2ecc71; }
+        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; }
         body {
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+            background: linear-gradient(rgba(0,0,0,0.93), rgba(0,0,0,0.93)), 
                         url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1350&q=80');
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* কার্ডের উচ্চতা সমান রাখার জন্য মেইন গ্রিড */
+        /* সমান উচ্চতার জন্য গ্রিড ফিক্স */
         .master-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 25px; width: 100%; max-width: 1250px; 
-            align-items: stretch; /* সমান উচ্চতা নিশ্চিত করে */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 25px; width: 100%; max-width: 1300px; 
+            align-items: stretch; /* এটি সব কার্ডের উচ্চতা সমান রাখবে */
         }
 
         .card { 
-            background: var(--glass); padding: 25px; border-radius: 15px; 
-            border-top: 4px solid var(--gold); backdrop-filter: blur(10px); 
-            display: flex; flex-direction: column; height: 100%; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--glass); padding: 25px; border-radius: 20px; 
+            border-top: 5px solid var(--gold); backdrop-filter: blur(12px); 
+            display: flex; flex-direction: column; height: 100%; /* উচ্চতা ১০০% */
+            transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .card:hover { transform: translateY(-5px); }
+        .card.done { border-top-color: var(--success); }
 
-        /* স্পেশাল ফিনিশড কার্ড */
-        .card.done { border-top-color: var(--success); background: rgba(46, 204, 113, 0.05); }
+        /* ব্যানার ও হেডলাইন */
+        .status-banner { background: rgba(46, 204, 113, 0.15); border: 1px solid var(--success); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 30px; }
+        .wisdom-box { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 30px; }
 
-        .main-timer { text-align: center; background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 35px; width: 95%; max-width: 800px; }
-        .timer-grid { display: flex; justify-content: center; gap: 15px; font-size: 2.2rem; font-weight: bold; }
-        .unit { background: rgba(0,0,0,0.6); padding: 10px; border-radius: 10px; min-width: 80px; border: 1px solid var(--gold); }
-        .unit small { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
+        .title { font-size: 1.4rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .badge { font-size: 0.75rem; background: var(--success); color: #fff; padding: 3px 10px; border-radius: 12px; font-weight: normal; }
 
-        .title { font-size: 1.2rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .badge { font-size: 0.7rem; background: var(--success); padding: 2px 8px; border-radius: 5px; color: #fff; }
+        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 10px; color: #eee; padding: 15px; font-family: inherit; resize: none; flex-grow: 1; min-height: 120px; margin-bottom: 15px; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; margin-top: auto; }
+        .save-btn:hover { background: #fff; }
 
-        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 12px; font-family: inherit; flex-grow: 1; resize: none; margin-bottom: 10px; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .save-btn:hover { background: #fff; transform: translateY(-2px); }
-
-        .settings-icon { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; }
+        /* সেটিংস আইকন */
+        .settings-btn { position: fixed; bottom: 25px; right: 25px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; font-size: 1.6rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
     </style>
 </head>
 <body>
 
-    <div class="main-timer">
-        <h2 id="next-exam-title" style="margin-bottom: 15px; color: var(--gold);">Target: Intellectual Property</h2>
-        <div class="timer-grid">
-            <div class="unit"><span id="d">00</span><small>দিন</small></div>
-            <div class="unit"><span id="h">00</span><small>ঘণ্টা</small></div>
-            <div class="unit"><span id="m">00</span><small>মিনিট</small></div>
-            <div class="unit"><span id="s">00</span><small>সেকেন্ড</small></div>
-        </div>
+    <div class="status-banner">
+        <h2 style="margin:0; color:var(--success);">🌙 ঈদ-উল-ফিতরের ছুটির পর পরীক্ষা হবে</h2>
+        <p style="margin:8px 0 0 0; font-size:1rem;">সিআইইউ নোটিশ: ২৪ মার্চ পর্যন্ত সব কার্যক্রম স্থগিত।</p>
     </div>
 
-    <h1 style="margin-bottom: 30px; text-shadow: 2px 2px 10px #000;">Md. Ariful Islam | Exam Dashboard</h1>
+    <div class="wisdom-box">
+        <div id="w-t" style="font-size: 1.5rem; font-weight: 600;">পড়ুন আপনার রবের নামে...</div>
+        <div id="w-s" style="margin-top: 10px; color: var(--gold);">— আল কুরআন</div>
+    </div>
+
+    <h1 style="margin-bottom: 40px; text-align: center; text-shadow: 2px 2px 10px #000;">Md. Ariful Islam | Exam Dashboard</h1>
     
-    <div class="master-grid" id="grid">
+    <div class="master-grid">
         <div class="card done">
             <div class="title">LAW 311: CrPC <span class="badge">COMPLETED</span></div>
-            <textarea id="note-0" placeholder="রিভিশন নোটস..."></textarea>
+            <textarea id="note-0" placeholder="CrPC রিভিশন নোটস..."></textarea>
             <button class="save-btn" onclick="save(0)">সেভ করো</button>
         </div>
 
         <div class="card done">
             <div class="title">LAW 313: CPC <span class="badge">COMPLETED</span></div>
-            <textarea id="note-1" placeholder="রিভিশন নোটস..."></textarea>
+            <textarea id="note-1" placeholder="CPC রিভিশন নোটস..."></textarea>
             <button class="save-btn" onclick="save(1)">সেভ করো</button>
         </div>
 
         <div class="card">
             <div class="title">LAW 317: Intellectual Property</div>
-            <textarea id="note-2" placeholder="সাজেশন এখানে লেখো..."></textarea>
+            <textarea id="note-2" placeholder="পরবর্তী টার্গেট..."></textarea>
             <button class="save-btn" onclick="save(2)">সেভ করো</button>
         </div>
 
         <div class="card">
             <div class="title">LAW 315: Registration</div>
-            <textarea id="note-3" placeholder="সাজেশন এখানে লেখো..."></textarea>
+            <textarea id="note-3" placeholder="সাজেশন এখানে..."></textarea>
             <button class="save-btn" onclick="save(3)">সেভ করো</button>
         </div>
 
         <div class="card">
             <div class="title">📖 My Legal Thoughts</div>
-            <textarea id="note-diary" style="min-height: 150px;" placeholder="আজকের আইনি বিশ্লেষণ..."></textarea>
+            <textarea id="note-diary" placeholder="আজকের আইনি চিন্তাভাবনা..."></textarea>
             <button class="save-btn" onclick="save('diary')">ডায়েরি সেভ করো</button>
         </div>
 
         <div class="card">
             <div class="title">🛡️ Exam Checklist</div>
-            <div style="margin-bottom: 15px;">
-                <input type="checkbox" id="c1"> Admit Card<br>
-                <input type="checkbox" id="c2"> SIU ID Card<br>
-                <input type="checkbox" id="c3"> Registration<br>
-                <input type="checkbox" id="c4"> Pens & Scale
+            <div style="margin-bottom: 20px; flex-grow: 1;">
+                <div style="margin-bottom:12px;"><input type="checkbox" id="c1"> Admit Card</div>
+                <div style="margin-bottom:12px;"><input type="checkbox" id="ck-id"> SIU ID Card</div>
+                <div style="margin-bottom:12px;"><input type="checkbox" id="c3"> Registration Card</div>
+                <div style="margin-bottom:12px;"><input type="checkbox" id="c4"> Pens & Watch</div>
             </div>
             <button class="save-btn" onclick="save('check')">চেকলিস্ট সেভ করো</button>
         </div>
     </div>
 
+    <div class="settings-btn">⚙️</div>
+
     <script>
-        // সেভ ফাংশন (Local Storage)
         function save(id) {
-            const val = document.getElementById('note-' + id).value;
-            localStorage.setItem('arif_note_' + id, val);
+            const val = document.getElementById('note-' + id)?.value;
+            if(val !== undefined) localStorage.setItem('arif_v4_note_' + id, val);
             alert('সফলভাবে সেভ হয়েছে! ✅');
         }
 
-        // লোড ফাংশন
+        function saveCk() {
+            const ckId = document.getElementById('ck-id').checked;
+            localStorage.setItem('arif_v4_id', ckId);
+        }
+
         window.onload = function() {
             const ids = [0, 1, 2, 3, 'diary'];
             ids.forEach(id => {
-                const saved = localStorage.getItem('arif_note_' + id);
+                const saved = localStorage.getItem('arif_v4_note_' + id);
                 if(saved) document.getElementById('note-' + id).value = saved;
             });
+            if(localStorage.getItem('arif_v4_id') === 'true') document.getElementById('ck-id').checked = true;
+            
+            // উক্তি পরিবর্তন (প্রতি মিনিটে)
+            const qs = [
+                {t: "হে আমার পালনকর্তা, আমার জ্ঞান বৃদ্ধি করুন।", s: "সূরা ত্বহা: ১১৪"},
+                {t: "Justice must not only be done, but seen to be done.", s: "Legal Maxim"},
+                {t: "Ignorantia juris non excusat.", s: "Legal Maxim"}
+            ];
+            setInterval(() => {
+                const r = qs[Math.floor(Math.random() * qs.length)];
+                document.getElementById('w-t').innerText = r.t;
+                document.getElementById('w-s').innerText = "— " + r.s;
+            }, 60000);
         };
-
-        // টাইমার লজিক (Intellectual Property - March 10, 10:00 AM)
-        const target = new Date("March 10, 2026 10:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = target - now;
-            if(diff > 0) {
-                document.getElementById('d').innerText = Math.floor(diff / 86400000);
-                document.getElementById('h').innerText = Math.floor((diff % 86400000) / 3600000);
-                document.getElementById('m').innerText = Math.floor((diff % 3600000) / 60000);
-                document.getElementById('s').innerText = Math.floor((diff % 60000) / 1000);
-            } else {
-                document.getElementById('next-exam-title').innerText = "Exam Ongoing/Completed";
-            }
-        }, 1000);
     </script>
 </body>
 </html>
