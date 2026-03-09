@@ -2,10 +2,10 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Post-Eid Exam Master | Md. Ariful Islam</title>
+    <title>Exam Victory Dashboard | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
+        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; }
         body {
             background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), 
                         url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1350&q=80');
@@ -13,86 +13,86 @@
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* সমান উচ্চতার জন্য গ্রিড ফিক্স */
+        /* গ্রিড ফিক্স - সব কার্ড সমান উচ্চতার হবে */
         .master-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
-            gap: 25px; 
-            width: 100%; 
-            max-width: 1300px; 
+            gap: 25px; width: 100%; max-width: 1300px; 
             align-items: stretch; 
         }
 
         .card { 
-            background: var(--glass); 
-            padding: 25px; 
-            border-radius: 15px; 
-            border-top: 4px solid var(--gold); 
-            backdrop-filter: blur(10px); 
-            display: flex; 
-            flex-direction: column; 
-            height: 100%; 
+            background: var(--glass); padding: 25px; border-radius: 15px; 
+            border-top: 4px solid var(--gold); backdrop-filter: blur(10px); 
+            display: flex; flex-direction: column; height: 100%; transition: 0.3s;
         }
+        .card.completed { border-top-color: var(--success); }
 
-        .main-timer-box { text-align: center; background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 40px; width: 95%; max-width: 850px; }
         .wisdom-box { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; }
+        .status-banner { background: rgba(46, 204, 113, 0.2); border: 1px solid var(--success); padding: 15px; border-radius: 15px; text-align: center; width: 95%; max-width: 850px; margin-bottom: 25px; }
+
+        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .done-tag { font-size: 0.7rem; background: var(--success); color: #fff; padding: 2px 8px; border-radius: 10px; display: none; }
         
-        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; margin-bottom: 15px; }
         textarea, input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #444; border-radius: 8px; color: #eee; padding: 12px; font-family: inherit; margin-bottom: 10px; }
         .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: auto; }
         
-        /* Settings */
-        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
+        /* সেটিংস প্যানেল */
+        .settings-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; font-size: 1.5rem; }
         .settings-panel { position: fixed; bottom: 80px; right: 20px; width: 300px; background: #111; border: 1px solid var(--gold); border-radius: 15px; padding: 15px; display: none; z-index: 1000; max-height: 50vh; overflow-y: auto; }
         .settings-panel.open { display: block; }
     </style>
 </head>
 <body>
 
+    <div class="status-banner">
+        <h2 style="margin:0; color:var(--success);">CPC & CrPC Completed! ⚖️</h2>
+        <p style="margin:5px 0 0 0; font-size:0.9rem;">বিশাল বড় দুই বাধা পার করেছ বন্ধু। এখন লক্ষ্য স্থির রাখো।</p>
+    </div>
+
     <div class="wisdom-box">
         <div id="w-t">পড়ুন আপনার রবের নামে...</div>
         <div id="w-s">— আল কুরআন</div>
     </div>
 
-    <div class="main-timer-box">
-        <h2 id="m-status" style="color: var(--gold); font-size: 1.8rem;">🌙 ঈদ-উল-ফিতরের ছুটির পর পরীক্ষা হবে</h2>
-        <p style="color: #aaa;">নতুন সময়সূচি পরবর্তীতে জানানো হবে।</p>
-    </div>
-
-    <h1 id="h-title">Md. Ariful Islam | Exam Tracker</h1>
+    <h1 id="h-title">Md. Ariful Islam | Exam Victory Dashboard</h1>
     
     <div class="master-grid" id="main-grid"></div>
 
     <div class="settings-btn" onclick="document.getElementById('settings-panel').classList.toggle('open')">⚙️</div>
     <div class="settings-panel" id="settings-panel">
-        <h3 style="color:var(--gold);">Settings</h3>
-        <input type="text" id="edit-h" placeholder="Headline">
+        <h3 style="color:var(--gold);">Configuration</h3>
+        <input type="text" id="edit-h" placeholder="Dashboard Title">
         <div id="edit-list"></div>
-        <button class="save-btn" onclick="location.reload()">Save Configuration</button>
+        <button class="save-btn" onclick="location.reload()">Save & Apply</button>
     </div>
 
     <script>
         const def = [
-            { id: 0, code: "LAW 311", name: "CrPC (Completed?)", date: "" },
-            { id: 1, code: "LAW 313", name: "CPC", date: "" },
-            { id: 2, code: "LAW 317", name: "Intellectual Property", date: "" },
-            { id: 3, code: "LAW 315", name: "Registration", date: "" },
-            { id: 4, code: "LAW 319", name: "Ethics", date: "" }
+            { id: 0, code: "LAW 311", name: "Criminal Procedure", status: "Done" },
+            { id: 1, code: "LAW 313", name: "Civil Procedure", status: "Done" },
+            { id: 2, code: "LAW 317", name: "Intellectual Property", status: "Pending" },
+            { id: 3, code: "LAW 315", name: "Registration & Limitation", status: "Pending" },
+            { id: 4, code: "LAW 319", name: "Professional Ethics", status: "Pending" }
         ];
 
-        let courses = JSON.parse(localStorage.getItem('arif_v3')) || def;
-        let head = localStorage.getItem('arif_h3') || "Md. Ariful Islam Dashboard";
+        let courses = JSON.parse(localStorage.getItem('arif_v4')) || def;
+        let head = localStorage.getItem('arif_h4') || "Md. Ariful Islam Dashboard";
 
         const grid = document.getElementById('main-grid');
         courses.forEach(c => {
+            const isDone = c.status === "Done";
             grid.innerHTML += `
-                <div class="card">
+                <div class="card ${isDone ? 'completed' : ''}">
                     <div>
-                        <div class="title">${c.code}: ${c.name}</div>
-                        <div id="st-${c.id}" style="text-align:center; font-size:0.9rem; color:#ccc; margin-bottom:15px;">Pending Update</div>
-                        <textarea id="ts-${c.id}" placeholder="সাজেশন এখানে..." style="height: 100px;"></textarea>
+                        <div class="title">
+                            ${c.code} 
+                            <span class="done-tag" style="display:${isDone ? 'inline' : 'none'}">COMPLETED</span>
+                        </div>
+                        <div style="font-size:0.95rem; color:#aaa; margin-bottom:15px;">${c.name}</div>
+                        <textarea id="ts-${c.id}" placeholder="সাজেশন বা রিভিশন নোট..." style="height: 100px;"></textarea>
                     </div>
-                    <button class="save-btn" onclick="saveSub(${c.id})">সেভ করো</button>
+                    <button class="save-btn" onclick="saveSub(${c.id})">নোট সেভ করো</button>
                 </div>`;
         });
 
@@ -106,23 +106,32 @@
             </div>
             <div class="card">
                 <div class="title">📖 My Legal Thoughts</div>
-                <textarea id="diary" style="flex-grow: 1; min-height: 180px;" placeholder="তোমার বিশেষ ডায়েরি নোট..."></textarea>
+                <textarea id="diary" style="flex-grow: 1; min-height: 150px;" placeholder="আইনি বিশ্লেষণ বা ডায়েরি নোট..."></textarea>
                 <button class="save-btn" onclick="saveD()">ডায়েরি সেভ করো</button>
             </div>`;
 
-        function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); alert('Saved!'); }
-        function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('Saved!'); }
+        function saveSub(id) { localStorage.setItem(`s_s_${id}`, document.getElementById(`ts-${id}`).value); alert('নোট সেভ হয়েছে! ✅'); }
+        function saveD() { localStorage.setItem('s_d', document.getElementById('diary').value); alert('ডায়েরি সেভ হয়েছে! ✅'); }
         function saveCk() { for(let i=0; i<5; i++) localStorage.setItem(`s_c_${i}`, document.getElementById(`ck-${i}`).checked); }
 
         window.onload = function() {
             document.getElementById('h-title').innerText = head;
+            document.getElementById('edit-h').value = head;
             const elist = document.getElementById('edit-list');
             courses.forEach((c, i) => {
                 const s = localStorage.getItem(`s_s_${c.id}`); if(s) document.getElementById(`ts-${c.id}`).value = s;
-                elist.innerHTML += `<div><input type="text" value="${c.code}" onchange="courses[${i}].code=this.value; localStorage.setItem('arif_v3', JSON.stringify(courses))"></div>`;
+                elist.innerHTML += `
+                <div style="margin-bottom:10px; padding:5px; border-bottom:1px solid #333;">
+                    <input type="text" value="${c.code}" onchange="courses[${i}].code=this.value; localStorage.setItem('arif_v4', JSON.stringify(courses))">
+                    <select onchange="courses[${i}].status=this.value; localStorage.setItem('arif_v4', JSON.stringify(courses))" style="width:100%; background:#222; color:#fff; padding:5px; border-radius:5px;">
+                        <option value="Pending" ${c.status==='Pending'?'selected':''}>Pending</option>
+                        <option value="Done" ${c.status==='Done'?'selected':''}>Done</option>
+                    </select>
+                </div>`;
             });
             const dy = localStorage.getItem('s_d'); if(dy) document.getElementById('diary').value = dy;
             for(let i=0; i<5; i++) if(localStorage.getItem(`s_c_${i}`) === 'true') document.getElementById(`ck-${i}`).checked = true;
+            document.getElementById('edit-h').oninput = function() { localStorage.setItem('arif_h4', this.value); };
         };
     </script>
 </body>
