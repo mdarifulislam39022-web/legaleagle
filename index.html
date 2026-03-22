@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Smart Exam Tracker | Md. Ariful Islam</title>
+    <title>SIU 3-2 Final Tracker | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; --accent: #3498db; }
@@ -27,7 +27,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s;
         }
         
-        /* Done হলে এই স্টাইল হবে */
         .card.is-done { border-top-color: var(--success); opacity: 0.85; }
         .card.is-done .badge { background: var(--success) !important; }
 
@@ -40,28 +39,25 @@
         .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 2; }
         .done-btn { background: transparent; color: #fff; border: 1px solid #666; padding: 12px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 0.8rem; }
         
-        .save-btn:hover { background: #fff; }
-        .done-btn:hover { border-color: var(--success); color: var(--success); }
-
         h1 { margin-bottom: 10px; text-shadow: 2px 2px 10px #000; text-align: center; }
-        p.sub { margin-bottom: 30px; color: #aaa; }
+        .info-bar { background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 10px; border: 1px solid var(--gold); margin-bottom: 30px; text-align: center; width: 95%; max-width: 800px; }
     </style>
 </head>
 <body>
 
-    <h1>Md. Ariful Islam | Smart Tracker</h1>
-    <p class="sub">পরীক্ষার তারিখ পার হলে অটোমেটিক "DONE" হয়ে যাবে</p>
+    <h1>Md. Ariful Islam | Final Mission Tracker</h1>
+    <div class="info-bar">ঈদ পরবর্তী নতুন রুটিন অনুযায়ী আপডেট করা হয়েছে ⚖️</div>
     
     <div class="master-grid" id="exam-grid"></div>
 
     <script>
-        // তোমার পরীক্ষার ডাটা (তারিখগুলো ঠিক আছে কি না দেখে নিও বন্ধু)
+        // নতুন রুটিন ডাটা
         const courses = [
-            { id: "311", code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05" },
-            { id: "313", code: "LAW 313", name: "Civil Procedure", date: "2026-03-08" },
-            { id: "317", code: "LAW 317", name: "Intellectual Property", date: "2026-03-10" },
-            { id: "315", code: "LAW 315", name: "Registration & Limitation", date: "2026-03-12" },
-            { id: "319", code: "LAW 319", name: "Professional Ethics", date: "2026-03-14" }
+            { id: "311", code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05", manual: true },
+            { id: "313", code: "LAW 313", name: "Civil Procedure", date: "2026-03-08", manual: true },
+            { id: "317", code: "LAW 317", name: "Intellectual Property", date: "2026-04-12" },
+            { id: "315", code: "LAW 315", name: "Registration & Limitation", date: "2026-04-15" },
+            { id: "319", code: "LAW 319", name: "Professional Ethics", date: "2026-04-19" }
         ];
 
         const grid = document.getElementById('exam-grid');
@@ -69,20 +65,20 @@
 
         courses.forEach(c => {
             const examDate = new Date(c.date);
-            // অটো-ডান চেক: তারিখ পার হয়েছে কি না অথবা ম্যানুয়ালি সেভ করা আছে কি না
-            const isManualDone = localStorage.getItem('done_' + c.id) === 'true';
-            const isAutoDone = now > examDate;
+            const isManualDone = localStorage.getItem('done_v7_' + c.id) === 'true';
+            // CrPC ও CPC যেহেতু অলরেডি শেষ, তাই ওগুলো অটো-ডান দেখাবে
+            const isAutoDone = now > examDate || c.manual === true;
             const finalDone = isManualDone || isAutoDone;
 
             grid.innerHTML += `
                 <div class="card ${finalDone ? 'is-done' : ''}" id="card-${c.id}">
                     <div class="title">
                         ${c.code} 
-                        <span class="badge" id="badge-${c.id}">${finalDone ? 'DONE ✅' : 'UPCOMING'}</span>
+                        <span class="badge">${finalDone ? 'DONE ✅' : 'UPCOMING'}</span>
                     </div>
                     <div style="margin-bottom: 10px; font-weight: 600; color: #ddd;">${c.name}</div>
-                    <div style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Date: ${c.date}</div>
-                    <textarea id="note-${c.id}" placeholder="সাজেশন বা রিভিশন নোটস..."></textarea>
+                    <div style="font-size: 0.85rem; color: var(--gold); margin-bottom: 10px;">Date: ${c.date}</div>
+                    <textarea id="note-${c.id}" placeholder="সাজেশন বা পড়ার নোটস..."></textarea>
                     
                     <div class="btn-group">
                         <button class="save-btn" onclick="save('${c.id}')">সেভ নোট</button>
@@ -95,20 +91,20 @@
 
         function save(id) {
             const val = document.getElementById('note-' + id).value;
-            localStorage.setItem('note_v6_' + id, val);
+            localStorage.setItem('note_v7_' + id, val);
             alert('নোট সেভ হয়েছে! ✅');
         }
 
         function toggleDone(id) {
-            const current = localStorage.getItem('done_' + id) === 'true';
-            localStorage.setItem('done_' + id, !current);
-            location.reload(); // পরিবর্তন দেখানোর জন্য পেজ রিফ্রেশ
+            const current = localStorage.getItem('done_v7_' + id) === 'true';
+            localStorage.setItem('done_v7_' + id, !current);
+            location.reload();
         }
 
         window.onload = function() {
             courses.forEach(c => {
-                const savedNote = localStorage.getItem('note_v6_' + c.id);
-                if(savedNote) document.getElementById('note-' + id).value = savedNote;
+                const savedNote = localStorage.getItem('note_v7_' + c.id);
+                if(savedNote) document.getElementById('note-' + c.id).value = savedNote;
             });
         };
     </script>
