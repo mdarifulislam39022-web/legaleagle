@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>SIU 3-2 Final Tracker | Md. Ariful Islam</title>
+    <title>SIU Exam Tracker with Countdown | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; --accent: #3498db; }
@@ -12,6 +12,12 @@
             background-size: cover; background-attachment: fixed; color: #f4f4f4;
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
+
+        /* মেইন কাউন্টডাউন স্টাইল */
+        .main-timer { text-align: center; background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 35px; width: 95%; max-width: 800px; }
+        .timer-display { display: flex; justify-content: center; gap: 15px; font-size: 2rem; font-weight: bold; margin-top: 10px; }
+        .t-unit { background: rgba(0,0,0,0.6); padding: 10px; border-radius: 10px; min-width: 70px; border: 1px solid var(--gold); }
+        .t-unit small { display: block; font-size: 0.7rem; color: #aaa; text-transform: uppercase; }
 
         .master-grid { 
             display: grid; 
@@ -33,78 +39,149 @@
         .title { font-size: 1.25rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         .badge { font-size: 0.7rem; background: var(--accent); padding: 3px 10px; border-radius: 8px; color: #fff; }
 
-        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 10px; color: #eee; padding: 15px; font-family: inherit; flex-grow: 1; min-height: 100px; resize: none; margin-bottom: 15px; }
+        /* কার্ডের ভেতর ছোট কাউন্টডাউন */
+        .mini-timer { font-size: 0.9rem; color: var(--gold); margin-bottom: 15px; font-weight: 600; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px; display: inline-block; }
+
+        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 10px; color: #eee; padding: 15px; font-family: inherit; flex-grow: 1; min-height: 80px; resize: none; margin-bottom: 15px; }
         
         .btn-group { display: flex; gap: 10px; margin-top: auto; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 2; }
-        .done-btn { background: transparent; color: #fff; border: 1px solid #666; padding: 12px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 0.8rem; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 2; }
+        .done-btn { background: transparent; color: #fff; border: 1px solid #666; padding: 10px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 0.75rem; }
         
-        h1 { margin-bottom: 10px; text-shadow: 2px 2px 10px #000; text-align: center; }
-        .info-bar { background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 10px; border: 1px solid var(--gold); margin-bottom: 30px; text-align: center; width: 95%; max-width: 800px; }
+        h1 { margin-bottom: 5px; text-shadow: 2px 2px 10px #000; text-align: center; }
     </style>
 </head>
 <body>
 
-    <h1>Md. Ariful Islam | Final Mission Tracker</h1>
-    <div class="info-bar">ঈদ পরবর্তী নতুন রুটিন অনুযায়ী আপডেট করা হয়েছে ⚖️</div>
+    <div class="main-timer">
+        <h3 id="main-target-name" style="margin:0; color:var(--gold);">Loading Next Exam...</h3>
+        <div class="timer-display" id="main-clock">
+            <div class="t-unit"><span id="md">00</span><small>Days</small></div>
+            <div class="t-unit"><span id="mh">00</span><small>Hours</small></div>
+            <div class="t-unit"><span id="mm">00</span><small>Mins</small></div>
+            <div class="t-unit"><span id="ms">00</span><small>Secs</small></div>
+        </div>
+    </div>
+
+    <h1>Md. Ariful Islam | Smart Exam Tracker</h1>
+    <p style="color:#aaa; margin-bottom:30px;">সিলেটে ইন্টারন্যাশনাল ইউনিভার্সিটি | ৩-২ সেমিস্টার</p>
     
     <div class="master-grid" id="exam-grid"></div>
 
     <script>
-        // নতুন রুটিন ডাটা
+        // রুটিন ডাটা (তারিখ ও সময়সহ)
         const courses = [
-            { id: "311", code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05", manual: true },
-            { id: "313", code: "LAW 313", name: "Civil Procedure", date: "2026-03-08", manual: true },
-            { id: "317", code: "LAW 317", name: "Intellectual Property", date: "2026-04-12" },
-            { id: "315", code: "LAW 315", name: "Registration & Limitation", date: "2026-04-15" },
-            { id: "319", code: "LAW 319", name: "Professional Ethics", date: "2026-04-19" }
+            { id: "311", code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05T10:00:00", manual: true },
+            { id: "313", code: "LAW 313", name: "Civil Procedure", date: "2026-03-08T10:00:00", manual: true },
+            { id: "317", code: "LAW 317", name: "Intellectual Property", date: "2026-04-12T10:00:00" },
+            { id: "315", code: "LAW 315", name: "Registration & Limitation", date: "2026-04-15T10:00:00" },
+            { id: "319", code: "LAW 319", name: "Professional Ethics", date: "2026-04-19T10:00:00" }
         ];
 
         const grid = document.getElementById('exam-grid');
-        const now = new Date();
 
-        courses.forEach(c => {
-            const examDate = new Date(c.date);
-            const isManualDone = localStorage.getItem('done_v7_' + c.id) === 'true';
-            // CrPC ও CPC যেহেতু অলরেডি শেষ, তাই ওগুলো অটো-ডান দেখাবে
-            const isAutoDone = now > examDate || c.manual === true;
-            const finalDone = isManualDone || isAutoDone;
+        function updateUI() {
+            grid.innerHTML = '';
+            const now = new Date().getTime();
+            let nextExam = null;
 
-            grid.innerHTML += `
-                <div class="card ${finalDone ? 'is-done' : ''}" id="card-${c.id}">
-                    <div class="title">
-                        ${c.code} 
-                        <span class="badge">${finalDone ? 'DONE ✅' : 'UPCOMING'}</span>
-                    </div>
-                    <div style="margin-bottom: 10px; font-weight: 600; color: #ddd;">${c.name}</div>
-                    <div style="font-size: 0.85rem; color: var(--gold); margin-bottom: 10px;">Date: ${c.date}</div>
-                    <textarea id="note-${c.id}" placeholder="সাজেশন বা পড়ার নোটস..."></textarea>
+            courses.forEach(c => {
+                const examTime = new Date(c.date).getTime();
+                const isManualDone = localStorage.getItem('done_v8_' + c.id) === 'true';
+                const isAutoDone = now > examTime || c.manual === true;
+                const finalDone = isManualDone || isAutoDone;
+
+                // পরবর্তী পরীক্ষার জন্য মেইন টাইমার লজিক
+                if (!finalDone && (!nextExam || examTime < nextExam.time)) {
+                    nextExam = { name: c.name, time: examTime };
+                }
+
+                // কার্ড তৈরি
+                grid.innerHTML += `
+                    <div class="card ${finalDone ? 'is-done' : ''}" id="card-${c.id}">
+                        <div class="title">
+                            ${c.code} 
+                            <span class="badge">${finalDone ? 'DONE ✅' : 'UPCOMING'}</span>
+                        </div>
+                        <div style="font-weight: 600; color: #ddd; margin-bottom:5px;">${c.name}</div>
+                        
+                        ${!finalDone ? `<div class="mini-timer" id="mini-${c.id}">Calculating...</div>` : `<div class="mini-timer" style="color:var(--success)">Exam Finished</div>`}
+                        
+                        <textarea id="note-${c.id}" placeholder="সাজেশন বা পড়ার নোটস..."></textarea>
+                        
+                        <div class="btn-group">
+                            <button class="save-btn" onclick="save('${c.id}')">Save</button>
+                            <button class="done-btn" onclick="toggleDone('${c.id}')">${finalDone ? 'Undo' : 'Done'}</button>
+                        </div>
+                    </div>`;
+            });
+
+            // মেইন টাইমার আপডেট
+            if (nextExam) {
+                document.getElementById('main-target-name').innerText = "Next: " + nextExam.name;
+                updateClock(nextExam.time, 'm');
+            } else {
+                document.getElementById('main-target-name').innerText = "All Exams Completed! 🎉";
+            }
+        }
+
+        function updateClock(targetTime, prefix) {
+            const now = new Date().getTime();
+            const diff = targetTime - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (prefix === 'm') {
+                document.getElementById('md').innerText = d.toString().padStart(2, '0');
+                document.getElementById('mh').innerText = h.toString().padStart(2, '0');
+                document.getElementById('mm').innerText = m.toString().padStart(2, '0');
+                document.getElementById('ms').innerText = s.toString().padStart(2, '0');
+            }
+            return `${d}d ${h}h ${m}m ${s}s left`;
+        }
+
+        // প্রতি সেকেন্ডে টাইমার আপডেট
+        setInterval(() => {
+            const now = new Date().getTime();
+            let firstUpcoming = null;
+
+            courses.forEach(c => {
+                const examTime = new Date(c.date).getTime();
+                const isManualDone = localStorage.getItem('done_v8_' + c.id) === 'true';
+                const isAutoDone = now > examTime || c.manual === true;
+
+                if (!isManualDone && !isAutoDone) {
+                    const timeStr = updateClock(examTime, 'mini');
+                    const miniEl = document.getElementById('mini-' + c.id);
+                    if (miniEl) miniEl.innerText = timeStr;
                     
-                    <div class="btn-group">
-                        <button class="save-btn" onclick="save('${c.id}')">সেভ নোট</button>
-                        <button class="done-btn" onclick="toggleDone('${c.id}')">
-                            ${finalDone ? 'Undo' : 'Done'}
-                        </button>
-                    </div>
-                </div>`;
-        });
+                    if (!firstUpcoming || examTime < firstUpcoming.time) {
+                        firstUpcoming = { time: examTime };
+                        updateClock(examTime, 'm');
+                    }
+                }
+            });
+        }, 1000);
 
         function save(id) {
-            const val = document.getElementById('note-' + id).value;
-            localStorage.setItem('note_v7_' + id, val);
-            alert('নোট সেভ হয়েছে! ✅');
+            localStorage.setItem('note_v8_' + id, document.getElementById('note-' + id).value);
+            alert('Saved! ✅');
         }
 
         function toggleDone(id) {
-            const current = localStorage.getItem('done_v7_' + id) === 'true';
-            localStorage.setItem('done_v7_' + id, !current);
+            const current = localStorage.getItem('done_v8_' + id) === 'true';
+            localStorage.setItem('done_v8_' + id, !current);
             location.reload();
         }
 
         window.onload = function() {
+            updateUI();
             courses.forEach(c => {
-                const savedNote = localStorage.getItem('note_v7_' + c.id);
-                if(savedNote) document.getElementById('note-' + c.id).value = savedNote;
+                const saved = localStorage.getItem('note_v8_' + c.id);
+                if(saved) document.getElementById('note-' + c.id).value = saved;
             });
         };
     </script>
