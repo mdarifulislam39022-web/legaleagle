@@ -2,10 +2,10 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Perfect Grid Dashboard | Md. Ariful Islam</title>
+    <title>Smart Exam Tracker | Md. Ariful Islam</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; }
+        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); --success: #2ecc71; --accent: #3498db; }
         body {
             background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), 
                         url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1350&q=80');
@@ -13,112 +13,104 @@
             font-family: 'Hind Siliguri', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* সমান উচ্চতা নিশ্চিত করার জন্য মেইন গ্রিড */
         .master-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 25px; width: 100%; max-width: 1250px; 
-            align-items: stretch; /* এটিই সব বক্সকে সমান উচ্চতা দেয় */
+            align-items: stretch; 
         }
 
         .card { 
             background: var(--glass); padding: 25px; border-radius: 18px; 
-            border-top: 5px solid var(--gold); backdrop-filter: blur(10px); 
+            border-top: 5px solid var(--accent); backdrop-filter: blur(10px); 
             display: flex; flex-direction: column; height: 100%; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s;
         }
-        .card.done { border-top-color: var(--success); }
+        
+        /* Done হলে এই স্টাইল হবে */
+        .card.is-done { border-top-color: var(--success); opacity: 0.85; }
+        .card.is-done .badge { background: var(--success) !important; }
 
-        .main-timer { text-align: center; background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-bottom: 35px; width: 95%; max-width: 800px; }
-        .timer-grid { display: flex; justify-content: center; gap: 15px; font-size: 2.2rem; font-weight: bold; }
-        .unit { background: rgba(0,0,0,0.6); padding: 10px; border-radius: 10px; min-width: 80px; border: 1px solid var(--gold); }
-        .unit small { display: block; font-size: 0.8rem; color: #aaa; }
+        .title { font-size: 1.25rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .badge { font-size: 0.7rem; background: var(--accent); padding: 3px 10px; border-radius: 8px; color: #fff; }
 
-        .title { font-size: 1.3rem; color: var(--gold); font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .badge { font-size: 0.75rem; background: var(--success); padding: 3px 10px; border-radius: 8px; color: #fff; }
-
-        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 10px; color: #eee; padding: 15px; font-family: inherit; flex-grow: 1; min-height: 120px; resize: none; margin-bottom: 15px; }
-        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-top: auto; }
+        textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 10px; color: #eee; padding: 15px; font-family: inherit; flex-grow: 1; min-height: 100px; resize: none; margin-bottom: 15px; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: auto; }
+        .save-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 2; }
+        .done-btn { background: transparent; color: #fff; border: 1px solid #666; padding: 12px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 0.8rem; }
+        
         .save-btn:hover { background: #fff; }
+        .done-btn:hover { border-color: var(--success); color: var(--success); }
+
+        h1 { margin-bottom: 10px; text-shadow: 2px 2px 10px #000; text-align: center; }
+        p.sub { margin-bottom: 30px; color: #aaa; }
     </style>
 </head>
 <body>
 
-    <div class="main-timer">
-        <h2 id="next-title" style="margin-bottom: 15px; color: var(--gold);">Next Exam: Intellectual Property</h2>
-        <div class="timer-grid">
-            <div class="unit"><span id="d">00</span><small>দিন</small></div>
-            <div class="unit"><span id="h">00</span><small>ঘণ্টা</small></div>
-            <div class="unit"><span id="m">00</span><small>মিনিট</small></div>
-            <div class="unit"><span id="s">00</span><small>সেকেন্ড</small></div>
-        </div>
-    </div>
-
-    <h1 style="margin-bottom: 40px; text-shadow: 2px 2px 10px #000;">Md. Ariful Islam | Legal Dashboard</h1>
+    <h1>Md. Ariful Islam | Smart Tracker</h1>
+    <p class="sub">পরীক্ষার তারিখ পার হলে অটোমেটিক "DONE" হয়ে যাবে</p>
     
-    <div class="master-grid" id="grid">
-        <div class="card done">
-            <div class="title">LAW 311: CrPC <span class="badge">COMPLETED</span></div>
-            <textarea id="note-0" placeholder="রিভিশন নোটস..."></textarea>
-            <button class="save-btn" onclick="save(0)">সেভ করো</button>
-        </div>
-
-        <div class="card done">
-            <div class="title">LAW 313: CPC <span class="badge">COMPLETED</span></div>
-            <textarea id="note-1" placeholder="রিভিশন নোটস..."></textarea>
-            <button class="save-btn" onclick="save(1)">সেভ করো</button>
-        </div>
-
-        <div class="card">
-            <div class="title">LAW 317: Intellectual Property</div>
-            <textarea id="note-2" placeholder="সাজেশন বা পড়ার টপিক..."></textarea>
-            <button class="save-btn" onclick="save(2)">সেভ করো</button>
-        </div>
-
-        <div class="card">
-            <div class="title">📖 My Legal Thoughts</div>
-            <textarea id="note-diary" placeholder="আজকের আইনি বিশ্লেষণ..."></textarea>
-            <button class="save-btn" onclick="save('diary')">ডায়েরি সেভ করো</button>
-        </div>
-
-        <div class="card">
-            <div class="title">🛡️ Exam Checklist</div>
-            <div style="flex-grow: 1; margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 10px;"><input type="checkbox" id="c1"> Admit Card</label>
-                <label style="display: block; margin-bottom: 10px;"><input type="checkbox" id="c2" checked> SIU ID Card</label>
-                <label style="display: block; margin-bottom: 10px;"><input type="checkbox" id="c3"> Registration Card</label>
-                <label style="display: block; margin-bottom: 10px;"><input type="checkbox" id="c4"> Pens & Watch</label>
-            </div>
-            <button class="save-btn" onclick="save('check')">চেকলিস্ট সেভ করো</button>
-        </div>
-    </div>
+    <div class="master-grid" id="exam-grid"></div>
 
     <script>
+        // তোমার পরীক্ষার ডাটা (তারিখগুলো ঠিক আছে কি না দেখে নিও বন্ধু)
+        const courses = [
+            { id: "311", code: "LAW 311", name: "Criminal Procedure", date: "2026-03-05" },
+            { id: "313", code: "LAW 313", name: "Civil Procedure", date: "2026-03-08" },
+            { id: "317", code: "LAW 317", name: "Intellectual Property", date: "2026-03-10" },
+            { id: "315", code: "LAW 315", name: "Registration & Limitation", date: "2026-03-12" },
+            { id: "319", code: "LAW 319", name: "Professional Ethics", date: "2026-03-14" }
+        ];
+
+        const grid = document.getElementById('exam-grid');
+        const now = new Date();
+
+        courses.forEach(c => {
+            const examDate = new Date(c.date);
+            // অটো-ডান চেক: তারিখ পার হয়েছে কি না অথবা ম্যানুয়ালি সেভ করা আছে কি না
+            const isManualDone = localStorage.getItem('done_' + c.id) === 'true';
+            const isAutoDone = now > examDate;
+            const finalDone = isManualDone || isAutoDone;
+
+            grid.innerHTML += `
+                <div class="card ${finalDone ? 'is-done' : ''}" id="card-${c.id}">
+                    <div class="title">
+                        ${c.code} 
+                        <span class="badge" id="badge-${c.id}">${finalDone ? 'DONE ✅' : 'UPCOMING'}</span>
+                    </div>
+                    <div style="margin-bottom: 10px; font-weight: 600; color: #ddd;">${c.name}</div>
+                    <div style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Date: ${c.date}</div>
+                    <textarea id="note-${c.id}" placeholder="সাজেশন বা রিভিশন নোটস..."></textarea>
+                    
+                    <div class="btn-group">
+                        <button class="save-btn" onclick="save('${c.id}')">সেভ নোট</button>
+                        <button class="done-btn" onclick="toggleDone('${c.id}')">
+                            ${finalDone ? 'Undo' : 'Done'}
+                        </button>
+                    </div>
+                </div>`;
+        });
+
         function save(id) {
-            const val = document.getElementById('note-' + id)?.value;
-            if(val) localStorage.setItem('arif_note_' + id, val);
-            alert('সফলভাবে সেভ হয়েছে! ✅');
+            const val = document.getElementById('note-' + id).value;
+            localStorage.setItem('note_v6_' + id, val);
+            alert('নোট সেভ হয়েছে! ✅');
+        }
+
+        function toggleDone(id) {
+            const current = localStorage.getItem('done_' + id) === 'true';
+            localStorage.setItem('done_' + id, !current);
+            location.reload(); // পরিবর্তন দেখানোর জন্য পেজ রিফ্রেশ
         }
 
         window.onload = function() {
-            const ids = [0, 1, 2, 'diary'];
-            ids.forEach(id => {
-                const saved = localStorage.getItem('arif_note_' + id);
-                if(saved) document.getElementById('note-' + id).value = saved;
+            courses.forEach(c => {
+                const savedNote = localStorage.getItem('note_v6_' + c.id);
+                if(savedNote) document.getElementById('note-' + id).value = savedNote;
             });
         };
-
-        // টাইমার (ঈদের পর নতুন ডেট না আসা পর্যন্ত ১০ এপ্রিল টার্গেট রাখা হয়েছে)
-        const target = new Date("April 10, 2026 10:00:00").getTime();
-        setInterval(() => {
-            const diff = target - new Date().getTime();
-            if(diff > 0) {
-                document.getElementById('d').innerText = Math.floor(diff / 86400000);
-                document.getElementById('h').innerText = Math.floor((diff % 86400000) / 3600000);
-                document.getElementById('m').innerText = Math.floor((diff % 3600000) / 60000);
-                document.getElementById('s').innerText = Math.floor((diff % 60000) / 1000);
-            }
-        }, 1000);
     </script>
 </body>
 </html>
