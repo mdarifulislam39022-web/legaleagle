@@ -2,94 +2,58 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadi's Legal Wisdom | আইনের সহজ পাঠ</title>
+    <title>Hadi's Legal Wisdom | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f8f9fa; }
+        .post-card { transition: 0.3s; border: none; border-radius: 12px; cursor: pointer; }
+        .post-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .navbar { background: #2c3e50; }
+    </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-dark py-3">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">Hadi's <span class="text-warning">Legal Wisdom</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">হোম</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">তামাদি আইন সিরিজ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">বার কাউন্সিল প্রস্তুতি</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark px-3 ms-lg-3" href="#">লেখক প্যানেল</a></li>
-                </ul>
-            </div>
+            <a href="admin.html" class="btn btn-outline-warning btn-sm">Admin Access</a>
         </div>
     </nav>
 
-    <header class="hero-section text-center text-white d-flex align-items-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">গল্পে গল্পে আইন শিখুন</h1>
-            <p class="lead">আইনের জটিল ধারাগুলোকে আমরা করেছি সহজ ও আনন্দদায়ক।</p>
-            <a href="#latest-posts" class="btn btn-warning btn-lg px-4 mt-3">পড়া শুরু করুন</a>
-        </div>
-    </header>
-
-    <main class="container my-5" id="latest-posts">
-        <div class="row">
-            <div class="col-lg-8">
-                <h3 class="mb-4 border-bottom pb-2">সাম্প্রতিক পোস্টসমূহ</h3>
-                
-                <div class="card mb-4 shadow-sm post-card">
-                    <div class="card-body">
-                        <span class="badge bg-warning text-dark mb-2">তামাদি আইন: পর্ব-০১</span>
-                        <h2 class="card-title h4 fw-bold">ধারা ৩: আপনার অলসতা যখন আপনার শত্রু!</h2>
-                        <p class="text-muted small"><i class="far fa-calendar-alt"></i> ২ এপ্রিল, ২০২৬ | <i class="far fa-user"></i> হাদী</p>
-                        <p class="card-text">তামাদি আইনের সবচেয়ে "নিষ্ঠুর" ধারা বলা হয় এই ৩ ধারাকে। জসিম সাহেবের ৫ লাখ টাকা কেন আদালত পাইয়ে দিল না? জানুন এই গল্পে...</p>
-                        <a href="#" class="btn btn-outline-dark btn-sm">বিস্তারিত পড়ুন →</a>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm post-card">
-                    <div class="card-body">
-                        <span class="badge bg-secondary mb-2">উপস্থাপনা</span>
-                        <h2 class="card-title h4 fw-bold">কেন জানবেন তামাদি আইন? (পর্ব-০০)</h2>
-                        <p class="text-muted small"><i class="far fa-calendar-alt"></i> ১ এপ্রিল, ২০২৬ | <i class="far fa-user"></i> হাদী</p>
-                        <p class="card-text">আইন কেবল তাদেরই সাহায্য করে যারা নিজেদের অধিকার নিয়ে সচেতন। তামাদি আইনের গুরুত্ব নিয়ে এই ভূমিকা পর্ব।</p>
-                        <a href="#" class="btn btn-outline-dark btn-sm">বিস্তারিত পড়ুন →</a>
-                    </div>
-                </div>
+    <div class="container my-5">
+        <h3 class="mb-4 fw-bold">সিরিজ: গল্পে গল্পে তামাদি আইন</h3>
+        <div id="postContainer" class="row">
             </div>
+    </div>
 
-            <div class="col-lg-4">
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-3">সার্চ করুন</h5>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="বিষয় খুঁজুন...">
-                            <button class="btn btn-warning"><i class="fas fa-search"></i></button>
+    <script>
+        const posts = JSON.parse(localStorage.getItem('legalPosts')) || [];
+        const container = document.getElementById('postContainer');
+
+        if(posts.length === 0) {
+            container.innerHTML = '<p class="text-center">এখনো কোনো গল্প পাবলিশ করা হয়নি। এডমিন প্যানেলে যান।</p>';
+        }
+
+        posts.forEach(post => {
+            container.innerHTML += `
+                <div class="col-md-6 mb-4">
+                    <div class="card post-card shadow-sm h-100" onclick="viewPost(${post.id})">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">${post.badge}</span>
+                            <h2 class="h4 fw-bold">${post.title}</h2>
+                            <p class="text-muted small">${post.date}</p>
+                            <p class="card-text text-secondary">${post.short}</p>
+                            <span class="text-primary fw-bold">বিস্তারিত পড়ুন →</span>
                         </div>
                     </div>
                 </div>
+            `;
+        });
 
-                <div class="card shadow-sm border-0 bg-light p-3">
-                    <h5 class="fw-bold">ক্যাটাগরি</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="#" class="text-decoration-none text-dark d-block py-1">● তামাদি আইন (১৯০৮)</a></li>
-                        <li><a href="#" class="text-decoration-none text-dark d-block py-1">● দেওয়ানী কার্যবিধি</a></li>
-                        <li><a href="#" class="text-decoration-none text-dark d-block py-1">● দণ্ডবিধি</a></li>
-                        <li><a href="#" class="text-decoration-none text-dark d-block py-1">● একাডেমিক নোটস</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-0">&copy; ২০২৬ <span class="text-warning">Hadi's Legal Wisdom</span> | All Rights Reserved.</p>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        function viewPost(id) {
+            localStorage.setItem('currentViewId', id);
+            window.location.href = 'details.html';
+        }
+    </script>
 </body>
 </html>
