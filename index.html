@@ -51,6 +51,12 @@
             border-radius: 15px;
             min-width: 100px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .time-box span {
@@ -81,7 +87,7 @@
         <div class="content-box">
             <div class="badge-coming">সাইটের কাজ চলমান</div>
             <h1>Hadi's Legal Wisdom</h1>
-            <p>আমরা আমাদের ওয়েবসাইটটিকে আরও আধুনিক ও সমৃদ্ধ করছি। গল্পে গল্পে আইন শেখার নতুন অভিজ্ঞতা নিয়ে আসছি খুব শীঘ্রই।</p>
+            <p>আমরা আমাদের ওয়েবসাইটটিকে আরও আধুনিক ও সমৃদ্ধ করছি। গল্পে গল্পে আইন শেখার নতুন অভিজ্ঞতা নিয়ে আসছি খুব শীঘ্রই।</p>
             
             <div class="countdown-container" id="countdown">
                 <div class="time-box">
@@ -109,31 +115,40 @@
     </div>
 
     <script>
-        // লক্ষ্য নির্ধারণ (বর্তমান থেকে ৬ মাস পর)
-        var countDownDate = new Date();
-        countDownDate.setMonth(countDownDate.getMonth() + 6);
+        // লক্ষ্য নির্ধারণ: আপনি এখানে আপনার পছন্দমতো তারিখ দিতে পারেন
+        // উদাহরণস্বরূপ: ২০২৬ সালের ১ অক্টোবর
+        var countDownDate = new Date("Oct 1, 2026 00:00:00").getTime();
 
-        // প্রতি ১ সেকেন্ডে আপডেট হবে
+        // প্রতি ১ সেকেন্ড (১০০০ মিলি সেকেন্ড) অন্তর আপডেট হবে
         var x = setInterval(function() {
+
+            // বর্তমান সময় নেওয়া
             var now = new Date().getTime();
+
+            // লক্ষ্য সময় ও বর্তমান সময়ের পার্থক্য
             var distance = countDownDate - now;
 
-            // দিন, ঘণ্টা, মিনিট ও সেকেন্ড গণনা
+            // দিন, ঘণ্টা, মিনিট ও সেকেন্ডের গাণিতিক হিসাব
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // আউটপুট প্রদর্শন
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            // সংখ্যা যদি ৯-এর কম হয় তবে আগে একটি '০' যোগ করার ফাংশন
+            function formatTime(time) {
+                return time < 10 ? "0" + time : time;
+            }
 
-            // সময় শেষ হলে
+            // HTML এলিমেন্টে মানগুলো বসানো
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            // যদি সময় শেষ হয়ে যায়
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "আমরা এখন লাইভ!";
+                document.getElementById("countdown").innerHTML = "<h2 class='text-warning'>আমরা এখন লাইভ!</h2>";
             }
         }, 1000);
     </script>
