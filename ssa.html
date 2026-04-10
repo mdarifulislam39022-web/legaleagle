@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Courts Ordinance 1985</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-bg: #050a18; 
+            --accent-gold: #c5a059; 
+            --card-bg: rgba(10, 25, 47, 0.88); 
+            --text-main: #ffffff;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+        }
+
+        .slides-container {
+            width: 100%; height: 100%; display: flex;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .slide {
+            min-width: 100%; height: 100%; display: flex;
+            justify-content: center; align-items: center; padding: 60px;
+            box-sizing: border-box;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* প্রতিটি স্লাইডের জন্য আলাদা আলাদা রিয়েলিস্টিক লিগ্যাল ইমেজ */
+        .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070'); } /* Title: Lady Justice */
+        .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070'); } /* Team: Court Pillars */
+        .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1593115052989-e82b11370213?q=80&w=2070'); } /* Intro: Law Library */
+        .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1589216532372-1c2a367900d8?q=80&w=2070'); } /* Sec 3: Law Books */
+        .slide:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070'); } /* Framework: Gavel */
+        .slide:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=2070'); } /* Sec 5: Court Interior */
+        .slide:nth-child(7) { background-image: url('https://images.unsplash.com/photo-1453941403708-341ff5b46750?q=80&w=2070'); } /* Sec 6: Scales */
+        .slide:nth-child(8) { background-image: url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=2070'); } /* Territorial: Files */
+        .slide:nth-child(9) { background-image: url('https://images.unsplash.com/photo-1585822797359-9a3939634f14?q=80&w=2070'); } /* Sec 7: Statue */
+        .slide:nth-child(10) { background-image: url('https://images.unsplash.com/photo-1510511459019-5dee995d51fa?q=80&w=2070'); } /* Sec 9: Office */
+        .slide:nth-child(11) { background-image: url('https://images.unsplash.com/photo-1447069387593-a5de0862481e?q=80&w=2070'); } /* Sec 10: Library */
+        .slide:nth-child(12) { background-image: url('https://images.unsplash.com/photo-1436450412740-6b988f486c6b?q=80&w=2070'); } /* Sec 20: Open Book */
+        .slide:nth-child(13) { background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2070'); } /* Sec 13: Gavel Desk */
+        .slide:nth-child(14) { background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070'); } /* Sec 16: Justice Close-up */
+        .slide:nth-child(15) { background-image: url('https://images.unsplash.com/photo-1589994160839-163cd2b5fcff?q=80&w=2070'); } /* Conclusion */
+
+        /* ডার্ক ওভারলে লেয়ার */
+        .slide::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 10, 24, 0.85); 
+            z-index: 1;
+        }
+
+        .content-card {
+            position: relative; z-index: 2;
+            background: var(--card-bg); 
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-left: 6px solid var(--accent-gold);
+            padding: 40px 60px; border-radius: 12px; 
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8); 
+            max-width: 1100px; width: 100%;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--accent-gold); margin: 0 0 15px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--accent-gold); margin: 0 0 25px 0; border-bottom: 2px solid rgba(197, 160, 89, 0.4); padding-bottom: 10px; }
+
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .member-item { background: rgba(255,255,255,0.05); padding: 15px 25px; border-radius: 8px; border-left: 3px solid var(--accent-gold); display: flex; justify-content: space-between; align-items: center; }
+        .member-name { font-weight: 600; color: var(--text-main); font-size: 1.1rem; }
+        .member-id { color: var(--accent-gold); font-family: monospace; font-size: 1rem; font-weight: bold; }
+
+        .speaker-tag { font-size: 0.8rem; background: var(--accent-gold); color: #000; padding: 4px 15px; border-radius: 20px; font-weight: 800; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; }
+
+        .points-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .point-box { background: rgba(0,0,0,0.3); padding: 25px; border-radius: 10px; border: 1px solid rgba(197, 160, 89, 0.2); }
+        .point-box strong { color: var(--accent-gold); font-size: 1.25rem; display: block; margin-bottom: 8px; }
+        .point-box p { margin: 0; font-size: 1.1rem; line-height: 1.5; opacity: 1; color: #fff; }
+
+        .controls { position: fixed; bottom: 40px; right: 40px; z-index: 100; display: flex; gap: 15px; }
+        .btn { background: rgba(10, 25, 47, 0.8); border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 12px 24px; cursor: pointer; font-weight: 600; border-radius: 5px; transition: 0.3s; }
+        .btn:hover { background: var(--accent-gold); color: #000; }
+        
+        #progress-bar { position: fixed; top: 0; left: 0; height: 5px; background: var(--accent-gold); width: 0%; transition: width 0.4s; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="slides-container" id="slider">
+        
+        <section class="slide">
+            <div class="content-card" style="text-align: center; border-left: none; border-top: 4px solid var(--accent-gold);">
+                <p style="letter-spacing: 5px; color: var(--accent-gold); font-weight: 600;">DEPARTMENT OF LAW</p>
+                <h1>The Family Courts Ordinance, 1985</h1>
+                <p style="font-size: 1.6rem; opacity: 0.9;">Efficiency, Fairness, and Preservation of Dignity</p>
+                <div style="margin-top: 40px;"><strong>LAW in Daily Life</strong> | Presentation Session</div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <p style="letter-spacing: 5px; color: var(--accent-gold); text-align: center; margin-bottom: 5px;">WELCOME</p>
+                <h2 style="text-align: center; border: none;">Team Members</h2>
+                <div class="team-grid">
+                    <div class="member-item"><span class="member-name">Safa Islam Chowdhury</span><span class="member-id">43017</span></div>
+                    <div class="member-item"><span class="member-name">Aysha Rahman</span><span class="member-id">42066</span></div>
+                    <div class="member-item"><span class="member-name">Mst.Sonia Akther Poly</span><span class="member-id">43037</span></div>
+                    <div class="member-item"><span class="member-name">Bristy Banik</span><span class="member-id">43014</span></div>
+                    <div class="member-item"><span class="member-name">Tanjila Afrin Mrinmoye</span><span class="member-id">43045</span></div>
+                    <div class="member-item"><span class="member-name">Nadia Akther Sweety</span><span class="member-id">43075</span></div>
+                    <div class="member-item"><span class="member-name">Faima Akther Richi</span><span class="member-id">43022</span></div>
+                    <div class="member-item"><span class="member-name">Sadia Akther</span><span class="member-id">43029</span></div>
+                    <div class="member-item" style="grid-column: span 2;"><span class="member-name">Songita Rani Chando</span><span class="member-id">43010</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 1</span>
+                <h2>Introduction & Legislative Intent</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Landmark Law</strong>Designed to transform family dispute resolution in Bangladesh.</div>
+                    <div class="point-box"><strong>Purpose</strong>To ensure specialized, speedy, and sensitive justice.</div>
+                    <div class="point-box"><strong>Section 1: Scope</strong>Applies to whole Bangladesh except the 3 Hill Tracts.</div>
+                    <div class="point-box"><strong>Context</strong>Solving delays and emotional stress of ordinary civil courts.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 1</span>
+                <h2>Legal Dominance (Section 3)</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Non-Obstante Clause</strong>Gives this Ordinance overriding power over other laws.</div>
+                    <div class="point-box"><strong>Supremacy</strong>Stands supreme in case of any legal conflict in family matters.</div>
+                    <div class="point-box"><strong>Protection</strong>Procedures remain consistent and unaffected by civil laws.</div>
+                    <div class="point-box"><strong>Legal Strength</strong>Ensures the law remains strong and effective.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 2</span>
+                <h2>Institutional Framework</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 4: Designation</strong>Existing Assistant Judges act as Family Court Judges.</div>
+                    <div class="point-box"><strong>Structure</strong>No new courts were created; utilized existing infrastructure.</div>
+                    <div class="point-box"><strong>Precision</strong>Judges develop expertise in sensitive family issues.</div>
+                    <div class="point-box"><strong>Accessibility</strong>Ensuring justice at the grassroots level.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 2</span>
+                <h2>Exclusive Jurisdiction (Section 5)</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Exclusive Authority</strong>Only Family Courts can handle these 5 specific matters.</div>
+                    <div class="point-box"><strong>Five Areas</strong>Divorce, Conjugal Rights, Dower, Maintenance, Custody.</div>
+                    <div class="point-box"><strong>Key Principle</strong>No other civil court can intervene in these matters.</div>
+                    <div class="point-box"><strong>Expertise</strong>Streamlined process for specific domestic disputes.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 3</span>
+                <h2>Instituting a Suit (Section 6)</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>The Plaint</strong>Formal written complaint to initiate the case.</div>
+                    <div class="point-box"><strong>Transparency</strong>Plaintiff must submit witness list & documents at the start.</div>
+                    <div class="point-box"><strong>Section 22: Fee</strong>Affordable justice with a fixed fee of only 25 Taka.</div>
+                    <div class="point-box"><strong>Efficiency</strong>Prevents surprise evidence and unnecessary delays.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 3</span>
+                <h2>Territorial Flexibility</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Wife's Relief</strong>Can file where she "ordinarily resides".</div>
+                    <div class="point-box"><strong>Reduced Hardship</strong>Helpful for women who returned to parental homes.</div>
+                    <div class="point-box"><strong>Progressive Law</strong>Adapting the legal system to human reality.</div>
+                    <div class="point-box"><strong>Convenience</strong>Focusing on access to justice for the vulnerable.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 4</span>
+                <h2>Summons & Notice</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 7: Notice</strong>Summons + Registered Post notification.</div>
+                    <div class="point-box"><strong>Section 8: Defence</strong>Written statement within 21 days maximum.</div>
+                    <div class="point-box"><strong>Due Informing</strong>Dual system ensures defendant is properly aware.</div>
+                    <div class="point-box"><strong>Right to Defend</strong>Strict timelines for the legal response.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 4</span>
+                <h2>Rules of Absence (Section 9)</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Plaintiff Absent</strong>The suit is dismissed automatically.</div>
+                    <div class="point-box"><strong>Defendant Absent</strong>The court may proceed "Ex-parte".</div>
+                    <div class="point-box"><strong>Fairness Window</strong>30 days window to set aside Ex-parte decisions.</div>
+                    <div class="point-box"><strong>Balanced Justice</strong>Efficiency combined with the right to be heard.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 5</span>
+                <h2>Pre-Trial & Reconciliation</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 10: Mediation</strong>Judge attempts to resolve disputes amicably.</div>
+                    <div class="point-box"><strong>Active Role</strong>The Judge acts more like a mediator than a listener.</div>
+                    <div class="point-box"><strong>Section 11: Privacy</strong>Proceedings held "In-Camera" (privately) for dignity.</div>
+                    <div class="point-box"><strong>Unity Focus</strong>Prioritizing family restoration if possible.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 5</span>
+                <h2>Simplified Evidence</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 20: Flexibility</strong>Strict Evidence Law formalities do not apply.</div>
+                    <div class="point-box"><strong>Substantial Justice</strong>Focusing on truth rather than technicalities.</div>
+                    <div class="point-box"><strong>Judicial Discretion</strong>Empowering judges to achieve real justice.</div>
+                    <div class="point-box"><strong>Court Atmosphere</strong>Less intimidating and more focused on results.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 6</span>
+                <h2>Judgment & Enforcement</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 13: Final Effort</strong>Second reconciliation attempt before judgment.</div>
+                    <div class="point-box"><strong>Binding Decree</strong>Final verdict follows if reconciliation fails.</div>
+                    <div class="point-box"><strong>Real Power</strong>Section 16 ensures enforcement of the decree.</div>
+                    <div class="point-box"><strong>Compliance</strong>Strong rules to ensure court orders are followed.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 6</span>
+                <h2>Execution & Interim Relief</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Magistrate Powers</strong>Judge can seize property or imprison up to 3 months.</div>
+                    <div class="point-box"><strong>Section 16A: Relief</strong>Interim orders for immediate action (e.g. Maintenance).</div>
+                    <div class="point-box"><strong>Practicality</strong>The law protects parties while the case is ongoing.</div>
+                    <div class="point-box"><strong>Force of Law</strong>Ensures monetary claims are not ignored.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-card">
+                <span class="speaker-tag">SPEAKER 7</span>
+                <h2>Appeals & Final Conclusions</h2>
+                <div class="points-grid">
+                    <div class="point-box"><strong>Section 17: Appeals</strong>Right to appeal to District Judge within 30 days.</div>
+                    <div class="point-box"><strong>Section 24: Custody</strong>Family Court acts as District Court for child welfare.</div>
+                    <div class="point-box"><strong>Section 23: Harmony</strong>Integrates with Muslim Family Law Ordinance 1961.</div>
+                    <div class="point-box"><strong>Social Impact</strong>Ensures efficiency, fairness, and family dignity.</div>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <h2 style="border: none; margin-bottom: 0;">Thank You!</h2>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">← PREV</button>
+        <button class="btn" onclick="nextSlide()">NEXT →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const progressBar = document.getElementById('progress-bar');
+
+        function updateSlide() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            progressBar.style.width = `${(currentSlide / (slides.length - 1)) * 100}%`;
+        }
+
+        function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateSlide(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlide(); } }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
