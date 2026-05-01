@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Legal Eagle — আদালতের রায় সংগ্রহশালা</title>
+    
+    <!-- Google Fonts: Noto Serif for legal feel and Noto Sans for UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --gold: #d4af37;
+            --gold-hover: #f1c40f;
+            --text: #e0e0e0;
+            --muted: #a0a0a0;
+            --border: rgba(212, 175, 55, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Sans Bengali', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .legal-font {
+            font-family: 'Noto Serif Bengali', serif;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-stats {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .hero h1 span { color: var(--gold); }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            width: 100%;
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Case Card */
+        .case-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: #1c1c1c;
+        }
+
+        .badge {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .case-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .case-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--gold);
+        }
+
+        /* Empty State */
+        #no-results {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            color: var(--muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">⚖ Learn with Legal Eagle</a>
+        <div class="nav-stats" id="stat-count">লোড হচ্ছে...</div>
+    </nav>
+
+    <section class="hero">
+        <h1>আইনের শিক্ষায় <span>নতুন দিগন্ত</span></h1>
+        <p>বাংলাদেশের গুরুত্বপূর্ণ আদালতের রায় এবং আইনি ব্যাখ্যা সহজ বাংলায় আপনার হাতের মুঠোয়।</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="মামলা, ধারা বা বিষয় দিয়ে সার্চ করুন..." onkeyup="filterCases()">
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="grid" id="caseGrid">
+            
+            <!-- রায় ১ -->
+            <a href="cr-07-2023/index.html" class="case-card" data-keywords="কয়ছর আলম তোফায়েল আহমদ ফৌজদারি ৪২০ প্রতারণা">
+                <span class="badge">ফৌজদারি মামলা</span>
+                <h3>কয়ছর আলম বনাম তোফায়েল আহমদ</h3>
+                <p>সৌদি আরবের ভিসার প্রলোভনে অর্থ আত্মসাৎ। দণ্ডবিধির ৪২০ ধারায় আসামিদের ২ বছরের কারাদণ্ড ও অর্থদণ্ড।</p>
+                <div class="card-footer">
+                    <span>মৌলভীবাজার SJM আদালত</span>
+                    <span>বিস্তারিত পড়ুন →</span>
+                </div>
+            </a>
+
+            <!-- রায় ২ (উদাহরণ) -->
+            <a href="#" class="case-card" data-keywords="সুনির্দিষ্ট প্রতিকার আইন ধারা ১৯ ক্ষতিপূরণ আরিফ আকিব">
+                <span class="badge">দেওয়ানি মামলা</span>
+                <h3>Specific Relief Act: ধারা ১৯</h3>
+                <p>চুক্তির সুনির্দিষ্ট কার্যসম্পাদনের পরিবর্তে বা অতিরিক্ত হিসেবে আদালতের ক্ষতিপূরণ প্রদানের এখতিয়ার।</p>
+                <div class="card-footer">
+                    <span>গল্পে গল্পে আইন</span>
+                    <span>বিস্তারিত পড়ুন →</span>
+                </div>
+            </a>
+
+        </div>
+
+        <div id="no-results">
+            <p>দুঃখিত, আপনার অনুসন্ধান অনুযায়ী কোনো রায় পাওয়া যায়নি।</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Learn with Legal Eagle | Mohammad Arif</p>
+    </footer>
+
+    <script>
+        function filterCases() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let grid = document.getElementById('caseGrid');
+            let cards = grid.getElementsByClassName('case-card');
+            let noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            for (let i = 0; i < cards.length; i++) {
+                let keywords = cards[i].getAttribute('data-keywords').toLowerCase();
+                let content = cards[i].innerText.toLowerCase();
+                
+                if (keywords.includes(input) || content.includes(input)) {
+                    cards[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+
+            noResults.style.display = visibleCount === 0 ? "block" : "none";
+            updateCount(visibleCount);
+        }
+
+        function updateCount(count) {
+            document.getElementById('stat-count').innerText = "মোট রায়: " + count + "টি";
+        }
+
+        // শুরুতে সংখ্যা আপডেট
+        window.onload = () => {
+            let initialCount = document.getElementsByClassName('case-card').length;
+            updateCount(initialCount);
+        };
+    </script>
+
+</body>
+</html>
