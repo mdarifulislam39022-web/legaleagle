@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masdar Hossain Case — বিচার বিভাগ পৃথকীকরণ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c10;
+  --surface: #0e1318;
+  --surface2: #141a21;
+  --gold: #c9982a;
+  --gold2: #e8b84b;
+  --gold-dim: rgba(201,152,42,0.12);
+  --text: #e8e2d6;
+  --muted: rgba(232,226,214,0.5);
+  --border: rgba(201,152,42,0.18);
+  --border2: rgba(232,226,214,0.07);
+  --red: #9b2335;
+  --green: #1a5c3a;
+  --blue: #1a3a5c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body { background:var(--bg); color:var(--text); font-family:'Noto Sans Bengali',sans-serif; overflow-x:hidden; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:0 5%; height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(8,12,16,0.9); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+}
+.nav-back { display:flex; align-items:center; gap:8px; color:var(--muted); text-decoration:none; font-size:13px; transition:color .2s; }
+.nav-back:hover { color:var(--gold); }
+.nav-badge { font-size:11px; background:rgba(201,152,42,0.1); border:1px solid var(--border); color:var(--gold); padding:4px 12px; border-radius:100px; letter-spacing:.5px; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:100px 24px 80px; position:relative; overflow:hidden;
+}
+.hero-glow {
+  position:absolute; width:700px; height:700px; border-radius:50%;
+  background:radial-gradient(circle, rgba(201,152,42,0.06) 0%, transparent 70%);
+  top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;
+}
+.hero-line { width:1px; height:80px; background:linear-gradient(to bottom, transparent, var(--gold), transparent); margin:0 auto 40px; opacity:.5; animation:pulse 3s ease-in-out infinite; }
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+.hero-eyebrow { font-size:10px; letter-spacing:5px; font-weight:500; color:var(--gold); text-transform:uppercase; margin-bottom:20px; opacity:.8; }
+.hero-citation { font-size:11px; letter-spacing:3px; color:var(--muted); border:1px solid var(--border); padding:6px 20px; border-radius:100px; margin-bottom:28px; display:inline-block; }
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(60px,12vw,130px); line-height:.9; letter-spacing:2px; color:var(--text); margin-bottom:6px; }
+.hero-title em { display:block; color:var(--gold2); font-style:normal; }
+.hero-subtitle { font-family:'Playfair Display',serif; font-size:clamp(15px,2vw,20px); font-style:italic; color:var(--muted); margin-bottom:36px; max-width:520px; }
+.hero-parties {
+  display:flex; align-items:center; gap:20px;
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:100px; padding:12px 28px; margin-bottom:32px;
+  flex-wrap:wrap; justify-content:center;
+}
+.party-name { font-family:'Noto Sans Bengali',sans-serif; font-size:13px; font-weight:600; }
+.vs-dot {
+  width:34px; height:34px; border-radius:50%; background:var(--red);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:1px;
+  box-shadow:0 0 16px rgba(155,35,53,.4); flex-shrink:0;
+}
+.hero-stats { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.stat-pill {
+  background:rgba(255,255,255,.05); border:1px solid var(--border); border-radius:100px;
+  padding:7px 18px; font-size:12px; color:var(--muted);
+  display:flex; align-items:center; gap:5px;
+}
+.stat-pill strong { color:var(--gold2); }
+.scroll-hint { position:absolute; bottom:28px; font-size:10px; letter-spacing:3px; color:var(--muted); opacity:.4; animation:bob 2s ease-in-out infinite; }
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ── SECTIONS ── */
+.section { max-width:1100px; margin:0 auto; padding:80px 5%; }
+.bg-alt { background:var(--surface); }
+.bg-dark { background:#060a0d; }
+.sec-eyebrow {
+  font-size:9.5px; letter-spacing:4px; font-weight:700; color:var(--gold);
+  margin-bottom:8px; display:flex; align-items:center; gap:10px;
+}
+.sec-eyebrow::after { content:''; flex:1; height:1px; background:linear-gradient(to right,var(--gold),transparent); opacity:.4; }
+.sec-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,5vw,52px); letter-spacing:2px; color:var(--text); margin-bottom:36px; line-height:1; }
+
+/* ── STORY GRID ── */
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.story-card {
+  background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:16px;
+  padding:24px; position:relative; overflow:hidden;
+  transition:transform .25s, background .25s; border-top:2px solid;
+}
+.story-card:hover { background:rgba(255,255,255,.07); transform:translateY(-3px); }
+.sc-red { border-top-color:var(--red); }
+.sc-gold { border-top-color:var(--gold); }
+.sc-blue { border-top-color:#2a6090; }
+.sc-green { border-top-color:#2a7a50; }
+.story-icon { font-size:34px; margin-bottom:12px; display:block; }
+.story-label { font-size:9.5px; letter-spacing:2px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+.story-heading { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--text); margin-bottom:10px; line-height:1.3; }
+.story-text { font-size:13px; line-height:1.85; color:var(--muted); }
+.story-text strong { color:var(--text); font-weight:600; }
+
+/* ── ISSUES ACCORDION ── */
+.issues-list { display:flex; flex-direction:column; gap:10px; }
+.issue-item { background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:12px; overflow:hidden; transition:border-color .2s; }
+.issue-item.open { border-color:var(--gold); }
+.issue-header { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; user-select:none; }
+.issue-num { width:34px; height:34px; border-radius:50%; background:var(--gold); color:var(--bg); font-family:'Bebas Neue',sans-serif; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.issue-q { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--text); flex:1; line-height:1.4; }
+.issue-toggle { font-size:18px; color:var(--gold); transition:transform .3s; flex-shrink:0; }
+.issue-item.open .issue-toggle { transform:rotate(45deg); }
+.issue-body { display:none; padding:0 20px 18px 68px; }
+.issue-item.open .issue-body { display:block; }
+.ruling-tag { display:inline-block; background:var(--green); color:white; font-size:9px; font-weight:700; letter-spacing:1.5px; padding:2px 10px; border-radius:4px; margin-bottom:8px; }
+.issue-verdict { background:rgba(201,152,42,.07); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:14px 16px; font-size:13px; line-height:1.85; color:var(--muted); }
+.issue-verdict strong { color:var(--text); font-weight:600; }
+
+/* ── PILLARS ── */
+.pillars-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+.pillar-card { border-radius:16px; padding:26px 20px; position:relative; overflow:hidden; text-align:center; border:1px solid var(--border2); background:rgba(255,255,255,.04); transition:transform .25s, background .25s; }
+.pillar-card:hover { transform:translateY(-4px); background:rgba(255,255,255,.07); }
+.pillar-num { font-family:'Bebas Neue',sans-serif; font-size:60px; line-height:1; opacity:.08; position:absolute; top:6px; right:10px; color:var(--gold); }
+.pillar-icon { font-size:38px; margin-bottom:12px; display:block; }
+.pillar-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.3; }
+.pillar-sub { font-size:11px; color:var(--gold); margin-bottom:6px; opacity:.7; }
+.pillar-desc { font-size:12px; line-height:1.7; color:var(--muted); }
+
+/* ── 12 ORDERS ── */
+.orders-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.order-card {
+  background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:12px;
+  padding:18px; display:flex; gap:12px; transition:background .2s;
+}
+.order-card:hover { background:rgba(255,255,255,.07); }
+.order-num { width:30px; height:30px; border-radius:8px; background:var(--gold); color:var(--bg); font-family:'Bebas Neue',sans-serif; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.order-title { font-size:12.5px; font-weight:700; color:var(--text); margin-bottom:4px; line-height:1.4; }
+.order-desc { font-size:11.5px; line-height:1.7; color:var(--muted); }
+
+/* ── IMPACT ── */
+.impact-wrap { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; }
+.impact-timeline { display:flex; flex-direction:column; gap:0; }
+.it-item { display:flex; gap:16px; padding-bottom:26px; position:relative; }
+.it-item:last-child { padding-bottom:0; }
+.it-line { display:flex; flex-direction:column; align-items:center; }
+.it-dot { width:14px; height:14px; border-radius:50%; background:var(--gold); flex-shrink:0; box-shadow:0 0 10px rgba(201,152,42,.5); }
+.it-stem { flex:1; width:1px; background:linear-gradient(to bottom,var(--gold),transparent); margin-top:4px; opacity:.3; }
+.it-item:last-child .it-stem { display:none; }
+.it-year { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--gold); line-height:1; margin-bottom:3px; }
+.it-text { font-size:13px; line-height:1.7; color:var(--muted); }
+.it-text strong { color:var(--text); }
+.impact-right { background:rgba(201,152,42,.06); border:1px solid var(--border); border-radius:20px; padding:32px; }
+.impact-quote { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; line-height:1.65; color:var(--text); margin-bottom:14px; }
+.impact-quote::before { content:'"'; font-size:64px; line-height:.5; color:var(--gold); opacity:.4; display:block; margin-bottom:8px; }
+.impact-attribution { font-size:11px; color:var(--gold); letter-spacing:1px; }
+.lawyer-card { background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:10px; padding:14px 16px; display:flex; align-items:center; gap:10px; margin-top:8px; }
+.lawyer-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; background:rgba(201,152,42,.1); }
+.lawyer-name { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--text); margin-bottom:2px; }
+.lawyer-role { font-size:11px; color:var(--muted); }
+
+/* ── MEMORY CARDS ── */
+.memory-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:28px; }
+.memory-card {
+  background:rgba(255,255,255,.04); border:1px solid var(--border2); border-radius:14px;
+  padding:20px; text-align:center; transition:transform .2s, background .2s; cursor:pointer;
+}
+.memory-card:hover { background:rgba(201,152,42,.08); transform:scale(1.02); }
+.mem-emoji { font-size:34px; margin-bottom:8px; display:block; }
+.mem-keyword { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; color:var(--gold2); margin-bottom:5px; }
+.mem-hint { font-size:11.5px; color:var(--muted); line-height:1.6; }
+
+/* ── EXAM FORMAT ── */
+.exam-tabs { display:flex; gap:0; margin-bottom:22px; border:1px solid var(--border); border-radius:10px; overflow:hidden; width:fit-content; }
+.exam-tab { padding:10px 26px; background:transparent; color:var(--muted); font-family:'Noto Sans Bengali',sans-serif; font-size:13px; font-weight:700; border:none; cursor:pointer; transition:.2s; }
+.exam-tab.active { background:var(--gold); color:var(--bg); }
+.exam-block { display:none; }
+.exam-block.active { display:block; }
+.exam-paper {
+  background:#f5f0e8; border-radius:14px; padding:38px 42px;
+  position:relative; color:#1a1008;
+  border-top:5px solid var(--gold);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.copy-btn {
+  position:absolute; top:14px; right:14px;
+  background:var(--bg); color:var(--gold); border:1px solid var(--gold);
+  border-radius:8px; padding:6px 14px; font-family:'Noto Sans Bengali',sans-serif;
+  font-size:12px; font-weight:600; cursor:pointer; transition:.2s;
+}
+.copy-btn:hover { background:var(--gold); color:var(--bg); }
+.ep-case-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a0a00; margin-bottom:5px; line-height:1.4; }
+.ep-citation { font-size:12px; color:#6b4f30; margin-bottom:3px; font-weight:600; }
+.ep-judges { font-size:12px; color:#8a6a4a; margin-bottom:26px; padding-bottom:18px; border-bottom:2px solid rgba(201,152,42,.3); }
+.ep-sec-label { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:#8b0000; display:inline-block; border-bottom:2px solid #8b0000; padding-bottom:2px; margin:22px 0 12px; }
+.ep-content { font-family:'Noto Serif Bengali',serif; font-size:14px; line-height:2; color:#2c1a0a; padding-left:6px; }
+.ep-issue { display:flex; gap:8px; margin-bottom:5px; }
+.ep-issue-num { color:#8b0000; font-weight:700; min-width:20px; flex-shrink:0; }
+.ep-decisions { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+.ep-dec {
+  background:rgba(139,0,0,.05); border-left:3px solid #8b0000;
+  border-radius:0 8px 8px 0; padding:10px 14px;
+  font-size:13.5px; line-height:1.8;
+}
+.ep-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1.5px; padding:2px 8px; border-radius:4px; margin-bottom:4px; }
+.ep-declared { background:#8b0000; color:white; }
+.ep-directed { background:#1a5c3a; color:white; }
+.ep-reason { margin-bottom:14px; padding-bottom:14px; border-bottom:1px dashed rgba(201,152,42,.4); }
+.ep-reason:last-child { border-bottom:none; margin-bottom:0; }
+.ep-r-title { font-size:13px; font-weight:700; color:#1a0a00; margin-bottom:5px; }
+.ep-r-text { font-size:13.5px; line-height:1.9; color:#3a2010; }
+.ep-sig { margin-top:26px; background:linear-gradient(135deg,rgba(201,152,42,.1),rgba(139,0,0,.06)); border:1px solid rgba(201,152,42,.4); border-radius:10px; padding:14px 18px; font-family:'Noto Serif Bengali',serif; font-size:13.5px; line-height:1.85; color:#2c1a0a; }
+.ep-sig-label { font-size:10px; font-weight:700; letter-spacing:2px; color:#8b0000; margin-bottom:7px; }
+
+/* ── TOAST ── */
+.toast { display:none; position:fixed; bottom:28px; right:28px; background:#1a5c3a; color:white; padding:12px 22px; border-radius:8px; font-size:13px; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,.3); }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--border2); padding:36px 24px; text-align:center; }
+.footer-case { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:3px; color:var(--gold); margin-bottom:6px; }
+.footer-ref { font-size:11px; color:var(--muted); }
+.footer-credit { margin-top:14px; font-size:11px; color:rgba(232,226,214,.2); }
+.back-btn { display:inline-flex; align-items:center; gap:6px; margin-top:18px; background:var(--gold); color:var(--bg); font-size:12px; font-weight:700; padding:10px 22px; border-radius:100px; text-decoration:none; transition:.2s; }
+.back-btn:hover { background:var(--gold2); }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:700px){
+  .story-grid,.orders-grid,.impact-wrap,.memory-grid { grid-template-columns:1fr; }
+  .pillars-grid { grid-template-columns:1fr 1fr; }
+  .exam-paper { padding:24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-back">← হোমপেজ</a>
+  <span class="nav-badge">Landmark · সুপ্রিম কোর্ট</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-line"></div>
+  <p class="hero-eyebrow">Bangladesh Supreme Court · Landmark Judgment</p>
+  <div class="hero-citation">52 DLR (AD) 82 · আপিল বিভাগ · ১৯৯৯</div>
+  <h1 class="hero-title">MASDAR<em>HOSSAIN</em></h1>
+  <p class="hero-subtitle">বিচার বিভাগের স্বাধীনতা প্রতিষ্ঠার মহাকাব্যিক লড়াই</p>
+  <div class="hero-parties">
+    <div class="party-name">সরকার (অর্থ মন্ত্রণালয়)</div>
+    <div class="vs-dot">VS</div>
+    <div class="party-name">মাসদার হোসাইন ও অন্যান্য বিচারকগণ</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-pill">📅 রায়: <strong>১৯৯৯</strong></div>
+    <div class="stat-pill">⚖ <strong>১২টি</strong> ঐতিহাসিক নির্দেশনা</div>
+    <div class="stat-pill">🏛 <strong>আপিল বিভাগ</strong></div>
+    <div class="stat-pill">✅ পৃথকীকরণ: <strong>২০০৭</strong></div>
+  </div>
+  <div class="scroll-hint">▼ নিচে স্ক্রোল করুন ▼</div>
+</section>
+
+<!-- BACKGROUND -->
+<div class="bg-alt">
+<div class="section reveal">
+  <div class="sec-eyebrow">মামলার পটভূমি · BACKGROUND</div>
+  <div class="sec-title">কী ঘটেছিল?</div>
+  <div class="story-grid">
+    <div class="story-card sc-red">
+      <span class="story-icon">🏢</span>
+      <div class="story-label">১৯৮০ সালের ভুল</div>
+      <div class="story-heading">BCS (Judicial) — এক মারাত্মক সিদ্ধান্ত</div>
+      <div class="story-text">১৯৮০ সালে সরকার <strong>বিচার বিভাগকে BCS ক্যাডারের অংশ</strong> বানিয়ে দেয় — বিচারকদের অন্যান্য সরকারি কর্মকর্তাদের সাথে একই স্তরে রাখা হয়। এটি ছিল এক সাংবিধানিক ভুল।</div>
+    </div>
+    <div class="story-card sc-gold">
+      <span class="story-icon">💸</span>
+      <div class="story-label">বৈষম্যমূলক বেতন</div>
+      <div class="story-heading">বেতন বৃদ্ধির প্রতিশ্রুতি ভঙ্গ</div>
+      <div class="story-text">১৯৯৪ সালের ৮ জানুয়ারি সরকার বিচারকদের <strong>বিশেষ বেতন স্কেল</strong> দেওয়ার আদেশ দেয়। কিন্তু অন্য ক্যাডারদের চাপে ২৮ ফেব্রুয়ারি সেই আদেশ <strong>স্থগিত</strong> করে দেয়।</div>
+    </div>
+    <div class="story-card sc-blue">
+      <span class="story-icon">📋</span>
+      <div class="story-label">রিট আবেদন</div>
+      <div class="story-heading">বিচারকরা আদালতে গেলেন</div>
+      <div class="story-text">জেলা জজ, অতিরিক্ত জেলা জজ ও অধীনস্থ বিচারকরা <strong>হাইকোর্টে রিট</strong> দাখিল করেন। দাবি — বিচার বিভাগকে নির্বাহী বিভাগ থেকে আলাদা করতে হবে। হাইকোর্ট ১৯৯৭ সালে তাদের পক্ষে রায় দেয়।</div>
+    </div>
+    <div class="story-card sc-green">
+      <span class="story-icon">🔺</span>
+      <div class="story-label">আপিল বিভাগ</div>
+      <div class="story-heading">সর্বোচ্চ আদালতে চূড়ান্ত লড়াই</div>
+      <div class="story-text">সরকার আপিল করে। প্রধান বিচারপতি <strong>মুস্তাফা কামাল</strong>-এর নেতৃত্বে আপিল বিভাগ ১৯৯৯ সালে ঐতিহাসিক রায় দেন — যা বাংলাদেশের বিচার বিভাগের মেরুদণ্ড হয়ে ওঠে।</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ISSUES -->
+<div class="bg-dark">
+<div class="section reveal">
+  <div class="sec-eyebrow">আদালতের প্রশ্নসমূহ · ISSUES & RULINGS</div>
+  <div class="sec-title">আদালত কী কী প্রশ্নের উত্তর দিল?</div>
+  <div class="issues-list">
+
+    <div class="issue-item">
+      <div class="issue-header" onclick="toggleIssue(this)">
+        <div class="issue-num">১</div>
+        <div class="issue-q">বিচার বিভাগের সদস্যরা কি "রিপাবলিকের চাকরিতে"?</div>
+        <div class="issue-toggle">+</div>
+      </div>
+      <div class="issue-body">
+        <div class="ruling-tag">আদালতের রায়</div>
+        <div class="issue-verdict"><strong>হ্যাঁ, তবে আলাদাভাবে।</strong> সংবিধানে "Government" শব্দটি দুই অর্থে ব্যবহৃত। বিচারকরা "রিপাবলিকের চাকরিতে" আছেন, কিন্তু নির্বাহী বিভাগের কর্মচারী নন। তারা রাষ্ট্রের <strong>বিচারিক সার্বভৌম ক্ষমতার ধারক।</strong></div>
+      </div>
+    </div>
+
+    <div class="issue-item">
+      <div class="issue-header" onclick="toggleIssue(this)">
+        <div class="issue-num">২</div>
+        <div class="issue-q">বিচার বিভাগ কেন অন্য সেবা থেকে আলাদা?</div>
+        <div class="issue-toggle">+</div>
+      </div>
+      <div class="issue-body">
+        <div class="ruling-tag">আদালতের রায়</div>
+        <div class="issue-verdict">ভারতের সুপ্রিম কোর্টের রায় উদ্ধৃত করে আদালত বলেন — <strong>বিচারকরা কর্মচারী নন, তারা রাষ্ট্রীয় ক্ষমতার প্রয়োগকারী।</strong> তেল আর জলের মতো বিচার বিভাগ ও নির্বাহী বিভাগ কখনো মেশানো যাবে না।</div>
+      </div>
+    </div>
+
+    <div class="issue-item">
+      <div class="issue-header" onclick="toggleIssue(this)">
+        <div class="issue-num">৩</div>
+        <div class="issue-q">BCS (Judicial) ক্যাডার কি সাংবিধানিক?</div>
+        <div class="issue-toggle">+</div>
+      </div>
+      <div class="issue-body">
+        <div class="ruling-tag">আদালতের রায়</div>
+        <div class="issue-verdict"><strong>না, সম্পূর্ণ অসাংবিধানিক।</strong> ১৯৮০ সালের BCS (Re-organization) Order দ্বারা বিচারীয় সেবাকে নির্বাহী ক্যাডারের সাথে জুড়ে দেওয়া সংবিধানের অনুচ্ছেদ ১১৫-এর লঙ্ঘন এবং <strong>ultra vires।</strong></div>
+      </div>
+    </div>
+
+    <div class="issue-item">
+      <div class="issue-header" onclick="toggleIssue(this)">
+        <div class="issue-num">৪</div>
+        <div class="issue-q">অনুচ্ছেদ ১১৬-এর "পরামর্শ" মানে কী?</div>
+        <div class="issue-toggle">+</div>
+      </div>
+      <div class="issue-body">
+        <div class="ruling-tag">আদালতের রায়</div>
+        <div class="issue-verdict">"পরামর্শ" শব্দটিকে <strong>দাঁত দিতে হবে।</strong> অর্থপূর্ণ পরামর্শের পর <strong>সুপ্রিম কোর্টের মতামত সর্বোচ্চ গুরুত্ব</strong> পাবে — নির্বাহী বিভাগ তা উপেক্ষা করতে পারবে না।</div>
+      </div>
+    </div>
+
+    <div class="issue-item">
+      <div class="issue-header" onclick="toggleIssue(this)">
+        <div class="issue-num">৫</div>
+        <div class="issue-q">আদালত কি সংসদকে আইন করতে নির্দেশ দিতে পারে?</div>
+        <div class="issue-toggle">+</div>
+      </div>
+      <div class="issue-body">
+        <div class="ruling-tag">আদালতের রায়</div>
+        <div class="issue-verdict"><strong>হ্যাঁ, যখন সংবিধান থেকে বিচ্যুতি ঘটে।</strong> ২৮ বছর ধরে সংবিধানের চতুর্থ তফসিলের বিধান অবাস্তবায়িত থেকেছে। এই সাংবিধানিক বিচ্যুতি সংশোধনে উচ্চ আদালত সংসদ ও নির্বাহী বিভাগকে <strong>সাংবিধানিক পথে ফিরিয়ে আনার নির্দেশ</strong> দিতে পারে।</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- PILLARS -->
+<div class="bg-alt">
+<div class="section reveal">
+  <div class="sec-eyebrow">বিচার বিভাগের স্বাধীনতার স্তম্ভ · PILLARS OF JUDICIAL INDEPENDENCE</div>
+  <div class="sec-title">স্বাধীনতার ৫ শর্ত</div>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">১</div>
+      <span class="pillar-icon">🛡</span>
+      <div class="pillar-title">চাকরির নিরাপত্তা</div>
+      <div class="pillar-sub">Security of Tenure</div>
+      <div class="pillar-desc">বিচারককে শুধুমাত্র নির্দিষ্ট কারণে অপসারণ করা যাবে।</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">২</div>
+      <span class="pillar-icon">💰</span>
+      <div class="pillar-title">বেতনের নিরাপত্তা</div>
+      <div class="pillar-sub">Security of Salary</div>
+      <div class="pillar-desc">বেতন ও পেনশন আইন বা বিধিমালা দ্বারা নির্ধারিত হবে।</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">৩</div>
+      <span class="pillar-icon">🏛</span>
+      <div class="pillar-title">প্রাতিষ্ঠানিক স্বাধীনতা</div>
+      <div class="pillar-sub">Institutional Independence</div>
+      <div class="pillar-desc">আদালত নিজের প্রশাসনিক বিষয়ে স্বাধীনভাবে সিদ্ধান্ত নেবে।</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">৪</div>
+      <span class="pillar-icon">👨‍⚖️</span>
+      <div class="pillar-title">নিয়োগে স্বাধীনতা</div>
+      <div class="pillar-sub">Judicial Appointment</div>
+      <div class="pillar-desc">আলাদা Judicial Services Commission গঠন করতে হবে।</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">৫</div>
+      <span class="pillar-icon">💼</span>
+      <div class="pillar-title">আর্থিক স্বাধীনতা</div>
+      <div class="pillar-sub">Financial Independence</div>
+      <div class="pillar-desc">সুপ্রিম কোর্টের বাজেট প্রধান বিচারপতি নিজে ব্যয় করবেন।</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 12 ORDERS -->
+<div class="bg-dark">
+<div class="section reveal">
+  <div class="sec-eyebrow">চূড়ান্ত নির্দেশনা · THE 12 LANDMARK DIRECTIVES</div>
+  <div class="sec-title">ঐতিহাসিক ১২ নির্দেশ</div>
+  <div class="orders-grid">
+    <div class="order-card"><div class="order-num">১</div><div><div class="order-title">বিচার বিভাগ — আলাদা সেবা</div><div class="order-desc">বিচারীয় সেবা রিপাবলিকের সেবা, কিন্তু নির্বাহী ক্যাডার থেকে কার্যকরীভাবে ও কাঠামোগতভাবে সম্পূর্ণ আলাদা।</div></div></div>
+    <div class="order-card"><div class="order-num">২</div><div><div class="order-title">অনুচ্ছেদ ১১৫-এর ব্যাখ্যা</div><div class="order-desc">রাষ্ট্রপতি বিচারীয় সেবা গঠন, নিয়োগবিধি, বরখাস্ত বিধি তৈরি করবেন — অন্য অনুচ্ছেদ প্রযোজ্য নয়।</div></div></div>
+    <div class="order-card"><div class="order-num">৩</div><div><div class="order-title">BCS (Judicial) বাতিল</div><div class="order-desc">১৯৮০ সালের BCS (Re-organization) Order ও ১৯৮১ সালের BCS Recruitment Rules বিচার বিভাগে প্রযোজ্য নয় — ultra vires।</div></div></div>
+    <div class="order-card"><div class="order-num">৪</div><div><div class="order-title">Judicial Services Commission</div><div class="order-desc">অবিলম্বে Bangladesh Judicial Service Commission গঠন করতে হবে — সিনিয়র বিচারকদের সংখ্যাগরিষ্ঠতা থাকবে।</div></div></div>
+    <div class="order-card"><div class="order-num">৫</div><div><div class="order-title">আলাদা সেবা বিধিমালা</div><div class="order-desc">পদায়ন, পদোন্নতি, ছুটি, বেতন, পেনশন — বিচার বিভাগের জন্য আলাদা বিধিমালা তৈরি করতে হবে।</div></div></div>
+    <div class="order-card"><div class="order-num">৬</div><div><div class="order-title">Judicial Pay Commission</div><div class="order-desc">বিচারকদের বেতন নির্ধারণে আলাদা Pay Commission গঠন করতে হবে।</div></div></div>
+    <div class="order-card"><div class="order-num">৭</div><div><div class="order-title">সুপ্রিম কোর্টের মতামত সর্বোচ্চ</div><div class="order-desc">অনুচ্ছেদ ১১৬-এর অধীনে নিয়ন্ত্রণ ও শৃঙ্খলার ক্ষেত্রে সুপ্রিম কোর্টের মতামত নির্বাহী বিভাগের উপর প্রাধান্য পাবে।</div></div></div>
+    <div class="order-card"><div class="order-num">৮</div><div><div class="order-title">স্বাধীনতার ৩ শর্ত নিশ্চিত</div><div class="order-desc">চাকরির নিরাপত্তা, বেতনের নিরাপত্তা ও প্রাতিষ্ঠানিক স্বাধীনতা — আইন বা বিধিমালায় নিশ্চিত করতে হবে।</div></div></div>
+    <div class="order-card"><div class="order-num">৯</div><div><div class="order-title">সুপ্রিম কোর্টের আর্থিক স্বাধীনতা</div><div class="order-desc">বাজেট বরাদ্দের মধ্যে প্রধান বিচারপতি নিজে ব্যয় করবেন — সরকারের পূর্বানুমতি লাগবে না।</div></div></div>
+    <div class="order-card"><div class="order-num">১০</div><div><div class="order-title">Administrative Tribunal-এ যাওয়া যাবে</div><div class="order-desc">বিচারিক কর্মকর্তারা চাকরি সংক্রান্ত বিষয়ে Administrative Tribunal-এ যেতে পারবেন।</div></div></div>
+    <div class="order-card"><div class="order-num">১১</div><div><div class="order-title">সাংবিধানিক সংশোধনের সুযোগ</div><div class="order-desc">পৃথকীকরণ আরও কার্যকর করতে চাইলে সংসদ সাংবিধানিক সংশোধনী আনতে পারে।</div></div></div>
+    <div class="order-card"><div class="order-num">১২</div><div><div class="order-title">Interim বেতন ব্যবস্থা</div><div class="order-desc">Pay Commission-এর প্রথম সুপারিশ না আসা পর্যন্ত ৮ জানুয়ারি ১৯৯৪-এর status quo বহাল থাকবে।</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- IMPACT -->
+<div class="bg-alt">
+<div class="section reveal">
+  <div class="sec-eyebrow">প্রভাব ও ঐতিহ্য · IMPACT & LEGACY</div>
+  <div class="sec-title">রায়ের পরে কী হলো?</div>
+  <div class="impact-wrap">
+    <div>
+      <div class="impact-timeline">
+        <div class="it-item"><div class="it-line"><div class="it-dot"></div><div class="it-stem"></div></div><div><div class="it-year">১৯৯৭</div><div class="it-text">হাইকোর্ট বিচারকদের পক্ষে রায় — <strong>BCS (Judicial) বাতিল</strong> ঘোষণা</div></div></div>
+        <div class="it-item"><div class="it-line"><div class="it-dot"></div><div class="it-stem"></div></div><div><div class="it-year">১৯৯৯</div><div class="it-text">আপিল বিভাগের <strong>ঐতিহাসিক রায়</strong> — ১২ দফা নির্দেশনা জারি</div></div></div>
+        <div class="it-item"><div class="it-line"><div class="it-dot"></div><div class="it-stem"></div></div><div><div class="it-year">২০০৭</div><div class="it-text"><strong>বিচার বিভাগ পৃথক</strong> হয় — Bangladesh Judicial Service Commission গঠিত</div></div></div>
+        <div class="it-item"><div class="it-line"><div class="it-dot"></div><div class="it-stem"></div></div><div><div class="it-year">২০১৭</div><div class="it-text"><strong>বাংলাদেশ জুডিসিয়াল সার্ভিস (শৃঙ্খলা) বিধিমালা</strong> প্রণয়ন</div></div></div>
+        <div class="it-item"><div class="it-line"><div class="it-dot"></div></div><div><div class="it-year">আজও</div><div class="it-text">এই রায় বাংলাদেশের <strong>বিচারিক স্বাধীনতার মূল ভিত্তি</strong> হিসেবে স্বীকৃত</div></div></div>
+      </div>
+    </div>
+    <div class="impact-right">
+      <div class="impact-quote">As oil and water cannot mix, the judicial and civil administrative executive services are non-amalgamable.</div>
+      <div class="impact-attribution">— প্রধান বিচারপতি মুস্তাফা কামাল · Masdar Hossain Case</div>
+      <div style="margin-top:22px;padding-top:22px;border-top:1px solid var(--border2);">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:10px;">এই মামলায় আইনজীবীগণ</div>
+        <div class="lawyer-card"><div class="lawyer-avatar">⚖</div><div><div class="lawyer-name">Mahmudul Islam</div><div class="lawyer-role">Attorney General — সরকারপক্ষ</div></div></div>
+        <div class="lawyer-card"><div class="lawyer-avatar">🏛</div><div><div class="lawyer-name">Dr. Kamal Hossain</div><div class="lawyer-role">Senior Advocate — বিচারকপক্ষ</div></div></div>
+        <div class="lawyer-card"><div class="lawyer-avatar">📜</div><div><div class="lawyer-name">Syed Ishtiaq Ahmed</div><div class="lawyer-role">Senior Advocate — বিচারকপক্ষ</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MEMORY AIDS -->
+<div class="bg-dark">
+<div class="section reveal">
+  <div class="sec-eyebrow">পরীক্ষার প্রস্তুতি · MEMORY AIDS</div>
+  <div class="sec-title">মনে রাখার কৌশল</div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:4px;">প্রতিটি কার্ডে ক্লিক করুন।</p>
+  <div class="memory-grid">
+    <div class="memory-card"><span class="mem-emoji">🛢</span><div class="mem-keyword">তেল + জল</div><div class="mem-hint">বিচার বিভাগ ও নির্বাহী বিভাগ কখনো মেশে না — Court-এর বিখ্যাত উক্তি</div></div>
+    <div class="memory-card"><span class="mem-emoji">🏛</span><div class="mem-keyword">৩ স্তম্ভ</div><div class="mem-hint">সংসদ + নির্বাহী + বিচারবিভাগ — তিনটি সমান গুরুত্বপূর্ণ</div></div>
+    <div class="memory-card"><span class="mem-emoji">📅</span><div class="mem-keyword">১৯৮০ → ২০০৭</div><div class="mem-hint">২৭ বছরের ভুলের সংশোধন। BCS Judicial ১৯৮০ → পৃথকীকরণ ২০০৭</div></div>
+    <div class="memory-card"><span class="mem-emoji">⚡</span><div class="mem-keyword">Ultra Vires</div><div class="mem-hint">BCS (Judicial) Order ১৯৮০ = সংবিধান বহির্ভূত</div></div>
+    <div class="memory-card"><span class="mem-emoji">🦷</span><div class="mem-keyword">"দাঁত দিতে হবে"</div><div class="mem-hint">Consultation-কে অর্থবহ করতে হবে — সুপ্রিম কোর্টের মতামত মানতেই হবে</div></div>
+    <div class="memory-card"><span class="mem-emoji">1️⃣2️⃣</span><div class="mem-keyword">১২ নির্দেশনা</div><div class="mem-hint">আপিল বিভাগের ১২টি ঐতিহাসিক নির্দেশ</div></div>
+    <div class="memory-card"><span class="mem-emoji">🔑</span><div class="mem-keyword">Art. 115 vs 116</div><div class="mem-hint">১১৫ = নিয়োগ বিধি, ১১৬ = নিয়ন্ত্রণ — পার্থক্য মনে রাখুন</div></div>
+    <div class="memory-card"><span class="mem-emoji">👨‍⚖️</span><div class="mem-keyword">Mustafa Kamal CJ</div><div class="mem-hint">রায়ের লেখক প্রধান বিচারপতি মুস্তাফা কামাল — Author Judge</div></div>
+    <div class="memory-card"><span class="mem-emoji">📖</span><div class="mem-keyword">52 DLR (AD) 82</div><div class="mem-hint">মামলার Citation — পরীক্ষায় এটি অবশ্যই লিখতে হবে</div></div>
+  </div>
+</div>
+</div>
+
+<!-- EXAM FORMAT -->
+<div class="bg-alt">
+<div class="section reveal">
+  <div class="sec-eyebrow">পরীক্ষার উত্তরপত্র · EXAM ANSWER FORMAT</div>
+  <div class="sec-title">পরীক্ষার ফরম্যাটে লেখো</div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:26px;">বাংলা ও ইংরেজি দুটি ফরম্যাট দেওয়া হয়েছে — ট্যাব থেকে বেছে Copy করো।</p>
+
+  <div class="exam-tabs">
+    <button class="exam-tab active" onclick="switchExam('bn',this)">বাংলা</button>
+    <button class="exam-tab" onclick="switchExam('en',this)">English</button>
+  </div>
+
+  <!-- BANGLA -->
+  <div class="exam-block active" id="exam-bn">
+    <div class="exam-paper">
+      <button class="copy-btn" onclick="copyExam('exam-bn-text')">📋 Copy করুন</button>
+      <div id="exam-bn-text">
+        <div class="ep-case-title">Secretary, Ministry of Finance, Government of Bangladesh বনাম Md. Masdar Hossain & Others</div>
+        <div class="ep-citation">52 DLR (AD) 82 | বাংলাদেশ সুপ্রিম কোর্ট, আপিল বিভাগ | ১৯৯৯</div>
+        <div class="ep-judges">বিচারক: প্রধান বিচারপতি মুস্তাফা কামাল (Author), লতিফুর রহমান, বিমলেন্দু বিকাশ রায় চৌধুরী ও মাহমুদুল আমিন চৌধুরী, জে.জে.</div>
+
+        <div class="ep-sec-label">১. ঘটনা (Facts)</div>
+        <div class="ep-content">১৯৮০ সালে সরকার Bangladesh Civil Service (Re-organization) Order, 1980 জারি করে বিচারীয় সেবাকে (BCS Judicial) অন্যান্য ১৪টি BCS ক্যাডারের একটি হিসেবে অন্তর্ভুক্ত করে। ১৯৯৪ সালের ৮ জানুয়ারি সরকার বিচারকদের বিশেষ বেতন স্কেল দেওয়ার আদেশ জারি করলেও অন্য ক্যাডারের চাপে ২৮ ফেব্রুয়ারি ১৯৯৪ সেই আদেশ স্থগিত করা হয়। জেলা জজসহ অধীনস্থ বিচারকগণ হাইকোর্টে রিট আবেদন করেন। হাইকোর্ট ১৯৯৭ সালে রিট আবেদনকারীদের পক্ষে রায় দিলে সরকার আপিল করে।</div>
+
+        <div class="ep-sec-label">২. বিচার্য বিষয় (Issues)</div>
+        <div class="ep-content">
+          <div class="ep-issue"><span class="ep-issue-num">i.</span><span>বিচার বিভাগের সদস্যরা কি সংবিধানের ১৫২(১) অনুচ্ছেদের অর্থে "রিপাবলিকের চাকরিতে" নিযুক্ত?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">ii.</span><span>BCS (Judicial) ক্যাডার গঠন কি সাংবিধানিকভাবে বৈধ?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">iii.</span><span>অনুচ্ছেদ ১১৫-এর অধীনে রাষ্ট্রপতির ক্ষমতার পরিধি কতটুকু?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">iv.</span><span>অনুচ্ছেদ ১১৬-এ "সুপ্রিম কোর্টের সাথে পরামর্শ"-এর অর্থ কী?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">v.</span><span>বিচার বিভাগের স্বাধীনতা রক্ষায় কী কী শর্ত পূরণ করতে হবে?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">vi.</span><span>আদালত কি সংসদকে আইন প্রণয়নের নির্দেশ দিতে পারে?</span></div>
+        </div>
+
+        <div class="ep-sec-label">৩. সিদ্ধান্ত (Decision)</div>
+        <div class="ep-content">আপিল বিভাগ আংশিকভাবে আপিল মঞ্জুর করে ঐতিহাসিক ১২ দফা নির্দেশনা প্রদান করেন:
+          <div class="ep-decisions">
+            <div class="ep-dec"><span class="ep-tag ep-declared">ঘোষিত</span> বিচারীয় সেবা রিপাবলিকের সেবা, কিন্তু নির্বাহী ও প্রশাসনিক সেবা থেকে কার্যকরী ও কাঠামোগতভাবে সম্পূর্ণ আলাদা।</div>
+            <div class="ep-dec"><span class="ep-tag ep-declared">বাতিল</span> BCS (Judicial) Cadre গঠন ultra vires সংবিধান। BCS Recruitment Rules, 1981 বিচারীয় সেবায় প্রযোজ্য নয়।</div>
+            <div class="ep-dec"><span class="ep-tag ep-directed">নির্দেশিত</span> Bangladesh Judicial Service Commission অবিলম্বে গঠন করতে হবে। বিচার বিভাগের জন্য আলাদা Judicial Pay Commission প্রতিষ্ঠা করতে হবে।</div>
+            <div class="ep-dec"><span class="ep-tag ep-declared">ঘোষিত</span> অনুচ্ছেদ ১১৬-এ বিচারীয় বিষয়ে সুপ্রিম কোর্টের মতামত নির্বাহী বিভাগের মতামতের উপর প্রাধান্য পাবে।</div>
+            <div class="ep-dec"><span class="ep-tag ep-directed">নির্দেশিত</span> সুপ্রিম কোর্টের বার্ষিক বাজেট বরাদ্দের মধ্যে প্রধান বিচারপতি সরকারের অনুমোদন ছাড়াই ব্যয় করতে পারবেন।</div>
+          </div>
+        </div>
+
+        <div class="ep-sec-label">৪. সিদ্ধান্তের কারণ (Reason for Decision)</div>
+        <div class="ep-content">
+          <div class="ep-reason"><div class="ep-r-title">ক. বিচার বিভাগের স্বতন্ত্র মর্যাদা</div><div class="ep-r-text">আদালত ভারতের All India Judges Association মামলার উদ্ধৃতি দিয়ে বলেন যে বিচারকরা "কর্মচারী" নন — তারা রাষ্ট্রের বিচারিক সার্বভৌম ক্ষমতার প্রয়োগকারী। তাই তেল ও জলের মতো বিচার বিভাগ ও নির্বাহী বিভাগ কখনো মেশানো যায় না।</div></div>
+          <div class="ep-reason"><div class="ep-r-title">খ. অনুচ্ছেদ ১১৫-এর প্রাথমিক ক্ষমতা</div><div class="ep-r-text">সংবিধানের অনুচ্ছেদ ১১৫ রাষ্ট্রপতিকে বিচারীয় সেবার নিয়োগ-বিধি তৈরির "প্রাথমিক ও পূর্ণ" ক্ষমতা দিয়েছে যা সংসদও কেড়ে নিতে পারে না।</div></div>
+          <div class="ep-reason"><div class="ep-r-title">গ. "পরামর্শ"-এর অর্থবহ ব্যাখ্যা</div><div class="ep-r-text">অনুচ্ছেদ ১১৬-এর "পরামর্শ" শব্দটি শুধু আনুষ্ঠানিকতা নয় — বিচারিক বিষয়ে সুপ্রিম কোর্টই সর্বোত্তম বিচারক, তাই তাদের মতামতকে প্রাধান্য দিতে হবে।</div></div>
+          <div class="ep-reason"><div class="ep-r-title">ঘ. স্বাধীনতার অপরিহার্য শর্ত</div><div class="ep-r-text">কানাডার Walter Valente মামলার উদ্ধৃতি দিয়ে আদালত তিনটি অপরিহার্য শর্ত নির্ধারণ করেন: (১) চাকরির নিরাপত্তা, (২) বেতনের নিরাপত্তা এবং (৩) প্রাতিষ্ঠানিক স্বাধীনতা।</div></div>
+          <div class="ep-reason"><div class="ep-r-title">ঙ. সাংবিধানিক বিচ্যুতি সংশোধনে আদালতের ক্ষমতা</div><div class="ep-r-text">স্বাধীনতার ২৮ বছর পরেও সংবিধানের চতুর্থ তফসিলের বিধান অবাস্তবায়িত ছিল। সংসদ ও নির্বাহী বিভাগ সাংবিধানিক পথ থেকে বিচ্যুত হলে উচ্চ আদালত তাদের সঠিক পথে ফিরিয়ে আনার নির্দেশ দিতে পারে।</div></div>
+        </div>
+
+        <div class="ep-sig"><div class="ep-sig-label">⭐ মামলার গুরুত্ব</div>এটি বাংলাদেশের বিচার বিভাগীয় স্বাধীনতার সবচেয়ে গুরুত্বপূর্ণ মামলা। এই রায়ের ফলে ২০০৭ সালে বিচার বিভাগ নির্বাহী বিভাগ থেকে পৃথক হয় এবং Bangladesh Judicial Service Commission গঠিত হয়।</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="exam-block" id="exam-en">
+    <div class="exam-paper">
+      <button class="copy-btn" onclick="copyExam('exam-en-text')">📋 Copy</button>
+      <div id="exam-en-text">
+        <div class="ep-case-title">Secretary, Ministry of Finance, Government of Bangladesh v. Md. Masdar Hossain & Others</div>
+        <div class="ep-citation">52 DLR (AD) 82 | Supreme Court of Bangladesh, Appellate Division | 1999</div>
+        <div class="ep-judges">Judges: Mustafa Kamal, CJ (Author), Latifur Rahman, Bimalendu Bikash Roy Choudhury & Mahmudul Amin Choudhury, JJ.</div>
+
+        <div class="ep-sec-label">1. Facts</div>
+        <div class="ep-content">In 1980, the Government issued the Bangladesh Civil Service (Re-organization) Order, 1980, incorporating the Judicial Service as one of the 14 BCS Cadres. On 08.01.1994, the Government enhanced the pay scale of BCS (Judicial) officers. However, under pressure from other cadres, the order was suspended on 28.02.1994. The writ petitioners — District Judges, Additional District Judges and Subordinate Judges — challenged this before the High Court Division. The High Court made the Rule Nisi absolute in 1997. The Government appealed to the Appellate Division.</div>
+
+        <div class="ep-sec-label">2. Issues</div>
+        <div class="ep-content">
+          <div class="ep-issue"><span class="ep-issue-num">i.</span><span>Whether members of the judicial service are in "the service of the Republic" under Article 152(1)?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">ii.</span><span>Whether the creation of BCS (Judicial) Cadre under the 1980 Order was constitutionally valid?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">iii.</span><span>What is the scope of the President's rule-making power under Article 115?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">iv.</span><span>What is the meaning of "consultation with the Supreme Court" under Article 116?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">v.</span><span>What are the essential conditions for securing judicial independence under Article 116A?</span></div>
+          <div class="ep-issue"><span class="ep-issue-num">vi.</span><span>Whether the higher judiciary is competent to direct Parliament to enact legislation?</span></div>
+        </div>
+
+        <div class="ep-sec-label">3. Decision</div>
+        <div class="ep-content">The Appellate Division partly allowed the appeal and issued 12 landmark directives:
+          <div class="ep-decisions">
+            <div class="ep-dec"><span class="ep-tag ep-declared">Declared</span> The judicial service is a service of the Republic but is functionally and structurally distinct from civil executive and administrative services — the two are non-amalgamable.</div>
+            <div class="ep-dec"><span class="ep-tag ep-declared">Struck Down</span> The creation of BCS (Judicial) Cadre by the 1980 Order is ultra vires the Constitution. BCS Recruitment Rules 1981 are inapplicable to the judicial service.</div>
+            <div class="ep-dec"><span class="ep-tag ep-directed">Directed</span> A Bangladesh Judicial Service Commission shall be established forthwith. A separate Judicial Pay Commission shall also be constituted immediately.</div>
+            <div class="ep-dec"><span class="ep-tag ep-declared">Declared</span> Under Article 116, the views of the Supreme Court shall have primacy over those of the Executive in all matters of judicial control and discipline.</div>
+            <div class="ep-dec"><span class="ep-tag ep-directed">Directed</span> The Supreme Court shall be free to disburse its sanctioned budget without seeking prior approval from the executive Government.</div>
+          </div>
+        </div>
+
+        <div class="ep-sec-label">4. Reason for Decision</div>
+        <div class="ep-content">
+          <div class="ep-reason"><div class="ep-r-title">a. Distinct Constitutional Status of the Judiciary</div><div class="ep-r-text">Relying on All India Judges Association v. Union of India [(1993) 4 SCC 288], the Court held that judges are not "employees" — they exercise the sovereign judicial power of the State. Just as oil and water cannot mix, the judicial service and the civil administrative executive service are constitutionally non-amalgamable.</div></div>
+          <div class="ep-reason"><div class="ep-r-title">b. Primary Rule-Making Power under Article 115</div><div class="ep-r-text">Article 115 vests in the President a direct, primary and plenary power to constitute the judicial service and frame appointment rules — a power that even Parliament cannot usurp.</div></div>
+          <div class="ep-reason"><div class="ep-r-title">c. Meaningful Consultation under Article 116</div><div class="ep-r-text">The words "in consultation with the Supreme Court" in Article 116 must be given real content. The views of the Supreme Court must be given primacy, as it is the Supreme Court — not the political executive — which is the best judge of judicial matters.</div></div>
+          <div class="ep-reason"><div class="ep-r-title">d. Essential Conditions of Judicial Independence</div><div class="ep-r-text">Relying on Walter Valente v. Her Majesty the Queen [(1985) 2 R.C.S. 673], the Court identified three essential conditions: (1) Security of Tenure, (2) Security of Salary, and (3) Institutional Independence. In Bangladesh's special context, two additional conditions were added: (4) Independent Judicial Appointment Commission, and (5) Financial Independence of the Supreme Court.</div></div>
+          <div class="ep-reason"><div class="ep-r-title">e. Judicial Power to Correct Constitutional Deviation</div><div class="ep-r-text">For 28 years after liberation, sub-paragraph (6) of paragraph 6 of the Fourth Schedule remained unimplemented. When Parliament and the executive deviate from the constitutional course, the higher judiciary is within its jurisdiction to issue directions to correct such deviation.</div></div>
+        </div>
+
+        <div class="ep-sig"><div class="ep-sig-label">⭐ Significance</div>This is the most significant constitutional case on judicial independence in Bangladesh. Following this landmark judgment, the judiciary was formally separated from the executive in <strong>2007</strong>, the Bangladesh Judicial Service Commission was established, and the Bangladesh Judicial Service (Discipline) Rules 2017 were subsequently enacted.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-case">MASDAR HOSSAIN CASE</div>
+  <div class="footer-ref">Secretary, Ministry of Finance vs. Md. Masdar Hossain & Others · 52 DLR (AD) 82 · Bangladesh Appellate Division · 1999</div>
+  <div class="footer-credit">সংকলন: Mohammad Arif · Student, 39th LL.B Batch · Department of Law, Sylhet International University · legaleagle.edu@gmail.com</div>
+  <a class="back-btn" href="/">← হোমপেজে ফিরুন</a>
+</footer>
+
+<div class="toast" id="toast">✅ কপি হয়েছে!</div>
+
+<script>
+function toggleIssue(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.issue-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.memory-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.style.background = 'rgba(201,152,42,0.15)';
+    setTimeout(() => card.style.background = '', 600);
+  });
+});
+
+function switchExam(lang, btn) {
+  document.querySelectorAll('.exam-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.exam-block').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('exam-' + lang).classList.add('active');
+}
+
+function copyExam(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const t = document.getElementById('toast');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2500);
+  });
+}
+</script>
+</body>
+</html>
