@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn with Legal Eagle — আদালতের রায় সংগ্রহশালা</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c10;
+  --surface: #0e1318;
+  --surface2: #141a21;
+  --gold: #c9982a;
+  --gold2: #e8b84b;
+  --gold-dim: rgba(201,152,42,0.12);
+  --text: #e8e2d6;
+  --muted: rgba(232,226,214,0.5);
+  --border: rgba(201,152,42,0.18);
+  --border2: rgba(232,226,214,0.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans Bengali',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold2);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-icon{width:32px;height:32px;background:var(--gold-dim);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.nav-count{font-size:12px;color:var(--muted)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,152,42,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-line{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:0 auto 40px;opacity:.5;animation:pulse-line 3s ease-in-out infinite}
+@keyframes pulse-line{0%,100%{opacity:.3}50%{opacity:.7}}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;font-weight:500;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);font-weight:700;line-height:1.1;margin-bottom:8px;color:var(--text)}
+.hero-title em{font-style:italic;color:var(--gold2)}
+.hero-sub{font-family:'Noto Serif Bengali',serif;font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:520px;margin:16px auto 52px;line-height:1.8}
+.search-wrap{width:100%;max-width:520px;margin:0 auto;position:relative}
+.search-wrap input{width:100%;padding:16px 56px 16px 24px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;color:var(--text);font-family:'Noto Sans Bengali',sans-serif;font-size:15px;outline:none;transition:border-color .3s,box-shadow .3s}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-wrap input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,152,42,0.08)}
+.search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted);pointer-events:none}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.scroll-hint::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);opacity:.5}
+
+/* MAIN SECTION */
+.main-section{max-width:1200px;margin:0 auto;padding:80px 5% 120px;position:relative;z-index:1}
+
+/* TABS */
+.tabs-wrapper{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;border-bottom:1px solid var(--border2);padding-bottom:0;gap:16px;flex-wrap:wrap}
+.tabs{display:flex;gap:0;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:4px;overflow:hidden}
+.tab-btn{padding:10px 24px;border:none;background:transparent;color:var(--muted);font-family:'Noto Sans Bengali',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border-radius:9px;transition:background .2s,color .2s;white-space:nowrap}
+.tab-btn.active{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--border)}
+.tab-count{font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:12px}
+
+/* PANEL */
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+
+/* CASE CARD */
+.case-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,background .25s}
+.case-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.case-card:hover{border-color:var(--border);background:var(--surface2);transform:translateY(-4px)}
+.case-card:hover::before{opacity:1}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.badge{font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid}
+.badge-criminal{color:#e07b6a;border-color:rgba(224,123,106,0.3);background:rgba(224,123,106,0.08)}
+.badge-landmark{color:var(--gold2);border-color:rgba(232,184,75,0.3);background:rgba(232,184,75,0.08)}
+.badge-civil{color:#7ab8d8;border-color:rgba(122,184,216,0.3);background:rgba(122,184,216,0.08)}
+.card-arrow{color:var(--muted);font-size:18px;transition:transform .2s,color .2s;flex-shrink:0}
+.case-card:hover .card-arrow{color:var(--gold);transform:translate(3px,-3px)}
+.card-title{font-family:'Noto Serif Bengali',serif;font-size:17px;font-weight:700;line-height:1.5;color:var(--text)}
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.8;flex:1}
+.card-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border2);font-size:11.5px;color:var(--muted)}
+.card-court{display:flex;align-items:center;gap:6px}
+.card-court::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.6}
+.card-read{color:var(--gold);font-size:11px;letter-spacing:.5px}
+
+/* LAW CARD */
+.law-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,background .25s}
+.law-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,#7ab8d8,transparent);opacity:0;transition:opacity .3s}
+.law-card:hover{border-color:rgba(122,184,216,0.3);background:var(--surface2);transform:translateY(-4px)}
+.law-card:hover::before{opacity:1}
+.law-card:hover .card-arrow{color:#7ab8d8;transform:translate(3px,-3px)}
+.badge-law{color:#a8d5b5;border-color:rgba(168,213,181,0.3);background:rgba(168,213,181,0.08);font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid}
+.law-meta-pills{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px solid var(--border2)}
+.law-pill{font-size:10.5px;color:var(--muted);background:rgba(232,226,214,0.04);border:1px solid var(--border2);border-radius:20px;padding:3px 10px}
+
+/* EMPTY */
+#no-results-cases,#no-results-laws{display:none;text-align:center;padding:80px 20px;color:var(--muted)}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.3}
+
+/* DECO */
+.deco-rule{display:flex;align-items:center;gap:16px;margin:60px 0 0;opacity:.2}
+.deco-rule::before,.deco-rule::after{content:'';flex:1;height:1px;background:var(--gold)}
+
+/* FOOTER */
+footer{text-align:center;padding:48px 20px;border-top:1px solid var(--border2);position:relative;z-index:1}
+.footer-logo{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold2);font-weight:700;margin-bottom:10px}
+.footer-copy{font-size:12px;color:var(--muted);letter-spacing:.5px}
+
+@media(max-width:600px){
+  .hero{padding:100px 20px 60px}
+  .main-section{padding:60px 5% 80px}
+  .grid{grid-template-columns:1fr}
+  .tabs-wrapper{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">⚖</div>
+    Legal Eagle
+  </a>
+  <div class="nav-count" id="stat-count"></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-line"></div>
+  <p class="hero-eyebrow">Bangladesh · Legal Education</p>
+  <h1 class="hero-title">আইনের শিক্ষায়<br><em>নতুন দিগন্ত</em></h1>
+  <p class="hero-sub">বাংলাদেশের গুরুত্বপূর্ণ আদালতের রায় ও আইনের সারসংক্ষেপ — সহজ বাংলায়, সবার হাতের মুঠোয়।</p>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="মামলা, আইন, ধারা বা বিষয় দিয়ে খুঁজুন..." oninput="filterAll()">
+    <span class="search-icon">🔍</span>
+  </div>
+  <div class="scroll-hint">নিচে দেখুন</div>
+</section>
+
+<section class="main-section" id="content">
+  <div class="tabs-wrapper">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('cases',this)">⚖ রায় সংগ্রহশালা</button>
+      <button class="tab-btn" onclick="switchTab('laws',this)">📖 আইনের সার নির্যাস</button>
+    </div>
+    <div class="tab-count" id="grid-count"></div>
+  </div>
+
+  <!-- CASES TAB -->
+  <div class="tab-panel active" id="panel-cases">
+    <div class="grid" id="caseGrid">
+
+      <a href="case03" class="case-card" data-keywords="কয়ছর আলম তোফায়েল আহমদ ফৌজদারি ৪২০ প্রতারণা visa ইব্রাহিম">
+        <div class="card-top">
+          <span class="badge badge-criminal">ফৌজদারি মামলা</span>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-title">কয়ছর আলম বনাম তোফায়েল আহমদ</div>
+        <div class="card-desc">সৌদি আরবের ভিসার প্রলোভনে অর্থ আত্মসাৎ। দণ্ডবিধির ৪২০ ধারায় আসামিদের ২ বছরের কারাদণ্ড ও অর্থদণ্ড।</div>
+        <div class="card-meta">
+          <span class="card-court">মৌলভীবাজার SJM আদালত · ২০২৬</span>
+          <span class="card-read">পড়ুন →</span>
+        </div>
+      </a>
+
+      <a href="masdar" class="case-card" data-keywords="মাসদার হোসাইন masdar hossain বিচার বিভাগ পৃথকীকরণ সুপ্রিম কোর্ট ১১৫ ১১৬ bcs judicial independence">
+        <div class="card-top">
+          <span class="badge badge-landmark">Landmark · সুপ্রিম কোর্ট</span>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-title">Secretary, MoF বনাম Masdar Hossain</div>
+        <div class="card-desc">বিচার বিভাগকে BCS ক্যাডার থেকে মুক্ত করার ঐতিহাসিক রায়। ১২ দফা নির্দেশনায় বাংলাদেশের বিচারিক স্বাধীনতার ভিত্তি স্থাপিত।</div>
+        <div class="card-meta">
+          <span class="card-court">আপিল বিভাগ · 52 DLR (AD) 82 · ১৯৯৯</span>
+          <span class="card-read">পড়ুন →</span>
+        </div>
+      </a>
+
+    </div>
+    <div id="no-results-cases"><div class="empty-icon">⚖</div><p>অনুসন্ধান অনুযায়ী কোনো রায় পাওয়া যায়নি।</p></div>
+  </div>
+
+  <!-- LAWS TAB -->
+  <div class="tab-panel" id="panel-laws">
+    <div class="grid" id="lawGrid">
+
+      <a href="law-sunirdishtho" class="law-card" data-keywords="সুনির্দিষ্ট প্রতিকার আইন ১৮৭৭ দখল নিষেধাজ্ঞা ঘোষণা চুক্তি রদ বাতিল specific relief">
+        <div class="card-top">
+          <span class="badge badge-law">দেওয়ানি আইন</span>
+          <span class="card-arrow" style="color:var(--muted)">↗</span>
+        </div>
+        <div class="card-title">সুনির্দিষ্ট প্রতিকার আইন, ১৮৭৭</div>
+        <div class="card-desc">ধারা ৫–৫৭ পর্যন্ত সম্পূর্ণ সারসংক্ষেপ। দখল পুনরুদ্ধার, চুক্তি কার্যসম্পাদন, দলিল সংশোধন, ঘোষণামূলক ডিক্রি ও নিষেধাজ্ঞা।</div>
+        <div class="law-meta-pills">
+          <span class="law-pill">📅 প্রবর্তন: ১৮৭৭</span>
+          <span class="law-pill">📋 ধারা: ৫৭টি</span>
+          <span class="law-pill">📂 অধ্যায়: ১০টি</span>
+          <span class="law-pill">🔄 সর্বশেষ সংশোধন: ২০০৪</span>
+        </div>
+      </a>
+
+    </div>
+    <div id="no-results-laws"><div class="empty-icon">📖</div><p>অনুসন্ধান অনুযায়ী কোনো আইন পাওয়া যায়নি।</p></div>
+  </div>
+
+  <div class="deco-rule"><span>⚖</span></div>
+</section>
+
+<footer>
+  <div class="footer-logo">⚖ Legal Eagle</div>
+  <p class="footer-copy">© 2026 Learn with Legal Eagle · Mohammad Arif</p>
+</footer>
+
+<script>
+let activeTab = 'cases';
+
+function switchTab(tab, btn) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  updateCount();
+  // re-apply search
+  filterAll();
+}
+
+function filterAll() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+  // filter cases
+  const caseCards = document.querySelectorAll('#caseGrid .case-card');
+  let visibleCases = 0;
+  caseCards.forEach(c => {
+    const match = !q || c.getAttribute('data-keywords').includes(q) || c.innerText.toLowerCase().includes(q);
+    c.style.display = match ? '' : 'none';
+    if (match) visibleCases++;
+  });
+  document.getElementById('no-results-cases').style.display = visibleCases === 0 ? 'block' : 'none';
+
+  // filter laws
+  const lawCards = document.querySelectorAll('#lawGrid .law-card');
+  let visibleLaws = 0;
+  lawCards.forEach(c => {
+    const match = !q || c.getAttribute('data-keywords').includes(q) || c.innerText.toLowerCase().includes(q);
+    c.style.display = match ? '' : 'none';
+    if (match) visibleLaws++;
+  });
+  document.getElementById('no-results-laws').style.display = visibleLaws === 0 ? 'block' : 'none';
+
+  updateCount(visibleCases, visibleLaws);
+}
+
+function updateCount(cases, laws) {
+  const cTotal = cases !== undefined ? cases : document.querySelectorAll('#caseGrid .case-card').length;
+  const lTotal = laws  !== undefined ? laws  : document.querySelectorAll('#lawGrid .law-card').length;
+  const total = cTotal + lTotal;
+  document.getElementById('stat-count').textContent = 'মোট: ' + total + 'টি';
+  if (activeTab === 'cases') {
+    document.getElementById('grid-count').textContent = cTotal + 'টি রায়';
+  } else {
+    document.getElementById('grid-count').textContent = lTotal + 'টি আইন';
+  }
+}
+
+window.onload = () => updateCount();
+</script>
+</body>
+</html>
