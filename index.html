@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Legal Eagle — আইনের আলোয় বাংলাদেশ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS ─── */
 :root {
@@ -251,7 +251,7 @@ body::after {
   letter-spacing: 0.3px;
 }
 
-/* HERO RIGHT — decorative law document */
+/* HERO RIGHT */
 .hero-right {
   position: relative; z-index: 1;
   display: flex; justify-content: center;
@@ -381,9 +381,7 @@ body::after {
   gap: 80px;
   align-items: center;
 }
-.about-visual {
-  position: relative;
-}
+.about-visual { position: relative; }
 .about-img-wrap {
   width: 100%;
   aspect-ratio: 4/5;
@@ -401,11 +399,7 @@ body::after {
   position: absolute;
   color: var(--crimson);
 }
-.about-img-inner {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
+.about-img-inner { text-align: center; position: relative; z-index: 1; }
 .about-initials {
   font-family: var(--f-display);
   font-size: 80px; font-weight: 700;
@@ -433,8 +427,6 @@ body::after {
   box-shadow: 0 8px 24px rgba(107,15,26,0.3);
   line-height: 1.5;
 }
-
-.about-content {}
 .about-text {
   font-family: var(--f-serif);
   font-size: 16px; line-height: 2;
@@ -501,17 +493,9 @@ body::after {
 }
 .practice-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(212,165,32,0.25); transform: translateY(-5px); }
 .practice-card:hover::before { transform: scaleX(1); }
-.pc-num {
-  font-family: var(--f-mono);
-  font-size: 11px; color: rgba(212,165,32,0.4);
-  letter-spacing: 2px; margin-bottom: 20px;
-}
+.pc-num { font-family: var(--f-mono); font-size: 11px; color: rgba(212,165,32,0.4); letter-spacing: 2px; margin-bottom: 20px; }
 .pc-icon { font-size: 32px; margin-bottom: 16px; }
-.pc-title {
-  font-family: var(--f-display);
-  font-size: 20px; font-weight: 700;
-  color: var(--parch); margin-bottom: 10px; line-height: 1.3;
-}
+.pc-title { font-family: var(--f-display); font-size: 20px; font-weight: 700; color: var(--parch); margin-bottom: 10px; line-height: 1.3; }
 .pc-desc { font-size: 13px; color: rgba(250,246,237,0.5); line-height: 1.8; }
 .pc-link {
   margin-top: 20px;
@@ -544,11 +528,7 @@ body::after {
   cursor: pointer;
   transition: background .2s, color .2s;
 }
-.cases-tab.active {
-  background: var(--crimson);
-  color: var(--gold3);
-  box-shadow: 0 2px 10px rgba(107,15,26,0.2);
-}
+.cases-tab.active { background: var(--crimson); color: var(--gold3); box-shadow: 0 2px 10px rgba(107,15,26,0.2); }
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -573,28 +553,15 @@ body::after {
 .case-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(30,15,5,0.12); border-color: rgba(184,134,11,0.3); }
 .case-card:hover::after { transform: scaleX(1); }
 .cc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.badge {
-  font-size: 9.5px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; padding: 5px 14px;
-  border-radius: 100px; border: 1px solid;
-}
+.badge { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; border: 1px solid; }
 .badge-cr { color: #c0392b; border-color: rgba(192,57,43,0.3); background: rgba(192,57,43,0.07); }
 .badge-lm { color: var(--gold); border-color: rgba(184,134,11,0.3); background: rgba(184,134,11,0.07); }
 .badge-lw { color: #27ae60; border-color: rgba(39,174,96,0.3); background: rgba(39,174,96,0.07); }
 .cc-arrow { font-size: 20px; color: var(--muted); transition: transform .2s, color .2s; }
 .case-card:hover .cc-arrow { color: var(--crimson); transform: translate(3px,-3px); }
-.cc-title {
-  font-family: var(--f-display);
-  font-size: 19px; font-weight: 700; line-height: 1.4;
-  color: var(--ink);
-}
+.cc-title { font-family: var(--f-display); font-size: 19px; font-weight: 700; line-height: 1.4; color: var(--ink); }
 .cc-desc { font-size: 13px; color: var(--muted); line-height: 1.85; flex:1; }
-.cc-meta {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 14px;
-  border-top: 1px solid rgba(214,196,154,0.4);
-  font-size: 11.5px; color: var(--muted);
-}
+.cc-meta { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(214,196,154,0.4); font-size: 11.5px; color: var(--muted); }
 .cc-court { display: flex; align-items: center; gap: 6px; }
 .cc-court::before { content: ''; width:4px; height:4px; border-radius:50%; background:var(--gold); opacity:.7; }
 .cc-read { color: var(--crimson); font-size: 11px; font-weight: 600; }
@@ -622,19 +589,8 @@ body::after {
   text-decoration: none; color: inherit;
 }
 .law-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(212,165,32,0.25); transform: translateY(-4px); }
-.lc-badge {
-  font-size: 9.5px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; padding: 4px 12px;
-  border-radius: 100px; border: 1px solid;
-  color: #a8d5b5; border-color: rgba(168,213,181,0.3);
-  background: rgba(168,213,181,0.07);
-  width: fit-content;
-}
-.lc-title {
-  font-family: var(--f-display);
-  font-size: 18px; font-weight: 700; line-height: 1.4;
-  color: #e8e2d6;
-}
+.lc-badge { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; border: 1px solid; color: #a8d5b5; border-color: rgba(168,213,181,0.3); background: rgba(168,213,181,0.07); width: fit-content; }
+.lc-title { font-family: var(--f-display); font-size: 18px; font-weight: 700; line-height: 1.4; color: #e8e2d6; }
 .lc-desc { font-size: 12.5px; color: rgba(232,226,214,0.5); line-height: 1.8; flex:1; }
 .lc-pills { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
 .lc-pill { font-size: 10.5px; color: rgba(232,226,214,0.4); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 3px 10px; }
@@ -655,11 +611,7 @@ body::after {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);
 }
-.process-step {
-  padding: 0 24px;
-  text-align: center;
-  position: relative;
-}
+.process-step { padding: 0 24px; text-align: center; position: relative; }
 .ps-num {
   width: 80px; height: 80px;
   border-radius: 50%;
@@ -674,12 +626,7 @@ body::after {
   box-shadow: 0 4px 16px var(--shadow);
   transition: background .2s, border-color .2s, box-shadow .2s;
 }
-.process-step:hover .ps-num {
-  background: var(--crimson);
-  color: var(--gold3);
-  border-color: var(--crimson);
-  box-shadow: 0 8px 28px rgba(107,15,26,0.25);
-}
+.process-step:hover .ps-num { background: var(--crimson); color: var(--gold3); border-color: var(--crimson); box-shadow: 0 8px 28px rgba(107,15,26,0.25); }
 .ps-title { font-family: var(--f-display); font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
 .ps-desc { font-size: 12.5px; color: var(--muted); line-height: 1.75; }
 
@@ -694,34 +641,17 @@ body::after {
   transition: transform .2s, box-shadow .2s;
 }
 .test-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px var(--shadow); }
-.test-quote-mark {
-  font-family: var(--f-display);
-  font-size: 80px; font-weight: 700;
-  color: var(--crimson); opacity: 0.08;
-  position: absolute; top: 12px; left: 20px;
-  line-height: 1; pointer-events: none;
-}
+.test-quote-mark { font-family: var(--f-display); font-size: 80px; font-weight: 700; color: var(--crimson); opacity: 0.08; position: absolute; top: 12px; left: 20px; line-height: 1; pointer-events: none; }
 .test-text { font-family: var(--f-serif); font-size: 14px; line-height: 1.9; color: var(--muted); position: relative; z-index: 1; margin-bottom: 20px; }
 .test-footer { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border2); }
-.test-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--crimson);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--f-display); font-size: 16px; font-weight: 700; color: var(--gold3);
-  flex-shrink: 0;
-}
+.test-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-size: 16px; font-weight: 700; color: var(--gold3); flex-shrink: 0; }
 .test-name { font-size: 13px; font-weight: 700; color: var(--ink); }
 .test-role { font-size: 11px; color: var(--muted); }
 .test-stars { color: var(--gold2); font-size: 12px; margin-top: 2px; }
 
 /* ─── CONTACT ─── */
 .contact { background: var(--crimson); background-image: linear-gradient(150deg, #5a0e17 0%, #7a1520 50%, #6b0f1a 100%); position: relative; overflow: hidden; }
-.contact::before {
-  content: '⚖';
-  position: absolute; font-size: 500px; opacity: 0.04;
-  right: -100px; bottom: -120px; line-height: 1; pointer-events: none;
-  color: var(--gold3);
-}
+.contact::before { content: '⚖'; position: absolute; font-size: 500px; opacity: 0.04; right: -100px; bottom: -120px; line-height: 1; pointer-events: none; color: var(--gold3); }
 .contact .section-label { color: rgba(240,192,64,0.7); }
 .contact .section-label::before { background: rgba(240,192,64,0.7); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -729,103 +659,40 @@ body::after {
 .contact-left .section-title em { color: var(--gold2); }
 .contact-left .section-sub { color: rgba(255,248,238,0.6); }
 .contact-items { margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
-.contact-item {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  transition: background .2s;
-}
+.contact-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: background .2s; }
 .contact-item:hover { background: rgba(255,255,255,0.1); }
 .ci-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
 .ci-label { font-size: 10.5px; letter-spacing: 1.5px; color: var(--gold2); font-weight: 700; margin-bottom: 4px; }
 .ci-value { font-size: 14px; color: rgba(255,248,238,0.85); line-height: 1.5; }
-
-.contact-form {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 20px; padding: 36px;
-  backdrop-filter: blur(10px);
-}
+.contact-form { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px; backdrop-filter: blur(10px); }
 .form-title { font-family: var(--f-display); font-size: 22px; font-weight: 700; color: #fff8ee; margin-bottom: 24px; }
 .form-group { margin-bottom: 18px; }
 .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: rgba(240,192,64,0.8); text-transform: uppercase; margin-bottom: 8px; }
-.form-input, .form-textarea {
-  width: 100%; padding: 13px 18px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 10px;
-  color: #fff8ee;
-  font-family: var(--f-body); font-size: 14px;
-  outline: none;
-  transition: border-color .2s, background .2s;
-}
+.form-input, .form-textarea { width: 100%; padding: 13px 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff8ee; font-family: var(--f-body); font-size: 14px; outline: none; transition: border-color .2s, background .2s; }
 .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,248,238,0.3); }
 .form-input:focus, .form-textarea:focus { border-color: var(--gold2); background: rgba(255,255,255,0.12); }
 .form-textarea { resize: vertical; min-height: 110px; }
-.form-btn {
-  width: 100%; padding: 15px;
-  background: var(--gold2);
-  color: var(--ink);
-  border: none; border-radius: 10px;
-  font-family: var(--f-body); font-size: 14px; font-weight: 700;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-  letter-spacing: 0.5px;
-}
+.form-btn { width: 100%; padding: 15px; background: var(--gold2); color: var(--ink); border: none; border-radius: 10px; font-family: var(--f-body); font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; letter-spacing: 0.5px; }
 .form-btn:hover { background: var(--gold3); transform: translateY(-2px); }
 
 /* ─── FOOTER ─── */
-.footer {
-  background: var(--ink);
-  padding: 60px 6% 36px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.ft-logo {
-  font-family: var(--f-display);
-  font-size: 24px; font-weight: 700;
-  color: var(--gold2); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.ft-logo-icon {
-  width: 34px; height: 34px; background: var(--crimson);
-  border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  font-size: 16px; color: var(--gold3);
-}
+.footer { background: var(--ink); padding: 60px 6% 36px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.ft-logo { font-family: var(--f-display); font-size: 24px; font-weight: 700; color: var(--gold2); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.ft-logo-icon { width: 34px; height: 34px; background: var(--crimson); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gold3); }
 .ft-desc { font-size: 13px; color: rgba(250,246,237,0.4); line-height: 1.9; }
 .ft-col-title { font-family: var(--f-mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
 .ft-links { display: flex; flex-direction: column; gap: 10px; }
 .ft-links a { font-size: 13px; color: rgba(250,246,237,0.45); transition: color .2s; }
 .ft-links a:hover { color: var(--gold2); }
-.footer-bottom {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 28px;
-  font-size: 12px; color: rgba(250,246,237,0.25);
-}
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; font-size: 12px; color: rgba(250,246,237,0.25); }
 .footer-bottom a { color: rgba(250,246,237,0.35); transition: color .2s; }
 .footer-bottom a:hover { color: var(--gold2); }
 
 /* ─── SEARCH BAR ─── */
 .search-section { background: var(--parch2); padding: 32px 6%; border-bottom: 1px solid var(--border); }
 .search-inner { max-width: 600px; margin: 0 auto; position: relative; }
-.search-inner input {
-  width: 100%; padding: 16px 56px 16px 24px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-family: var(--f-body); font-size: 15px;
-  color: var(--text); outline: none;
-  box-shadow: 0 4px 20px var(--shadow);
-  transition: border-color .3s, box-shadow .3s;
-}
+.search-inner input { width: 100%; padding: 16px 56px 16px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-family: var(--f-body); font-size: 15px; color: var(--text); outline: none; box-shadow: 0 4px 20px var(--shadow); transition: border-color .3s, box-shadow .3s; }
 .search-inner input::placeholder { color: var(--muted); }
 .search-inner input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1); }
 .search-inner .s-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--muted); }
@@ -838,6 +705,193 @@ body::after {
 .fade-up:nth-child(4) { transition-delay: .3s; }
 .fade-up:nth-child(5) { transition-delay: .4s; }
 .fade-up:nth-child(6) { transition-delay: .5s; }
+
+/* ══════════════════════════════════════════════
+   ─── COUNTDOWN SECTION ───
+══════════════════════════════════════════════ */
+.countdown-section {
+  background: #0a0a0e;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.countdown-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 90%, rgba(139,26,26,0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* countdown inner wrapper */
+#countdown-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Reuse countdown page styles scoped inside this section ── */
+.countdown-section .cd-gold       { --gold: #c9a84c; }
+
+/* header */
+.countdown-section header {
+  text-align: center;
+  padding: 70px 20px 50px;
+}
+.countdown-section .hero-ornament {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s;
+}
+.countdown-section .ornament-line { height: 1px; width: 80px; background: linear-gradient(90deg, transparent, #c9a84c); }
+.countdown-section .ornament-line.right { background: linear-gradient(90deg, #c9a84c, transparent); }
+.countdown-section .ornament-diamond { width: 8px; height: 8px; background: #c9a84c; transform: rotate(45deg); }
+.countdown-section .hero-title-cd {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 12vw, 120px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a84c 40%, #8a6520 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.2s;
+}
+.countdown-section .hero-eagle {
+  font-size: clamp(14px, 3vw, 20px);
+  letter-spacing: 12px; color: #c9a84c;
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s;
+  margin-top: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.countdown-section .hero-sub {
+  font-size: clamp(11px, 1.8vw, 14px);
+  color: #7a7a8c; letter-spacing: 3px;
+  text-transform: uppercase; margin-top: 20px;
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.6s;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.countdown-section .divider {
+  width: 100%; max-width: 700px;
+  margin: 36px auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.7s;
+}
+.countdown-section .live-clock {
+  text-align: center; padding: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px; letter-spacing: 3px; color: #7a7a8c;
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.9s;
+}
+.countdown-section .live-clock span { color: #c9a84c; }
+
+/* batch nav */
+.countdown-section .batch-nav {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 8px; padding: 28px 20px 10px;
+  opacity: 0; animation: fadeUp 0.9s ease forwards 0.8s;
+}
+.countdown-section .batch-btn {
+  background: transparent;
+  border: 1px solid #1e1e30; color: #7a7a8c;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 2px;
+  padding: 8px 18px; cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative; overflow: hidden;
+}
+.countdown-section .batch-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: #c9a84c; transform: scaleX(0);
+  transform-origin: left; transition: transform 0.3s ease; z-index: -1;
+}
+.countdown-section .batch-btn:hover { color: #0a0a0e; border-color: #c9a84c; }
+.countdown-section .batch-btn:hover::before { transform: scaleX(1); }
+.countdown-section .batch-btn.active { background: #c9a84c; color: #0a0a0e; border-color: #c9a84c; font-weight: 600; }
+
+/* batch sections */
+.countdown-section .batch-section { display: none; padding: 30px 20px 70px; max-width: 1100px; margin: 0 auto; }
+.countdown-section .batch-section.active { display: block; }
+.countdown-section .batch-title { font-family: 'Playfair Display', serif; font-size: 26px; color: #c9a84c; text-align: center; margin-bottom: 4px; font-style: italic; }
+.countdown-section .batch-year { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #7a7a8c; text-transform: uppercase; margin-bottom: 32px; }
+
+/* exam grid & cards */
+.countdown-section .exam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.countdown-section .exam-card {
+  background: #14141f; border: 1px solid #1e1e30;
+  padding: 20px 22px; position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.countdown-section .exam-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%; background: #c9a84c;
+  opacity: 0.35; transition: opacity 0.3s;
+}
+.countdown-section .exam-card:hover { border-color: #c9a84c; transform: translateY(-2px); }
+.countdown-section .exam-card:hover::before { opacity: 1; }
+.countdown-section .exam-card.past { opacity: 0.4; filter: grayscale(0.6); }
+.countdown-section .exam-card.past::before { background: #7a7a8c; }
+.countdown-section .exam-card.today { border-color: #c9a84c; box-shadow: 0 0 28px rgba(201,168,76,0.14), inset 0 0 20px rgba(201,168,76,0.03); }
+.countdown-section .exam-card.today::before { opacity: 1; width: 4px; }
+
+/* badges */
+.countdown-section .card-badge { position: absolute; top: 12px; right: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 7px; }
+.countdown-section .badge-today  { background: #c9a84c; color: #0a0a0e; font-weight: 700; }
+.countdown-section .badge-past   { color: #7a7a8c; border: 1px solid #1e1e30; }
+.countdown-section .badge-upcoming { color: #c9a84c; border: 1px solid rgba(201,168,76,0.4); }
+.countdown-section .badge-live   { background: #c0392b; color: #fff; font-weight: 700; }
+
+/* course code & meta */
+.countdown-section .course-code { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: #e8c97a; margin-bottom: 12px; padding-right: 70px; letter-spacing: 1px; }
+.countdown-section .exam-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #7a7a8c; margin-bottom: 14px; line-height: 1.9; }
+.countdown-section .exam-meta .date { color: #e8e4d8; font-size: 11px; }
+
+/* countdown blocks */
+.countdown-section .countdown { display: flex; gap: 10px; align-items: center; }
+.countdown-section .count-block { text-align: center; }
+.countdown-section .count-num { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; color: #c9a84c; line-height: 1; }
+.countdown-section .count-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 8px; color: #7a7a8c; letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
+.countdown-section .count-sep { font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: rgba(201,168,76,0.3); align-self: flex-start; padding-top: 2px; }
+.countdown-section .countdown-live { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #c0392b; letter-spacing: 2px; animation: pulseLive 1.2s infinite; }
+@keyframes pulseLive { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.countdown-section .countdown-done { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7a7a8c; letter-spacing: 1.5px; }
+
+/* popup */
+.countdown-section .popup-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(5,5,10,0.85); z-index: 5000;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.countdown-section .popup-overlay.show { display: flex; }
+.countdown-section .popup-box {
+  background: #14141f; border: 1px solid #c9a84c;
+  max-width: 500px; width: 90%; padding: 36px;
+  position: relative;
+  box-shadow: 0 0 60px rgba(201,168,76,0.1);
+  animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes popIn { from{transform:scale(0.85);opacity:0} to{transform:scale(1);opacity:1} }
+.countdown-section .popup-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none; color: #7a7a8c;
+  font-size: 22px; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.countdown-section .popup-close:hover { color: #c9a84c; }
+.countdown-section .popup-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #c9a84c; text-transform: uppercase; margin-bottom: 10px; }
+.countdown-section .popup-title { font-family: 'Playfair Display', serif; font-size: 22px; color: #e8e4d8; margin-bottom: 20px; line-height: 1.3; }
+.countdown-section .pop-exam-item { background: #10101a; border: 1px solid #1e1e30; padding: 14px 16px; margin-bottom: 10px; position: relative; }
+.countdown-section .pop-exam-code { font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; color: #e8c97a; margin-bottom: 4px; }
+.countdown-section .pop-exam-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #7a7a8c; }
+.countdown-section .pop-batch-tag { position: absolute; top: 10px; right: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; color: #c9a84c; border: 1px solid rgba(201,168,76,0.3); padding: 2px 8px; text-transform: uppercase; letter-spacing: 1px; }
+.countdown-section .popup-dismiss { margin-top: 20px; width: 100%; padding: 12px; background: #c9a84c; color: #0a0a0e; border: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+.countdown-section .popup-dismiss:hover { background: #e8c97a; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
@@ -880,6 +934,7 @@ body::after {
     <li><a href="#practice">বিশেষজ্ঞতা</a></li>
     <li><a href="#cases">রায় সংগ্রহ</a></li>
     <li><a href="#laws">আইন নির্যাস</a></li>
+    <li><a href="#exam-countdown">পরীক্ষার কাউন্টডাউন</a></li>
     <li><a href="#contact" class="nav-cta">যোগাযোগ করুন</a></li>
   </ul>
 </nav>
@@ -1227,6 +1282,92 @@ body::after {
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════
+     EXAM COUNTDOWN SECTION
+══════════════════════════════════════════════ -->
+<section class="countdown-section" id="exam-countdown">
+  <div id="countdown-inner">
+
+    <header>
+      <div class="hero-ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <div class="hero-title-cd">EXAM</div>
+      <div class="hero-eagle">COUNTDOWN</div>
+      <div class="hero-sub">Dept. of Law · Sylhet International University · 2026</div>
+      <div class="divider"></div>
+    </header>
+
+    <div class="live-clock" id="liveClock"></div>
+
+    <div class="batch-nav">
+      <button class="batch-btn active" onclick="showBatch('sec-b11',this)">Batch 1/1</button>
+      <button class="batch-btn" onclick="showBatch('sec-b12',this)">Batch 1/2</button>
+      <button class="batch-btn" onclick="showBatch('sec-b21',this)">Batch 2/1</button>
+      <button class="batch-btn" onclick="showBatch('sec-b22',this)">Batch 2/2</button>
+      <button class="batch-btn" onclick="showBatch('sec-b31',this)">Batch 3/1</button>
+      <button class="batch-btn" onclick="showBatch('sec-b32',this)">Batch 3/2</button>
+      <button class="batch-btn" onclick="showBatch('sec-b41',this)">Batch 4/1</button>
+      <button class="batch-btn" onclick="showBatch('sec-b42',this)">Batch 4/2</button>
+    </div>
+
+    <div class="batch-section active" id="sec-b11">
+      <div class="batch-title">Batch 1/1</div>
+      <div class="batch-year">1st Year · 1st Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b11"></div>
+    </div>
+    <div class="batch-section" id="sec-b12">
+      <div class="batch-title">Batch 1/2</div>
+      <div class="batch-year">1st Year · 2nd Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b12"></div>
+    </div>
+    <div class="batch-section" id="sec-b21">
+      <div class="batch-title">Batch 2/1</div>
+      <div class="batch-year">2nd Year · 1st Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b21"></div>
+    </div>
+    <div class="batch-section" id="sec-b22">
+      <div class="batch-title">Batch 2/2</div>
+      <div class="batch-year">2nd Year · 2nd Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b22"></div>
+    </div>
+    <div class="batch-section" id="sec-b31">
+      <div class="batch-title">Batch 3/1</div>
+      <div class="batch-year">3rd Year · 1st Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b31"></div>
+    </div>
+    <div class="batch-section" id="sec-b32">
+      <div class="batch-title">Batch 3/2</div>
+      <div class="batch-year">3rd Year · 2nd Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b32"></div>
+    </div>
+    <div class="batch-section" id="sec-b41">
+      <div class="batch-title">Batch 4/1</div>
+      <div class="batch-year">4th Year · 1st Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b41"></div>
+    </div>
+    <div class="batch-section" id="sec-b42">
+      <div class="batch-title">Batch 4/2</div>
+      <div class="batch-year">4th Year · 2nd Semester · LL.B</div>
+      <div class="exam-grid" id="grid-b42"></div>
+    </div>
+
+    <!-- Tomorrow Popup -->
+    <div class="popup-overlay" id="popup-overlay">
+      <div class="popup-box">
+        <button class="popup-close" onclick="closePopup()">✕</button>
+        <div class="popup-eyebrow">● আগামীকালের পরীক্ষা</div>
+        <div class="popup-title">Tomorrow's Exams</div>
+        <div id="popup-exam-list"></div>
+        <button class="popup-dismiss" onclick="closePopup()">বুঝেছি — বন্ধ করুন</button>
+      </div>
+    </div>
+
+  </div><!-- /countdown-inner -->
+</section>
+
 <!-- CONTACT -->
 <section class="section contact" id="contact">
   <div class="contact-grid">
@@ -1318,6 +1459,7 @@ body::after {
       <div class="ft-links">
         <a href="#about">পরিচিতি</a>
         <a href="#practice">বিশেষজ্ঞতা</a>
+        <a href="#exam-countdown">পরীক্ষার কাউন্টডাউন</a>
         <a href="#contact">যোগাযোগ</a>
       </div>
     </div>
@@ -1329,38 +1471,32 @@ body::after {
 </footer>
 
 <script>
-/* CURSOR */
+/* ─── CURSOR ─── */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
-function animRing(){
-  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-}
+function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
 animRing();
 
-/* SCROLL ANIMATIONS */
+/* ─── SCROLL ANIMATIONS ─── */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.15 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-/* SEARCH */
+/* ─── SEARCH ─── */
 function filterAll() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
   document.querySelectorAll('#caseGrid .case-card').forEach(c => {
-    const match = !q || c.dataset.keywords.includes(q) || c.innerText.toLowerCase().includes(q);
-    c.style.display = match ? '' : 'none';
+    c.style.display = (!q || c.dataset.keywords.includes(q) || c.innerText.toLowerCase().includes(q)) ? '' : 'none';
   });
   document.querySelectorAll('#lawGrid .law-card').forEach(c => {
-    const match = !q || c.dataset.keywords.includes(q) || c.innerText.toLowerCase().includes(q);
-    c.style.display = match ? '' : 'none';
+    c.style.display = (!q || c.dataset.keywords.includes(q) || c.innerText.toLowerCase().includes(q)) ? '' : 'none';
   });
 }
 
-/* CASES FILTER */
+/* ─── CASES FILTER ─── */
 function filterCases(cat, btn) {
   document.querySelectorAll('.cases-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1369,12 +1505,226 @@ function filterCases(cat, btn) {
   });
 }
 
-/* FORM SUBMIT */
+/* ─── FORM SUBMIT ─── */
 document.querySelector('.form-btn').addEventListener('click', function() {
   this.textContent = '✓ বার্তা পাঠানো হয়েছে!';
   this.style.background = '#27ae60';
   setTimeout(() => { this.textContent = 'বার্তা পাঠান →'; this.style.background = ''; }, 3000);
 });
+
+/* ══════════════════════════════════════════════
+   COUNTDOWN LOGIC
+══════════════════════════════════════════════ */
+const scheduleData = {
+  b11: [
+    { code: 'GED 0311-201', date: '2026-06-08', startH: 14, endH: 16 },
+    { code: 'ENG 0232-107', date: '2026-06-10', startH: 14, endH: 16 },
+    { code: 'GED 0231-101', date: '2026-06-14', startH: 14, endH: 16 },
+    { code: 'LAW 0121-111', date: '2026-06-15', startH: 14, endH: 16 },
+    { code: 'LAW 0121-111', date: '2026-06-16', startH: 10, endH: 12 },
+    { code: 'GED 0312-124', date: '2026-06-18', startH: 14, endH: 16 },
+  ],
+  b12: [
+    { code: 'GED 0311-201', date: '2026-06-08', startH: 10, endH: 12 },
+    { code: 'ENG 0232-107', date: '2026-06-10', startH: 10, endH: 12 },
+    { code: 'GED 0231-101', date: '2026-06-14', startH: 10, endH: 12 },
+    { code: 'LAW 0421-123', date: '2026-06-15', startH: 10, endH: 12 },
+    { code: 'LAW 0421-123', date: '2026-06-16', startH: 14, endH: 16 },
+    { code: 'GED 0312-124', date: '2026-06-18', startH: 10, endH: 12 },
+  ],
+  b21: [
+    { code: 'LAW 201',   date: '2026-06-09', startH: 10, endH: 12 },
+    { code: 'LAW 203',   date: '2026-06-11', startH: 10, endH: 12 },
+    { code: 'LAW 205',   date: '2026-06-14', startH: 14, endH: 16 },
+    { code: 'LAW 207',   date: '2026-06-16', startH: 14, endH: 16 },
+    { code: '*LAW 211',  date: '2026-06-17', startH: 10, endH: 12 },
+    { code: 'LAW 209',   date: '2026-06-18', startH: 14, endH: 16 },
+    { code: '*LAW 215',  date: '2026-06-21', startH: 14, endH: 16 },
+  ],
+  b22: [
+    { code: 'LAW 301', date: '2026-06-08', startH: 10, endH: 12 },
+    { code: 'LAW 303', date: '2026-06-10', startH: 10, endH: 12 },
+    { code: 'LAW 305', date: '2026-06-14', startH: 10, endH: 12 },
+    { code: 'LAW 307', date: '2026-06-15', startH: 10, endH: 12 },
+    { code: 'LAW 309', date: '2026-06-18', startH: 10, endH: 12 },
+  ],
+  b31: [
+    { code: 'LAW 301', date: '2026-06-08', startH: 10, endH: 12 },
+    { code: 'LAW 303', date: '2026-06-10', startH: 10, endH: 12 },
+    { code: 'LAW 305', date: '2026-06-14', startH: 10, endH: 12 },
+    { code: 'LAW 307', date: '2026-06-15', startH: 10, endH: 12 },
+    { code: 'LAW 307', date: '2026-06-16', startH: 10, endH: 12 },
+    { code: 'LAW 309', date: '2026-06-18', startH: 10, endH: 12 },
+  ],
+  b32: [
+    { code: 'LAW 311', date: '2026-06-08', startH: 10, endH: 12 },
+    { code: 'LAW 313', date: '2026-06-10', startH: 10, endH: 12 },
+    { code: 'LAW 317', date: '2026-06-14', startH: 10, endH: 12 },
+    { code: 'LAW 315', date: '2026-06-15', startH: 10, endH: 12 },
+    { code: 'LAW 319', date: '2026-06-18', startH: 10, endH: 12 },
+  ],
+  b41: [
+    { code: 'LAW 401', date: '2026-06-09', startH: 10, endH: 12 },
+    { code: 'LAW 405', date: '2026-06-11', startH: 10, endH: 12 },
+    { code: 'LAW 407', date: '2026-06-14', startH: 14, endH: 16 },
+    { code: 'LAW 409', date: '2026-06-16', startH: 14, endH: 16 },
+    { code: 'LAW 403', date: '2026-06-21', startH: 10, endH: 12 },
+  ],
+  b42: [
+    { code: 'LAW 411', date: '2026-06-08', startH: 14, endH: 16 },
+    { code: 'LAW 413', date: '2026-06-11', startH: 14, endH: 16 },
+    { code: 'LAW 415', date: '2026-06-14', startH: 14, endH: 16 },
+    { code: 'LAW 417', date: '2026-06-16', startH: 14, endH: 16 },
+  ],
+};
+
+function pad(n){ return String(n).padStart(2,'0'); }
+const BN_DAYS = ['রবি','সোম','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
+const MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtDate(s){ const d=new Date(s+'T00:00:00'); return `${BN_DAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
+function fmtTime(e){ const to12=h=>`${h>12?h-12:h}:00 ${h>=12?'PM':'AM'}`; return `${to12(e.startH)} – ${to12(e.endH)}`; }
+function getStart(e){ return new Date(`${e.date}T${pad(e.startH)}:00:00`); }
+function getEnd(e)  { return new Date(`${e.date}T${pad(e.endH)}:00:00`); }
+
+function buildAll(){
+  Object.entries(scheduleData).forEach(([bid, list]) => {
+    const grid = document.getElementById(`grid-${bid}`);
+    const sorted = [...list].sort((a,b) => a.date.localeCompare(b.date) || a.startH - b.startH);
+    sorted.forEach((exam, idx) => {
+      const uid  = `${bid}-${idx}`;
+      const card = document.createElement('div');
+      card.className = 'exam-card';
+      card.id = `card-${uid}`;
+      card.innerHTML = `
+        <div class="card-badge" id="badge-${uid}"></div>
+        <div class="course-code">${exam.code}</div>
+        <div class="exam-meta">
+          <div class="date">${fmtDate(exam.date)}</div>
+          <div>${fmtTime(exam)}</div>
+        </div>
+        <div id="cd-${uid}"></div>
+      `;
+      grid.appendChild(card);
+    });
+  });
+}
+
+function tick(){
+  const now = new Date();
+  const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  document.getElementById('liveClock').innerHTML =
+    `<span>${DAY_NAMES[now.getDay()]}</span> &nbsp;|&nbsp; ` +
+    `<span>${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()}</span> &nbsp;|&nbsp; ` +
+    `<span>${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}</span>`;
+
+  Object.entries(scheduleData).forEach(([bid, list]) => {
+    const sorted = [...list].sort((a,b) => a.date.localeCompare(b.date) || a.startH - b.startH);
+    sorted.forEach((exam, idx) => {
+      const uid     = `${bid}-${idx}`;
+      const cdEl    = document.getElementById(`cd-${uid}`);
+      const badgeEl = document.getElementById(`badge-${uid}`);
+      const cardEl  = document.getElementById(`card-${uid}`);
+      if (!cdEl) return;
+
+      const start     = getStart(exam);
+      const end       = getEnd(exam);
+      const diffStart = start - now;
+      const diffEnd   = end   - now;
+
+      if (diffStart <= 0 && diffEnd > 0) {
+        cdEl.innerHTML    = `<div class="countdown-live">● পরীক্ষা চলছে এখন!</div>`;
+        badgeEl.innerHTML = `<span class="card-badge badge-live">LIVE</span>`;
+        cardEl.classList.remove('past'); cardEl.classList.add('today');
+      } else if (diffEnd <= 0) {
+        cdEl.innerHTML    = `<div class="countdown-done">✓ সম্পন্ন</div>`;
+        badgeEl.innerHTML = `<span class="card-badge badge-past">DONE</span>`;
+        cardEl.classList.add('past'); cardEl.classList.remove('today');
+      } else {
+        const sec = Math.floor(diffStart / 1000);
+        const d   = Math.floor(sec / 86400);
+        const h   = Math.floor((sec % 86400) / 3600);
+        const m   = Math.floor((sec % 3600) / 60);
+        const s   = sec % 60;
+        cdEl.innerHTML = `
+          <div class="countdown">
+            <div class="count-block"><span class="count-num">${pad(d)}</span><span class="count-label">দিন</span></div>
+            <div class="count-block"><span class="count-num">${pad(h)}</span><span class="count-label">ঘণ্টা</span></div>
+            <div class="count-block"><span class="count-num">${pad(m)}</span><span class="count-label">মিনিট</span></div>
+            <div class="count-block"><span class="count-num">${pad(s)}</span><span class="count-label">সেকেন্ড</span></div>
+          </div>`;
+        const isToday = start.toDateString() === now.toDateString();
+        if (isToday) {
+          badgeEl.innerHTML = `<span class="card-badge badge-today">TODAY</span>`;
+          cardEl.classList.add('today');
+        } else {
+          badgeEl.innerHTML = `<span class="card-badge badge-upcoming">UPCOMING</span>`;
+          cardEl.classList.remove('today');
+        }
+        cardEl.classList.remove('past');
+      }
+    });
+  });
+}
+
+function showBatch(id, btn){
+  document.querySelectorAll('.countdown-section .batch-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.countdown-section .batch-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const BATCH_LABELS = {
+  b11:'Batch 1/1', b12:'Batch 1/2',
+  b21:'Batch 2/1', b22:'Batch 2/2',
+  b31:'Batch 3/1', b32:'Batch 3/2',
+  b41:'Batch 4/1', b42:'Batch 4/2',
+};
+
+function checkTomorrowPopup(){
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  const tomorrowStr = tomorrow.toISOString().slice(0,10);
+  const seenKey = `popup-seen-${tomorrowStr}`;
+  if (sessionStorage.getItem(seenKey)) return;
+
+  const tomorrowExams = [];
+  Object.entries(scheduleData).forEach(([bid, list]) => {
+    list.forEach(exam => {
+      if (exam.date === tomorrowStr) tomorrowExams.push({ ...exam, batch: BATCH_LABELS[bid] });
+    });
+  });
+  if (tomorrowExams.length === 0) return;
+
+  const listEl = document.getElementById('popup-exam-list');
+  listEl.innerHTML = '';
+  tomorrowExams.forEach(ex => {
+    const item = document.createElement('div');
+    item.className = 'pop-exam-item';
+    item.innerHTML = `
+      <div class="pop-exam-code">${ex.code}</div>
+      <div class="pop-exam-meta">${fmtDate(ex.date)} &nbsp;|&nbsp; ${fmtTime(ex)}</div>
+      <span class="pop-batch-tag">${ex.batch}</span>
+    `;
+    listEl.appendChild(item);
+  });
+
+  document.getElementById('popup-overlay').classList.add('show');
+  sessionStorage.setItem(seenKey, '1');
+}
+
+function closePopup(){
+  document.getElementById('popup-overlay').classList.remove('show');
+}
+
+document.getElementById('popup-overlay').addEventListener('click', function(e){
+  if (e.target === this) closePopup();
+});
+
+buildAll();
+tick();
+setInterval(tick, 1000);
+checkTomorrowPopup();
 </script>
 </body>
 </html>
